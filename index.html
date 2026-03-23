@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Eknatha Labs – Cloud, DevOps, and Platform Engineering</title>
+<title>Eknatha Labs – Cloud, DevOps, Platform Engineering</title>
 
 <style>
 body {
@@ -16,7 +16,6 @@ body {
   justify-content: center;
 }
 
-/* GRID */
 .grid {
   position: fixed;
   width: 200%;
@@ -28,25 +27,19 @@ body {
   animation: gridMove 20s linear infinite;
   z-index: -2;
 }
-@keyframes gridMove {
-  from { transform: translate(0,0); }
-  to { transform: translate(-50px,-50px); }
-}
+@keyframes gridMove { to { transform: translate(-50px,-50px);} }
 
-/* CONTAINER */
 .container {
   max-width: 900px;
   text-align: center;
   padding: 40px 20px;
 }
 
-/* TITLE */
 h1 {
   text-shadow: 0 0 20px #00f7ff;
   animation: pulse 2s infinite alternate;
 }
 @keyframes pulse {
-  from { text-shadow: 0 0 10px #00f7ff; }
   to { text-shadow: 0 0 40px #00f7ff; }
 }
 
@@ -55,7 +48,6 @@ h1 {
   margin-bottom: 30px;
 }
 
-/* TERMINAL */
 .line {
   overflow: hidden;
   border-right: 2px solid #00f7ff;
@@ -65,80 +57,75 @@ h1 {
 .line:nth-child(2){animation-delay:3s;}
 .line:nth-child(3){animation-delay:6s;}
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-@keyframes blink {
-  50% { border-color: transparent }
-}
+@keyframes typing { from{width:0} to{width:100%} }
+@keyframes blink { 50%{border-color:transparent} }
 
-/* STATUS */
-.status {
-  margin-top: 20px;
-}
+.status { margin-top:20px; }
 
-/* INPUT */
 input {
   background: transparent;
   border: none;
   border-bottom: 1px solid #00f7ff;
   color: #00f7ff;
   text-align: center;
+  width: 100%;
 }
 
-/* OUTPUT */
 #output {
   margin-top: 10px;
   color: #cbd5f5;
+  max-height: 200px;
+  overflow-y: auto;
+  text-align: left;
 }
 
-/* GITHUB SECTION */
-.github {
-  margin-top: 60px;
+/* Lab panel */
+.lab-panel {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #00f7ff33;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.5);
+  text-align: left;
 }
+.hidden { display:none; }
+
+.lab-panel button {
+  margin-right:10px;
+  margin-top:10px;
+  padding:6px 10px;
+  background:#8b5cf6;
+  border:none;
+  color:white;
+  cursor:pointer;
+}
+
+/* GitHub */
+.github { margin-top:60px; }
 
 .github img {
-  width: 100%;
-  margin: 10px 0;
+  width:100%;
+  margin:10px 0;
 }
 
-/* REPO CARDS */
 .repos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap: 20px;
-  margin-top: 20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
 }
 
 .repo-card {
-  border: 1px solid #00f7ff33;
-  padding: 15px;
-  border-radius: 10px;
-  background: rgba(0,0,0,0.4);
-  transition: 0.3s;
+  border:1px solid #00f7ff33;
+  padding:15px;
+  border-radius:10px;
+  background:rgba(0,0,0,0.4);
+  transition:0.3s;
 }
-
 .repo-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 20px #00f7ff;
+  transform:translateY(-5px);
+  box-shadow:0 0 20px #00f7ff;
 }
-
-.repo-card a {
-  color: #8b5cf6;
-  text-decoration: none;
-}
-
-/* CONSTRUCTION BADGE */
-.construction {
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  padding: 8px 14px;
-  border: 1px solid #00f7ff;
-  border-radius: 20px;
-  box-shadow: 0 0 10px #00f7ff;
-}
+.repo-card a { color:#8b5cf6; }
 </style>
 </head>
 
@@ -162,26 +149,26 @@ Cloud, DevOps, and Platform Engineering tutorials, tools, and solutions
 
 <div class="status" id="rotate"></div>
 
-<input id="cmd" placeholder="labs | tutorials | github | projects"/>
+<input id="cmd" placeholder="docker | k8s | learn docker | help"/>
 <div id="output"></div>
 
-<!-- 🔥 GitHub Section -->
+<div id="lab-panel" class="lab-panel hidden"></div>
+
+<!-- GitHub -->
 <div class="github">
   <h2>⚡ GitHub Activity</h2>
 
   <img src="https://github-readme-stats.vercel.app/api?username=eknatha&show_icons=true&theme=tokyonight&bg_color=00000000"/>
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=eknatha&theme=tokyo-night&bg_color=00000000"/>
 
-  <h2>📦 Featured Projects</h2>
+  <h2>📦 Projects</h2>
   <div class="repos" id="repos"></div>
 </div>
 
 </div>
 
-<div class="construction">🚧 Under construction</div>
-
 <script>
-// rotating text
+// rotating words
 const words=["learn","build","deploy","scale"];
 let i=0;
 setInterval(()=>{
@@ -189,20 +176,117 @@ setInterval(()=>{
  i=(i+1)%words.length;
 },1500);
 
-// commands
-const input=document.getElementById("cmd");
-const output=document.getElementById("output");
+// terminal helpers
+const input = document.getElementById("cmd");
+const output = document.getElementById("output");
+const panel = document.getElementById("lab-panel");
 
+function scrollDown(){
+  output.scrollTop = output.scrollHeight;
+}
+
+function print(cmd,res){
+  output.innerHTML += `<div>> ${cmd}</div><div>${res}</div>`;
+  scrollDown();
+}
+
+// tutorials
+const tutorials = {
+  docker:[
+    "docker run hello-world",
+    "docker ps",
+    "docker images",
+    "docker run -it ubuntu bash"
+  ],
+  k8s:[
+    "kubectl get pods",
+    "kubectl create deployment nginx --image=nginx",
+    "kubectl expose deployment nginx --type=NodePort",
+    "kubectl get svc"
+  ]
+};
+
+function showTutorial(type){
+  let steps = tutorials[type];
+  let stepIndex = 0;
+
+  panel.classList.remove("hidden");
+
+  function render(){
+    panel.innerHTML = `
+      <h3>${type==="docker"?"🐳 Docker Lab":"☸️ Kubernetes Lab"}</h3>
+      <p><strong>Step ${stepIndex+1}:</strong> ${steps[stepIndex]}</p>
+      <button onclick="nextStep()">Next →</button>
+      <button onclick="launchLab('${type}')">Launch Lab 🚀</button>
+    `;
+  }
+
+  window.nextStep = function(){
+    if(stepIndex < steps.length-1){
+      stepIndex++;
+      render();
+    } else {
+      panel.innerHTML += "<p>✅ Completed!</p>";
+    }
+  };
+
+  render();
+}
+
+function launchLab(type){
+  if(type==="docker"){
+    window.open("https://labs.play-with-docker.com/");
+  }
+  if(type==="k8s"){
+    window.open("https://killercoda.com/");
+  }
+}
+
+// commands
 input.addEventListener("keypress",function(e){
  if(e.key==="Enter"){
-   let cmd=input.value.toLowerCase();
-   let res="";
-   if(cmd==="labs") res="🚀 Labs coming soon";
-   else if(cmd==="tutorials") res="📘 Tutorials coming soon";
-   else if(cmd==="github") res="👉 https://github.com/eknatha";
-   else if(cmd==="projects") res="👇 Scroll to view projects";
-   else res="❓ command not found";
-   output.innerHTML+=`<div>> ${cmd}</div><div>${res}</div>`;
+   const cmd = input.value.toLowerCase().trim();
+   panel.classList.add("hidden");
+
+   switch(cmd){
+     case "docker":
+       print(cmd,"🚀 Opening Docker lab...");
+       launchLab("docker");
+       break;
+
+     case "k8s":
+       print(cmd,"☸️ Opening Kubernetes lab...");
+       launchLab("k8s");
+       break;
+
+     case "learn docker":
+       print(cmd,"📘 Loading Docker tutorial...");
+       showTutorial("docker");
+       break;
+
+     case "learn k8s":
+       print(cmd,"📘 Loading Kubernetes tutorial...");
+       showTutorial("k8s");
+       break;
+
+     case "projects":
+       print(cmd,"👇 Scroll to see projects");
+       break;
+
+     case "help":
+       print(cmd,`
+docker → open lab
+k8s → open lab
+learn docker → tutorial
+learn k8s → tutorial
+projects → repos
+       `);
+       break;
+
+     default:
+       print(cmd,"❓ command not found");
+   }
+
    input.value="";
  }
 });
@@ -211,16 +295,14 @@ input.addEventListener("keypress",function(e){
 fetch("https://api.github.com/users/eknatha/repos?sort=updated")
 .then(res=>res.json())
 .then(data=>{
-  const container=document.getElementById("repos");
-  data.slice(0,6).forEach(repo=>{
-    const div=document.createElement("div");
-    div.className="repo-card";
-    div.innerHTML=`
-      <h3>${repo.name}</h3>
-      <p>${repo.description || "No description"}</p>
-      <a href="${repo.html_url}" target="_blank">View Repo</a>
-    `;
-    container.appendChild(div);
+  const c=document.getElementById("repos");
+  data.slice(0,6).forEach(r=>{
+    c.innerHTML+=`
+    <div class="repo-card">
+      <h3>${r.name}</h3>
+      <p>${r.description||"No description"}</p>
+      <a href="${r.html_url}" target="_blank">View Repo</a>
+    </div>`;
   });
 });
 </script>
