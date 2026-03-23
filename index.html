@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Eknatha Labs – Cloud, DevOps, Platform Engineering</title>
+<title>Eknatha Labs – DevOps Learning Platform</title>
 
 <style>
 body {
@@ -39,15 +39,14 @@ h1 {
   text-shadow: 0 0 20px #00f7ff;
   animation: pulse 2s infinite alternate;
 }
-@keyframes pulse {
-  to { text-shadow: 0 0 40px #00f7ff; }
-}
+@keyframes pulse { to { text-shadow: 0 0 40px #00f7ff; } }
 
 .tagline {
   color: #cbd5f5;
   margin-bottom: 30px;
 }
 
+/* terminal */
 .line {
   overflow: hidden;
   border-right: 2px solid #00f7ff;
@@ -79,7 +78,7 @@ input {
   text-align: left;
 }
 
-/* Lab panel */
+/* lab panel */
 .lab-panel {
   margin-top: 20px;
   padding: 15px;
@@ -91,7 +90,6 @@ input {
 .hidden { display:none; }
 
 .lab-panel button {
-  margin-right:10px;
   margin-top:10px;
   padding:6px 10px;
   background:#8b5cf6;
@@ -100,7 +98,7 @@ input {
   cursor:pointer;
 }
 
-/* GitHub */
+/* github */
 .github { margin-top:60px; }
 
 .github img {
@@ -126,6 +124,26 @@ input {
   box-shadow:0 0 20px #00f7ff;
 }
 .repo-card a { color:#8b5cf6; }
+
+/* courses */
+.courses {
+  margin-top: 60px;
+}
+
+.course-card {
+  border: 1px solid #00f7ff33;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  background: rgba(0,0,0,0.4);
+  transition: 0.3s;
+}
+
+.course-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px #00f7ff;
+}
 </style>
 </head>
 
@@ -141,6 +159,7 @@ input {
 Cloud, DevOps, and Platform Engineering tutorials, tools, and solutions
 </div>
 
+<!-- Terminal -->
 <div class="terminal">
   <div class="line">> initializing eknathalabs...</div>
   <div class="line">> deploying interactive cloud labs...</div>
@@ -165,10 +184,25 @@ Cloud, DevOps, and Platform Engineering tutorials, tools, and solutions
   <div class="repos" id="repos"></div>
 </div>
 
+<!-- Courses -->
+<div class="courses">
+  <h2>🎓 Learning Paths</h2>
+
+  <div class="course-card" onclick="openCourse('docker')">
+    🐳 Docker Mastery
+  </div>
+
+  <div class="course-card" onclick="openCourse('k8s')">
+    ☸️ Kubernetes Mastery
+  </div>
+</div>
+
+<div id="course-view" class="lab-panel hidden"></div>
+
 </div>
 
 <script>
-// rotating words
+// rotating text
 const words=["learn","build","deploy","scale"];
 let i=0;
 setInterval(()=>{
@@ -181,43 +215,28 @@ const input = document.getElementById("cmd");
 const output = document.getElementById("output");
 const panel = document.getElementById("lab-panel");
 
-function scrollDown(){
-  output.scrollTop = output.scrollHeight;
-}
-
 function print(cmd,res){
   output.innerHTML += `<div>> ${cmd}</div><div>${res}</div>`;
-  scrollDown();
+  output.scrollTop = output.scrollHeight;
 }
 
 // tutorials
 const tutorials = {
-  docker:[
-    "docker run hello-world",
-    "docker ps",
-    "docker images",
-    "docker run -it ubuntu bash"
-  ],
-  k8s:[
-    "kubectl get pods",
-    "kubectl create deployment nginx --image=nginx",
-    "kubectl expose deployment nginx --type=NodePort",
-    "kubectl get svc"
-  ]
+  docker:["docker run hello-world","docker ps","docker images"],
+  k8s:["kubectl get pods","kubectl create deployment nginx --image=nginx"]
 };
 
 function showTutorial(type){
   let steps = tutorials[type];
   let stepIndex = 0;
-
   panel.classList.remove("hidden");
 
   function render(){
     panel.innerHTML = `
-      <h3>${type==="docker"?"🐳 Docker Lab":"☸️ Kubernetes Lab"}</h3>
-      <p><strong>Step ${stepIndex+1}:</strong> ${steps[stepIndex]}</p>
-      <button onclick="nextStep()">Next →</button>
-      <button onclick="launchLab('${type}')">Launch Lab 🚀</button>
+      <h3>${type}</h3>
+      <p>${steps[stepIndex]}</p>
+      <button onclick="nextStep()">Next</button>
+      <button onclick="launchLab('${type}')">Launch Lab</button>
     `;
   }
 
@@ -226,7 +245,7 @@ function showTutorial(type){
       stepIndex++;
       render();
     } else {
-      panel.innerHTML += "<p>✅ Completed!</p>";
+      panel.innerHTML += "<p>✅ Completed</p>";
     }
   };
 
@@ -234,12 +253,8 @@ function showTutorial(type){
 }
 
 function launchLab(type){
-  if(type==="docker"){
-    window.open("https://labs.play-with-docker.com/");
-  }
-  if(type==="k8s"){
-    window.open("https://killercoda.com/playgrounds");
-  }
+  if(type==="docker") window.open("https://labs.play-with-docker.com/");
+  if(type==="k8s") window.open("https://killercoda.com/");
 }
 
 // commands
@@ -269,20 +284,6 @@ input.addEventListener("keypress",function(e){
        showTutorial("k8s");
        break;
 
-     case "projects":
-       print(cmd,"👇 Scroll to see projects");
-       break;
-
-     case "help":
-       print(cmd,`
-docker → open lab
-k8s → open lab
-learn docker → tutorial
-learn k8s → tutorial
-projects → repos
-       `);
-       break;
-
      default:
        print(cmd,"❓ command not found");
    }
@@ -290,6 +291,34 @@ projects → repos
    input.value="";
  }
 });
+
+// courses
+const courseView = document.getElementById("course-view");
+
+const courses = {
+  docker:["Intro","Images","Networking","Compose","Project"],
+  k8s:["Basics","Pods","Deployments","Scaling","Production"]
+};
+
+function openCourse(name){
+  courseView.classList.remove("hidden");
+
+  courseView.innerHTML = `
+    <h3>${name.toUpperCase()}</h3>
+    ${courses[name].map((m,i)=>`
+      <div onclick="startLesson('${name}',${i})">📘 ${m}</div>
+    `).join("")}
+  `;
+}
+
+function startLesson(course,index){
+  courseView.innerHTML = `
+    <h3>${courses[course][index]}</h3>
+    <button onclick="showTutorial('${course}')">
+      Start Lab 🚀
+    </button>
+  `;
+}
 
 // fetch repos
 fetch("https://api.github.com/users/eknatha/repos?sort=updated")
