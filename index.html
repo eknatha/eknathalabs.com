@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- SEO -->
+  <title>Eknatha Labs – Cloud, DevOps, and Platform Engineering</title>
+  <meta name="description" content="Eknatha Labs – Cloud, DevOps, and Platform Engineering tutorials, tools, and solutions. Launching soon."/>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #0a0f1c;
+      color: #00f7ff;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 800px;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-shadow: 0 0 15px #00f7ff;
+      margin-bottom: 10px;
+    }
+
+    .tagline {
+      color: #cbd5f5;
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .terminal {
+      text-align: left;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .line {
+      overflow: hidden;
+      border-right: 2px solid #00f7ff;
+      white-space: nowrap;
+      animation: typing 3s steps(40, end), blink 1s infinite;
+      margin: 8px 0;
+    }
+
+    .line:nth-child(2) { animation-delay: 3s; }
+    .line:nth-child(3) { animation-delay: 6s; }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    .status {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #22d3ee;
+      height: 24px;
+    }
+
+    .input-box {
+      margin-top: 20px;
+    }
+
+    input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #00f7ff;
+      color: #00f7ff;
+      font-size: 1rem;
+      outline: none;
+      width: 300px;
+      text-align: center;
+    }
+
+    #output {
+      margin-top: 15px;
+      text-align: left;
+      font-size: 0.9rem;
+      color: #cbd5f5;
+    }
+
+    a {
+      color: #8b5cf6;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* background particles */
+    .bg span {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #00f7ff;
+      animation: move 10s linear infinite;
+      opacity: 0.5;
+    }
+
+    @keyframes move {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- background particles -->
+  <div class="bg">
+    <span style="left:10%; animation-duration:12s;"></span>
+    <span style="left:30%; animation-duration:8s;"></span>
+    <span style="left:50%; animation-duration:10s;"></span>
+    <span style="left:70%; animation-duration:14s;"></span>
+    <span style="left:90%; animation-duration:9s;"></span>
+  </div>
+
+  <div class="container">
+
+    <h1>🚀 Eknatha Labs</h1>
+
+    <div class="tagline">
+      Cloud, DevOps, and Platform Engineering tutorials, tools, and solutions
+    </div>
+
+    <!-- Terminal -->
+    <div class="terminal">
+      <div class="line">> initializing eknathalabs...</div>
+      <div class="line">> deploying interactive cloud labs...</div>
+      <div class="line">> creating tutorials and real-world solutions...</div>
+    </div>
+
+    <!-- Rotating text -->
+    <div class="status" id="rotating-text"></div>
+
+    <!-- Interactive input -->
+    <div class="input-box">
+      <input id="cmd" placeholder="type: labs | tutorials | github" />
+    </div>
+
+    <div id="output"></div>
+
+  </div>
+
+  <script>
+    // rotating words
+    const words = ["learn", "build", "deploy", "scale"];
+    let i = 0;
+
+    setInterval(() => {
+      document.getElementById("rotating-text").innerText = "> " + words[i];
+      i = (i + 1) % words.length;
+    }, 1500);
+
+    // command input
+    const input = document.getElementById("cmd");
+    const output = document.getElementById("output");
+
+    input.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        const cmd = input.value.toLowerCase();
+        let response = "";
+
+        if (cmd === "labs") {
+          response = "🚀 Interactive cloud labs launching soon...";
+        } else if (cmd === "tutorials") {
+          response = "📘 DevOps & cloud tutorials coming soon...";
+        } else if (cmd === "github") {
+          response = "👉 https://github.com/eknatha";
+        } else {
+          response = "❓ command not found";
+        }
+
+        output.innerHTML += `<div>> ${cmd}</div><div>${response}</div>`;
+        input.value = "";
+      }
+    });
+  </script>
+
+</body>
+</html>
