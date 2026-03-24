@@ -125,42 +125,18 @@ h1 {
   border-radius:8px;
 }
 
-.mini-bar {
-  height:6px;
-  background:#00f7ff33;
-  border-radius:10px;
-  margin-top:5px;
-}
-
-.mini-bar-fill {
-  height:100%;
-  background:#00f7ff;
-}
-
-/* HEATMAP */
-#heatmap {
-  display:grid;
-  grid-template-columns:repeat(53,10px);
-  gap:3px;
-  justify-content:center;
-}
-
-.heat-cell {
-  width:10px;
-  height:10px;
-  background:#0b1220;
-  border-radius:2px;
-}
-
-.level-1 { background:#0e4f4f; }
-.level-2 { background:#00a6a6; }
-.level-3 { background:#00f7ff; }
-.level-4 { background:#66ffff; box-shadow:0 0 6px #00f7ff; }
-
+/* FOOTER */
 footer {
   margin-top:60px;
   color:#94a3b8;
   font-size:0.9rem;
+}
+
+/* GRAPH STYLES */
+img.graph {
+  width:100%;
+  border-radius:10px;
+  margin-top:10px;
 }
 </style>
 </head>
@@ -186,27 +162,43 @@ Cloud • DevOps • Platform Engineering • Hands-on Learning
   <a href="https://github.com/eknatha" target="_blank">GitHub</a>
 </div>
 
+<!-- LEARN -->
 <div class="section">
   <h2>📌 Learn DevOps</h2>
   <div class="card">
-    Master Docker, Kubernetes, Cloud & Platform Engineering with real labs.
+    Docker • Kubernetes • Cloud • Platform Engineering — hands-on labs & tutorials.
   </div>
 </div>
 
+<!-- GITHUB STATS -->
 <div class="section">
   <h2>📊 GitHub Live Profile</h2>
+
   <div class="card github-card" id="github-card">Loading...</div>
 </div>
 
+<!-- CONTRIBUTION GRAPH -->
 <div class="section">
-  <h2>🔥 Contribution Heatmap</h2>
+  <h2>🔥 Live Contribution Graph</h2>
   <div class="card">
-    <div id="heatmap"></div>
+    <img class="graph"
+      src="https://ghchart.rshah.org/00f7ff/eknatha"
+      alt="GitHub Contribution Graph">
+  </div>
+</div>
+
+<!-- ACTIVITY GRAPH -->
+<div class="section">
+  <h2>📈 Activity Overview</h2>
+  <div class="card">
+    <img class="graph"
+      src="https://github-readme-activity-graph.vercel.app/graph?username=eknatha&theme=react-dark&bg_color=050816&color=00f7ff"
+      alt="Activity Graph">
   </div>
 </div>
 
 <footer>
-© 2026 Eknatha Labs
+© 2026 Eknatha Labs • Built for DevOps Engineers
 </footer>
 
 </div>
@@ -214,7 +206,6 @@ Cloud • DevOps • Platform Engineering • Hands-on Learning
 <script>
 const username = "eknatha";
 
-/* GitHub stats */
 Promise.all([
   fetch(`https://api.github.com/users/${username}`).then(r => r.json()),
   fetch(`https://api.github.com/users/${username}/repos?per_page=100`).then(r => r.json())
@@ -229,7 +220,9 @@ Promise.all([
       <div>
         <div class="github-name">${user.name || username}</div>
         <div style="color:#cbd5f5">@${username}</div>
-        <a href="${user.html_url}" target="_blank" style="color:#00f7ff;">View Profile</a>
+        <a href="${user.html_url}" target="_blank" style="color:#00f7ff;">
+          View Profile →
+        </a>
       </div>
     </div>
 
@@ -239,28 +232,6 @@ Promise.all([
       <div class="stat-box">⭐ Stars<br><b>${totalStars}</b></div>
     </div>
   `;
-});
-
-/* Heatmap */
-const heatmap = document.getElementById("heatmap");
-
-fetch(`https://api.github.com/users/${username}/events/public`)
-.then(r => r.json())
-.then(events => {
-
-  for (let i = 0; i < 365; i++) {
-    const cell = document.createElement("div");
-    cell.className = "heat-cell";
-
-    const intensity = Math.random() * 4;
-
-    if (intensity > 3) cell.classList.add("level-4");
-    else if (intensity > 2) cell.classList.add("level-3");
-    else if (intensity > 1) cell.classList.add("level-2");
-    else if (intensity > 0) cell.classList.add("level-1");
-
-    heatmap.appendChild(cell);
-  }
 });
 </script>
 
