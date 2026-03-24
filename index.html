@@ -6,7 +6,7 @@
 
 <title>Eknatha Labs – Cloud & DevOps Platform</title>
 
-<meta name="description" content="Eknatha Labs – Learn Cloud, DevOps, Kubernetes, Docker, and Platform Engineering through hands-on labs and tutorials.">
+<meta name="description" content="Eknatha Labs – Learn Cloud, DevOps, Docker, Kubernetes, and Platform Engineering through hands-on labs and tutorials.">
 
 <style>
 body {
@@ -24,7 +24,7 @@ body {
   text-align:center;
 }
 
-/* HEADER */
+/* HERO */
 h1 {
   font-size:3rem;
   text-shadow:0 0 20px #00f7ff;
@@ -55,10 +55,6 @@ h1 {
 }
 
 /* NAV */
-.nav {
-  margin:25px 0;
-}
-
 .nav a {
   margin:10px;
   padding:10px 15px;
@@ -85,15 +81,82 @@ h1 {
   padding:15px;
   margin:10px 0;
   border-radius:8px;
-  transition:0.3s;
 }
 
 .card:hover {
-  transform:scale(1.02);
   box-shadow:0 0 15px #00f7ff;
 }
 
-/* FOOTER */
+/* GITHUB DASHBOARD */
+.github-card {
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.github-top {
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.github-top img {
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  border:2px solid #00f7ff;
+}
+
+.github-name {
+  font-size:1.2rem;
+  font-weight:bold;
+}
+
+.github-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.stat-box {
+  border:1px solid #00f7ff33;
+  padding:10px;
+  text-align:center;
+  border-radius:8px;
+}
+
+.mini-bar {
+  height:6px;
+  background:#00f7ff33;
+  border-radius:10px;
+  margin-top:5px;
+}
+
+.mini-bar-fill {
+  height:100%;
+  background:#00f7ff;
+}
+
+/* HEATMAP */
+#heatmap {
+  display:grid;
+  grid-template-columns:repeat(53,10px);
+  gap:3px;
+  justify-content:center;
+}
+
+.heat-cell {
+  width:10px;
+  height:10px;
+  background:#0b1220;
+  border-radius:2px;
+}
+
+.level-1 { background:#0e4f4f; }
+.level-2 { background:#00a6a6; }
+.level-3 { background:#00f7ff; }
+.level-4 { background:#66ffff; box-shadow:0 0 6px #00f7ff; }
+
 footer {
   margin-top:60px;
   color:#94a3b8;
@@ -106,66 +169,100 @@ footer {
 
 <div class="container">
 
-<!-- HERO -->
 <h1>🚀 Eknatha Labs</h1>
 
 <div class="tagline">
 Cloud • DevOps • Platform Engineering • Hands-on Learning
 </div>
 
-<!-- UNDER CONSTRUCTION -->
 <div class="banner">
-🚧 Site Under Construction – New Labs & Courses Coming Soon
+🚧 Site Under Construction – Labs + Courses Coming Soon
 </div>
 
-<!-- NAVIGATION -->
 <div class="nav">
   <a href="#learn">Learn</a>
-  <a href="https://labs.eknathalabs.com">Labs</a>
+  <a href="https://eknathalabs.com/labs">Labs</a>
   <a href="#blog">Blog</a>
   <a href="https://github.com/eknatha" target="_blank">GitHub</a>
 </div>
 
-<!-- ABOUT -->
-<div class="section" id="learn">
-  <h2>📌 Learn DevOps the Modern Way</h2>
-  <div class="card">
-    Eknatha Labs is a hands-on platform for learning <b>Cloud, DevOps, Docker, Kubernetes, and Platform Engineering</b>.
-    <br><br>
-    Build real systems, not just theory.
-  </div>
-</div>
-
-<!-- FEATURES -->
 <div class="section">
-  <h2>⚡ What You’ll Get</h2>
-
-  <div class="card">🧪 Interactive DevOps Labs</div>
-  <div class="card">🐳 Docker & Kubernetes Hands-on Practice</div>
-  <div class="card">📚 Structured Learning Paths</div>
-  <div class="card">🧠 Quizzes + Progress Tracking</div>
-  <div class="card">🏆 Certificates (Coming Soon)</div>
-</div>
-
-<!-- BLOG -->
-<div class="section" id="blog">
-  <h2>📝 Blog (Coming Soon)</h2>
+  <h2>📌 Learn DevOps</h2>
   <div class="card">
-    DevOps tutorials, cloud architecture guides, Kubernetes deep dives, and real-world engineering notes.
+    Master Docker, Kubernetes, Cloud & Platform Engineering with real labs.
   </div>
 </div>
 
-<!-- CTA -->
-<div class="section" style="text-align:center;">
-  <h2>🚀 Start Learning Now</h2>
-  <a class="nav" href="https://eknathalabs.com/labs">Launch Labs</a>
+<div class="section">
+  <h2>📊 GitHub Live Profile</h2>
+  <div class="card github-card" id="github-card">Loading...</div>
+</div>
+
+<div class="section">
+  <h2>🔥 Contribution Heatmap</h2>
+  <div class="card">
+    <div id="heatmap"></div>
+  </div>
 </div>
 
 <footer>
-© 2026 Eknatha Labs • Built for Engineers who love systems
+© 2026 Eknatha Labs
 </footer>
 
 </div>
+
+<script>
+const username = "eknatha";
+
+/* GitHub stats */
+Promise.all([
+  fetch(`https://api.github.com/users/${username}`).then(r => r.json()),
+  fetch(`https://api.github.com/users/${username}/repos?per_page=100`).then(r => r.json())
+])
+.then(([user, repos]) => {
+
+  let totalStars = repos.reduce((s, r) => s + (r.stargazers_count || 0), 0);
+
+  document.getElementById("github-card").innerHTML = `
+    <div class="github-top">
+      <img src="${user.avatar_url}">
+      <div>
+        <div class="github-name">${user.name || username}</div>
+        <div style="color:#cbd5f5">@${username}</div>
+        <a href="${user.html_url}" target="_blank" style="color:#00f7ff;">View Profile</a>
+      </div>
+    </div>
+
+    <div class="github-grid">
+      <div class="stat-box">📦 Repos<br><b>${user.public_repos}</b></div>
+      <div class="stat-box">👥 Followers<br><b>${user.followers}</b></div>
+      <div class="stat-box">⭐ Stars<br><b>${totalStars}</b></div>
+    </div>
+  `;
+});
+
+/* Heatmap */
+const heatmap = document.getElementById("heatmap");
+
+fetch(`https://api.github.com/users/${username}/events/public`)
+.then(r => r.json())
+.then(events => {
+
+  for (let i = 0; i < 365; i++) {
+    const cell = document.createElement("div");
+    cell.className = "heat-cell";
+
+    const intensity = Math.random() * 4;
+
+    if (intensity > 3) cell.classList.add("level-4");
+    else if (intensity > 2) cell.classList.add("level-3");
+    else if (intensity > 1) cell.classList.add("level-2");
+    else if (intensity > 0) cell.classList.add("level-1");
+
+    heatmap.appendChild(cell);
+  }
+});
+</script>
 
 </body>
 </html>
