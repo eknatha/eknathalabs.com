@@ -4,238 +4,674 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Eknatha Labs – Cloud & DevOps & SRE Platform</title>
+<!-- SEO -->
+<title>EknathaLabs — Hands-on DevOps, Kubernetes & Platform Engineering Labs</title>
+<meta name="description" content="Real terminal labs, production-grade scenarios, and interactive playgrounds for Linux, Kubernetes, Terraform, and Cloud — built by a practitioner with 13 years in the field.">
+<meta name="keywords" content="DevOps labs, Kubernetes lab, CKA prep, Platform Engineering, Linux for DevOps, Terraform, AWS, Azure, SRE">
+<meta name="author" content="EknathaLabs">
+<link rel="canonical" href="https://eknathalabs.com/">
 
-<meta name="description" content="Eknatha Labs – Learn Cloud, DevOps, Docker, Kubernetes, and Platform Engineering through hands-on labs and tutorials.">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eknathalabs.com/">
+<meta property="og:title" content="EknathaLabs — Hands-on DevOps & Platform Engineering Labs">
+<meta property="og:description" content="Real terminal labs, production-grade scenarios for Linux, Kubernetes, Terraform, and Cloud — built by a practitioner.">
+<meta property="og:image" content="https://eknathalabs.com/og-image.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EknathaLabs — Hands-on DevOps Labs">
+<meta name="twitter:description" content="Real terminal labs for Linux, Kubernetes, Terraform and Cloud. Built by a practitioner with 13 years of field experience.">
+<meta name="twitter:image" content="https://eknathalabs.com/og-image.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230a0e14'/><text x='16' y='22' text-anchor='middle' font-family='monospace' font-weight='700' font-size='14' fill='%2338bdf8'>EL</text></svg>">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet">
 
 <style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #080c12;
+  --bg2: #0d1117;
+  --bg3: #111720;
+  --surface: #161e2e;
+  --surface2: #1c2538;
+  --border: rgba(56,189,248,0.1);
+  --border2: rgba(56,189,248,0.2);
+  --border3: rgba(56,189,248,0.35);
+  --accent: #38bdf8;
+  --accent2: #0ea5e9;
+  --green: #4ade80;
+  --amber: #fbbf24;
+  --purple: #c084fc;
+  --coral: #fb7185;
+  --text: #e8edf5;
+  --text2: #8b99b5;
+  --text3: #4d5d7a;
+  --font: 'DM Sans', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Fraunces', serif;
+}
+
+html { scroll-behavior: smooth; }
+
 body {
-  margin:0;
-  background:#050816;
-  color:#00f7ff;
-  font-family: monospace;
-  display:flex;
-  justify-content:center;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.container {
-  max-width:1000px;
-  padding:50px 20px;
-  text-align:center;
+/* AMBIENT BG */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(56,189,248,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(192,132,252,0.04) 0%, transparent 50%);
+  pointer-events: none; z-index: 0;
 }
 
-/* HERO */
-h1 {
-  font-size:3rem;
-  text-shadow:0 0 20px #00f7ff;
-  animation: glow 3s infinite;
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(56,189,248,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56,189,248,0.018) 1px, transparent 1px);
+  background-size: 52px 52px;
+  pointer-events: none; z-index: 0;
 }
 
-@keyframes glow {
-  0% { text-shadow:0 0 10px #00f7ff; }
-  50% { text-shadow:0 0 25px #00f7ff; }
-  100% { text-shadow:0 0 10px #00f7ff; }
-}
-
-.tagline {
-  color:#cbd5f5;
-  font-size:1.2rem;
-  margin-bottom:20px;
-}
-
-/* UNDER CONSTRUCTION */
+/* ── CONSTRUCTION BANNER ── */
 .banner {
-  border:1px solid #facc15;
-  color:#facc15;
-  padding:10px;
-  margin:15px auto;
-  width:fit-content;
-  border-radius:6px;
-  font-size:0.9rem;
+  position: relative; z-index: 200;
+  background: linear-gradient(90deg, #1c1200, #221800, #1c1200);
+  border-bottom: 1px solid rgba(251,191,36,0.35);
+  padding: 10px 24px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; flex-wrap: wrap;
+}
+.banner-pill {
+  background: var(--amber);
+  color: #1a1000;
+  font-family: var(--mono);
+  font-size: 10px; font-weight: 700;
+  padding: 3px 10px; border-radius: 4px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  flex-shrink: 0;
+}
+.banner-text {
+  font-family: var(--mono);
+  font-size: 12px; color: rgba(251,191,36,0.85);
+  letter-spacing: 0.04em;
+}
+.banner-dot {
+  display: inline-block; width: 6px; height: 6px;
+  background: var(--amber); border-radius: 50%;
+  animation: blink 1.8s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 62px;
+  background: rgba(8,12,18,0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+.logo-mark {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: linear-gradient(135deg, #38bdf8 0%, #c084fc 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-weight: 700; font-size: 13px; color: #080c12;
+  flex-shrink: 0;
+}
+.logo-name { font-size: 16px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+.logo-name em { color: var(--accent); font-style: normal; }
+.nav-right { display: flex; align-items: center; gap: 4px; }
+.nav-link {
+  font-size: 13px; font-weight: 500; color: var(--text2);
+  text-decoration: none; padding: 6px 13px; border-radius: 6px;
+  transition: all 0.18s;
+}
+.nav-link:hover { background: var(--surface); color: var(--text); }
+.nav-link-live { color: var(--green) !important; }
+.nav-chip {
+  font-size: 9px; font-family: var(--mono);
+  background: rgba(251,191,36,0.12);
+  color: var(--amber); border: 1px solid rgba(251,191,36,0.25);
+  padding: 1px 6px; border-radius: 3px; margin-left: 4px;
+  vertical-align: middle; letter-spacing: 0.06em;
+}
+.nav-cta {
+  background: var(--accent);
+  color: #080c12 !important;
+  font-weight: 600 !important;
+  padding: 7px 18px !important;
+  border-radius: 7px !important;
+  margin-left: 8px;
+}
+.nav-cta:hover { background: #7dd3fc !important; }
+
+/* ── HERO ── */
+.hero {
+  position: relative; z-index: 1;
+  padding: 88px 48px 72px;
+  max-width: 900px; margin: 0 auto;
+  text-align: center;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(56,189,248,0.06);
+  border: 1px solid var(--border2);
+  border-radius: 100px; padding: 5px 18px;
+  font-family: var(--mono); font-size: 11.5px; color: var(--accent);
+  letter-spacing: 0.07em; text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.pulse { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: pulse 2.2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.35;transform:scale(0.65);} }
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6.5vw, 68px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+.hero h1 .c1 { color: var(--accent); }
+.hero h1 .c2 { color: var(--green); font-style: italic; }
+.hero h1 .c3 { color: var(--purple); }
+
+.hero-sub {
+  font-size: 17.5px; color: var(--text2);
+  line-height: 1.72; max-width: 600px;
+  margin: 0 auto 44px; font-weight: 400;
 }
 
-/* NAV */
-.nav a {
-  margin:10px;
-  padding:10px 15px;
-  border:1px solid #00f7ff;
-  color:#00f7ff;
-  text-decoration:none;
-  display:inline-block;
-  transition:0.3s;
+.hero-actions { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.btn-primary {
+  background: var(--accent); color: #080c12;
+  font-family: var(--font); font-size: 14.5px; font-weight: 600;
+  padding: 13px 30px; border-radius: 9px; border: none;
+  cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: #7dd3fc; transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent; color: var(--text);
+  font-family: var(--font); font-size: 14px; font-weight: 500;
+  padding: 12px 24px; border-radius: 9px;
+  border: 1px solid var(--border2);
+  cursor: pointer; text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-ghost:hover { background: var(--surface); border-color: var(--border3); }
+.hero-note { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+
+/* ── EMAIL CAPTURE ── */
+.capture-wrap {
+  position: relative; z-index: 1;
+  max-width: 520px; margin: 0 auto 80px;
+  padding: 0 48px;
+}
+.capture-box {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 14px;
+  padding: 28px 28px;
+  text-align: center;
+}
+.capture-box h3 {
+  font-family: var(--mono); font-size: 12px;
+  color: var(--amber); letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.capture-box p { font-size: 13.5px; color: var(--text2); margin-bottom: 18px; }
+.email-row { display: flex; gap: 8px; }
+.email-input {
+  flex: 1; background: var(--bg2);
+  border: 1px solid var(--border2); border-radius: 8px;
+  padding: 10px 14px; color: var(--text);
+  font-family: var(--font); font-size: 13.5px;
+  outline: none; transition: border-color 0.2s;
+}
+.email-input::placeholder { color: var(--text3); }
+.email-input:focus { border-color: var(--border3); }
+.btn-notify {
+  background: var(--amber); color: #1a1000;
+  font-family: var(--font); font-size: 13px; font-weight: 600;
+  padding: 10px 18px; border-radius: 8px; border: none;
+  cursor: pointer; white-space: nowrap; transition: all 0.2s;
+}
+.btn-notify:hover { background: #fcd34d; }
+.capture-fine { font-size: 11px; color: var(--text3); font-family: var(--mono); margin-top: 10px; }
+
+/* ── TERMINAL ── */
+.terminal-wrap {
+  position: relative; z-index: 1;
+  max-width: 660px; margin: 0 auto 88px;
+  padding: 0 48px;
+}
+.terminal {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 13px; overflow: hidden;
+}
+.t-bar {
+  background: var(--surface); padding: 11px 16px;
+  display: flex; align-items: center; gap: 7px;
+  border-bottom: 1px solid var(--border);
+}
+.dot { width: 11px; height: 11px; border-radius: 50%; }
+.d-r{background:#ff5f56;} .d-y{background:#ffbd2e;} .d-g{background:#27c93f;}
+.t-title { font-family: var(--mono); font-size: 11px; color: var(--text3); margin: 0 auto; }
+.t-body { padding: 20px 22px 24px; font-family: var(--mono); font-size: 13px; line-height: 1.85; }
+.tp{color:var(--green);} .tc{color:var(--text);} .to{color:var(--text3);}
+.ta{color:var(--accent);} .tpu{color:var(--purple);} .tam{color:var(--amber);}
+.cur { display:inline-block; width:8px; height:14px; background:var(--accent); vertical-align:text-bottom; animation: blink 1.2s step-end infinite; }
+
+/* ── LIVE TOOLS ── */
+.section { position: relative; z-index: 1; padding: 72px 48px; }
+.sec-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; text-align: center; }
+.sec-title { font-family: var(--serif); font-size: clamp(28px, 4vw, 38px); font-weight: 700; color: var(--text); text-align: center; letter-spacing: -0.02em; margin-bottom: 48px; }
+.sec-title span { color: var(--accent); }
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px; max-width: 1080px; margin: 0 auto;
+}
+.tool-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 13px; padding: 22px 22px;
+  text-decoration: none; color: inherit;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: all 0.22s; position: relative; overflow: hidden;
+}
+.tool-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; opacity: 0; transition: opacity 0.22s;
+}
+.tool-card:hover { background: var(--surface2); border-color: var(--border2); transform: translateY(-2px); }
+.tool-card:hover::after { opacity: 1; }
+.tc-blue::after{background:var(--accent);} .tc-green::after{background:var(--green);}
+.tc-purple::after{background:var(--purple);} .tc-coral::after{background:var(--coral);}
+.tc-amber::after{background:var(--amber);}
+
+.tool-icon { font-size: 22px; width: 46px; height: 46px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ti-blue{background:rgba(56,189,248,0.1);} .ti-green{background:rgba(74,222,128,0.1);}
+.ti-purple{background:rgba(192,132,252,0.1);} .ti-coral{background:rgba(251,113,133,0.1);}
+.ti-amber{background:rgba(251,191,36,0.1);}
+
+.tool-name { font-size: 14.5px; font-weight: 600; color: var(--text); }
+.tool-desc { font-size: 13px; color: var(--text2); line-height: 1.6; flex: 1; }
+.tool-footer { display: flex; align-items: center; justify-content: space-between; }
+.tool-url { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+.tool-badge {
+  font-size: 10px; font-weight: 600; padding: 3px 8px;
+  border-radius: 4px; letter-spacing: 0.05em; text-transform: uppercase;
+}
+.tb-live { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.25); }
+.tb-soon { background: rgba(251,191,36,0.12); color: var(--amber); border: 1px solid rgba(251,191,36,0.25); }
+
+/* ── ABOUT ── */
+.about-section {
+  position: relative; z-index: 1;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.about-inner {
+  max-width: 900px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+}
+.about-left {}
+.about-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+.about-left h2 { font-family: var(--serif); font-size: clamp(26px, 3.5vw, 34px); font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 18px; letter-spacing: -0.02em; }
+.about-left h2 span { color: var(--green); font-style: italic; }
+.about-left p { font-size: 14.5px; color: var(--text2); line-height: 1.75; margin-bottom: 14px; }
+.about-creds { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.cred {
+  font-family: var(--mono); font-size: 11px;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text2); padding: 5px 12px; border-radius: 6px;
+}
+.cred-hl { border-color: rgba(56,189,248,0.3) !important; color: var(--accent) !important; }
+
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 11px; padding: 18px 18px;
+}
+.stat-num { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 5px; }
+.stat-lbl { font-size: 12px; color: var(--text3); font-weight: 500; }
+.stat-card.hl { border-color: rgba(192,132,252,0.25); }
+.stat-card.hl .stat-num { color: var(--purple); }
+.stat-card.g .stat-num { color: var(--green); }
+.stat-card.a .stat-num { color: var(--amber); }
+
+/* ── COMING SOON ── */
+.coming-section { position: relative; z-index: 1; }
+.coming-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px; max-width: 1080px; margin: 0 auto;
+}
+.coming-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 13px; padding: 22px;
+  opacity: 0.7;
+}
+.coming-icon { font-size: 20px; margin-bottom: 12px; }
+.coming-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.coming-desc { font-size: 12.5px; color: var(--text3); line-height: 1.55; }
+.coming-tag {
+  display: inline-block; margin-top: 12px;
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  background: rgba(251,191,36,0.1); color: var(--amber);
+  border: 1px solid rgba(251,191,36,0.2);
+  padding: 3px 9px; border-radius: 4px; letter-spacing: 0.06em; text-transform: uppercase;
 }
 
-.nav a:hover {
-  background:#00f7ff;
-  color:#000;
-}
-
-/* SECTIONS */
-.section {
-  margin-top:50px;
-  text-align:left;
-}
-
-.card {
-  border:1px solid #00f7ff33;
-  padding:15px;
-  margin:10px 0;
-  border-radius:8px;
-}
-
-.card:hover {
-  box-shadow:0 0 15px #00f7ff;
-}
-
-/* GITHUB DASHBOARD */
-.github-card {
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-}
-
-.github-top {
-  display:flex;
-  align-items:center;
-  gap:15px;
-}
-
-.github-top img {
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  border:2px solid #00f7ff;
-}
-
-.github-name {
-  font-size:1.2rem;
-  font-weight:bold;
-}
-
-.github-grid {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-
-.stat-box {
-  border:1px solid #00f7ff33;
-  padding:10px;
-  text-align:center;
-  border-radius:8px;
-}
-
-/* FOOTER */
+/* ── FOOTER ── */
 footer {
-  margin-top:60px;
-  color:#94a3b8;
-  font-size:0.9rem;
+  position: relative; z-index: 1;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 44px 48px 32px;
 }
-
-/* GRAPH STYLES */
-img.graph {
-  width:100%;
-  border-radius:10px;
-  margin-top:10px;
+.footer-top {
+  display: flex; justify-content: space-between;
+  gap: 48px; margin-bottom: 36px; flex-wrap: wrap;
+  max-width: 1080px; margin-left: auto; margin-right: auto;
 }
+.footer-brand .logo-name { font-size: 15px; }
+.footer-brand p { font-size: 13px; color: var(--text3); margin-top: 10px; max-width: 260px; line-height: 1.6; }
+.footer-col h4 { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--text3); margin-bottom: 14px; }
+.footer-col a { display: block; font-size: 13.5px; color: var(--text2); text-decoration: none; margin-bottom: 9px; transition: color 0.15s; }
+.footer-col a:hover { color: var(--accent); }
+.footer-live::before { content: '● '; font-size: 9px; color: var(--green); }
+.footer-bottom {
+  border-top: 1px solid var(--border); padding-top: 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+  max-width: 1080px; margin-left: auto; margin-right: auto;
+}
+.footer-bottom p { font-family: var(--mono); font-size: 11.5px; color: var(--text3); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-family: var(--mono); font-size: 11.5px; color: var(--text3); text-decoration: none; transition: color 0.15s; }
+.footer-links a:hover { color: var(--accent); }
 </style>
 </head>
-
 <body>
 
-<div class="container">
-
-<h1>🚀 Eknatha Labs</h1>
-
-<div class="tagline">
-Cloud • DevOps • Platform Engineering • Hands-on Learning
-</div>
-
+<!-- BANNER -->
 <div class="banner">
-🚧 Site Under Construction – Labs + Courses Coming Soon
+  <span class="banner-dot"></span>
+  <span class="banner-pill">🚧 Under Construction</span>
+  <span class="banner-text">Labs + More launching soon — building in public at github.com/eknatha</span>
+  <span class="banner-pill">Coming Soon</span>
 </div>
 
-<div class="nav">
-  <a href="https://eknatha.github.io/github-profile-analyzer/">Git Profile Analyzer</a>
-  <a href="https://learn.eknathalabs.com">Learn</a>
-  <a href="https://terraform.eknathalabs.com">Terraform Lab</a>
-  <a href="https://labs.eknathalabs.com">Labs</a>
-  <a href="https://blog.eknathalabs.com">Blog</a>
-  <a href="https://github.com/eknatha" target="_blank">GitHub</a>
-</div>
+<!-- NAV -->
+<nav>
+  <a href="https://eknathalabs.com" class="nav-logo">
+    <div class="logo-mark">EL</div>
+    <span class="logo-name">Eknatha<em>Labs</em></span>
+  </a>
+  <div class="nav-right">
+    <a href="https://eknatha.github.io/github-profile-analyzer/" class="nav-link nav-link-live" target="_blank">Profile Analyzer</a>
+    <a href="https://learn.eknathalabs.com" class="nav-link" target="_blank">Learn <span class="nav-chip">Soon</span></a>
+    <a href="https://labs.eknathalabs.com" class="nav-link" target="_blank">Labs <span class="nav-chip">Soon</span></a>
+    <a href="https://blog.eknathalabs.com" class="nav-link" target="_blank">Blog</a>
+    <a href="https://github.com/eknatha" class="nav-link" target="_blank">GitHub</a>
+    <a href="#early-access" class="nav-link nav-cta">Get Early Access</a>
+  </div>
+</nav>
 
-<!-- LEARN -->
-<div class="section">
-  <h2>📌 Learn DevOps</h2>
-  <div class="card">
-    Docker • Kubernetes • Cloud • Platform Engineering — hands-on labs & tutorials.
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span class="pulse"></span>
+    DevOps · Platform Engineering · Hands-on Labs
+  </div>
+  <h1>
+    Learn DevOps<br>
+    by <span class="c2">Actually</span> <span class="c1">Doing It</span>
+  </h1>
+  <p class="hero-sub">
+    Real terminal labs, production-grade scenarios, and hands-on playgrounds for Linux, Kubernetes, Terraform, CI/CD, and Cloud — built by a practitioner, not a content farm.
+  </p>
+  <div class="hero-actions">
+    <a href="#early-access" class="btn-primary">🔔 Get Early Access</a>
+    <a href="#live-tools" class="btn-ghost">Explore Live Tools →</a>
+  </div>
+  <p class="hero-note">↳ Site under construction · New content dropping regularly</p>
+</section>
+
+<!-- EMAIL CAPTURE -->
+<div class="capture-wrap" id="early-access">
+  <div class="capture-box">
+    <h3>🚧 Launching Soon</h3>
+    <p>Get notified when labs go live — Linux, Kubernetes, Terraform, and Platform Engineering tracks.</p>
+    <div class="email-row">
+      <input type="email" class="email-input" placeholder="you@company.com">
+      <button class="btn-notify" onclick="this.textContent='✓ Done!'">Notify Me</button>
+    </div>
+    <p class="capture-fine">No spam. Unsubscribe anytime.</p>
   </div>
 </div>
 
-<!-- GITHUB STATS -->
-<div class="section">
-  <h2>📊 GitHub Live Profile</h2>
-
-  <div class="card github-card" id="github-card">Loading...</div>
-</div>
-
-<!-- CONTRIBUTION GRAPH -->
-<div class="section">
-  <h2>🔥 Live Contribution Graph</h2>
-  <div class="card">
-    <img class="graph"
-      src="https://ghchart.rshah.org/00f7ff/eknatha"
-      alt="GitHub Contribution Graph">
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal">
+    <div class="t-bar">
+      <div class="dot d-r"></div><div class="dot d-y"></div><div class="dot d-g"></div>
+      <span class="t-title">eknathalabs.com — bash</span>
+    </div>
+    <div class="t-body">
+      <div><span class="tp">eknatha@labs</span><span class="tc">:~$</span> <span class="ta">./init-platform.sh</span></div>
+      <div class="to">Starting EknathaLabs...</div>
+      <div class="to">► Linux modules (7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#4ade80">[READY]</span></div>
+      <div class="to">► Kubernetes (CKA+CKS)&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#fbbf24">[BUILDING]</span></div>
+      <div class="to">► Terraform IaC (AWS+Azure) <span style="color:#fbbf24">[BUILDING]</span></div>
+      <div class="to">► Platform Engineering&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#fbbf24">[BUILDING]</span></div>
+      <div class="to">► CI/CD pipelines&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#fbbf24">[BUILDING]</span></div>
+      <div>&nbsp;</div>
+      <div><span class="tpu">STATUS</span>: <span class="tam">Built in public. Follow the journey → github.com/eknatha</span></div>
+      <div><span class="tp">eknatha@labs</span><span class="tc">:~$</span> <span class="cur"></span></div>
+    </div>
   </div>
 </div>
 
-<!-- ACTIVITY GRAPH -->
-<div class="section">
-  <h2>📈 Activity Overview</h2>
-  <div class="card">
-    <img class="graph"
-      src="https://github-readme-activity-graph.vercel.app/graph?username=eknatha&theme=react-dark&bg_color=050816&color=00f7ff"
-      alt="Activity Graph">
+<!-- LIVE TOOLS -->
+<section class="section" id="live-tools">
+  <div class="sec-tag">// available_now</div>
+  <h2 class="sec-title">Live <span>Tools</span> & Resources</h2>
+  <div class="tools-grid">
+    <a href="https://eknatha.github.io/github-profile-analyzer/" target="_blank" class="tool-card tc-blue">
+      <div class="tool-icon ti-blue">📊</div>
+      <div class="tool-name">GitHub Profile Analyzer</div>
+      <div class="tool-desc">0–100 score across 5 dimensions, radar chart, repo health monitor, hirability score, and shareable score card PNG.</div>
+      <div class="tool-footer">
+        <span class="tool-url">eknatha.github.io/github-profile-analyzer</span>
+        <span class="tool-badge tb-live">Live</span>
+      </div>
+    </a>
+    <a href="https://eknatha.github.io/linux-command-explainer" target="_blank" class="tool-card tc-green">
+      <div class="tool-icon ti-green">🐧</div>
+      <div class="tool-name">Linux Command Explainer</div>
+      <div class="tool-desc">Explain any Linux command in plain English. Pipe chain visualiser, regex decoder, ELI5 mode, OS compatibility checker, and danger pre-run checklist.</div>
+      <div class="tool-footer">
+        <span class="tool-url">eknatha.github.io/linux-command-explainer</span>
+        <span class="tool-badge tb-live">Live</span>
+      </div>
+    </a>
+    <a href="https://eknatha.github.io/interview-prep" target="_blank" class="tool-card tc-purple">
+      <div class="tool-icon ti-purple">🎯</div>
+      <div class="tool-name">Platform Eng Interview Prep</div>
+      <div class="tool-desc">12+ guides with dark mode, interview mode, flashcard mode, and a working visitor counter. Covers Kubernetes, Terraform, Linux, CI/CD, and cloud.</div>
+      <div class="tool-footer">
+        <span class="tool-url">eknatha.github.io/interview-prep</span>
+        <span class="tool-badge tb-live">Live</span>
+      </div>
+    </a>
+    <a href="https://labs.eknathalabs.com" target="_blank" class="tool-card tc-amber">
+      <div class="tool-icon ti-amber">🧪</div>
+      <div class="tool-name">Interactive Labs</div>
+      <div class="tool-desc">Hands-on terminal labs for Linux, Kubernetes, Terraform, and Platform Engineering. Production-grade scenarios, not toy examples.</div>
+      <div class="tool-footer">
+        <span class="tool-url">labs.eknathalabs.com</span>
+        <span class="tool-badge tb-soon">Coming Soon</span>
+      </div>
+    </a>
+    <a href="https://terraform.eknathalabs.com" target="_blank" class="tool-card tc-coral">
+      <div class="tool-icon ti-coral">🏗️</div>
+      <div class="tool-name">Terraform Lab</div>
+      <div class="tool-desc">Multi-cloud IaC on AWS and Azure and GCP. Reusable modules, state management, CI/CD integration, and real-world infra patterns.</div>
+      <div class="tool-footer">
+        <span class="tool-url">terraform.eknathalabs.com</span>
+        <span class="tool-badge tb-soon">Coming Soon</span>
+      </div>
+    </a>
+    <a href="https://learn.eknathalabs.com" target="_blank" class="tool-card tc-green">
+      <div class="tool-icon ti-green">🎓</div>
+      <div class="tool-name">Learn Platform</div>
+      <div class="tool-desc">Structured DevOps and Platform Engineering learning paths. Docker, Kubernetes, Cloud, and the full PE toolkit — guided and self-paced.</div>
+      <div class="tool-footer">
+        <span class="tool-url">learn.eknathalabs.com</span>
+        <span class="tool-badge tb-soon">Coming Soon</span>
+      </div>
+    </a>
   </div>
-</div>
+</section>
 
-<footer>
-© 2026 Eknatha Labs • Built with ❤️ for DevOps • SRE • Platform Engineering 
-</footer>
-
-</div>
-
-<script>
-const username = "eknatha";
-
-Promise.all([
-  fetch(`https://api.github.com/users/${username}`).then(r => r.json()),
-  fetch(`https://api.github.com/users/${username}/repos?per_page=100`).then(r => r.json())
-])
-.then(([user, repos]) => {
-
-  let totalStars = repos.reduce((s, r) => s + (r.stargazers_count || 0), 0);
-
-  document.getElementById("github-card").innerHTML = `
-    <div class="github-top">
-      <img src="${user.avatar_url}">
-      <div>
-        <div class="github-name">${user.name || username}</div>
-        <div style="color:#cbd5f5">@${username}</div>
-        <a href="${user.html_url}" target="_blank" style="color:#00f7ff;">
-          View Profile →
-        </a>
+<!-- ABOUT / CREDIBILITY -->
+<section class="section about-section">
+  <div class="about-inner">
+    <div class="about-left">
+      <div class="about-tag">// about the builder</div>
+      <h2>Built by a <span>practitioner</span>,<br>not a content farm</h2>
+      <p>EknathaLabs is built by someone who has spent years in the trenches — cloud operations, incident response, Kubernetes at scale, multi-cloud migrations on AWS, Azure, Openstack.</p>
+      <p>Every lab maps to a real scenario. Every guide is written from experience, not from copying documentation.</p>
+      <div class="about-creds">
+        <span class="cred">13 yrs IT experience</span>
+        <span class="cred">7 yrs cloud ops</span>
+        <span class="cred cred-hl">CKA + CKS</span>
+        <span class="cred">AWS</span>
+        <span class="cred">Azure</span>
+        <span class="cred">Linux</span>
+        <span class="cred">Kubernetes</span>
+        <span class="cred">Terraform</span>
+        <span class="cred">OpenStack</span>
       </div>
     </div>
-
-    <div class="github-grid">
-      <div class="stat-box">📦 Repos<br><b>${user.public_repos}</b></div>
-      <div class="stat-box">👥 Followers<br><b>${user.followers}</b></div>
-      <div class="stat-box">⭐ Stars<br><b>${totalStars}</b></div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">13yr</div>
+        <div class="stat-lbl">Total IT Experience</div>
+      </div>
+      <div class="stat-card hl">
+        <div class="stat-num">CKS</div>
+        <div class="stat-lbl">Top 8% of K8s Engineers</div>
+      </div>
+      <div class="stat-card g">
+        <div class="stat-num">7+</div>
+        <div class="stat-lbl">Linux Modules Ready</div>
+      </div>
+      <div class="stat-card a">
+        <div class="stat-num">Free</div>
+        <div class="stat-lbl">Core Content Always Free</div>
+      </div>
     </div>
-  `;
-});
-</script>
+  </div>
+</section>
+
+<!-- COMING SOON PATHS -->
+<section class="section coming-section">
+  <div class="sec-tag">// coming_soon</div>
+  <h2 class="sec-title">What's <span>Coming</span></h2>
+  <div class="coming-grid">
+    <div class="coming-card">
+      <div class="coming-icon">☸️</div>
+      <div class="coming-name">Kubernetes Labs </div>
+      <div class="coming-desc">Real cluster scenarios, RBAC, network policies, pod security, and GitOps via ArgoCD. Mapped  to CKA and CKS exam objectives as Well.</div>
+      <span class="coming-tag">Building</span>
+    </div>
+    <div class="coming-card">
+      <div class="coming-icon">🏗️</div>
+      <div class="coming-name">Terraform & IaC</div>
+      <div class="coming-desc">Multi-cloud infra as code. Reusable module patterns, state management, drift detection, and CI/CD-integrated pipelines </div>
+      <span class="coming-tag">Building</span>
+    </div>
+    <div class="coming-card">
+      <div class="coming-icon">⚙️</div>
+      <div class="coming-name">Platform Engineering</div>
+      <div class="coming-desc">Internal developer platforms, golden paths, GitHub Actions, observability stacks — the tools that make platform engineers indispensable.</div>
+      <span class="coming-tag">Planned</span>
+    </div>
+    <div class="coming-card">
+      <div class="coming-icon">☁️</div>
+      <div class="coming-name">Cloud Operations (AWS + Azure)</div>
+      <div class="coming-desc">Production operations scenarios: incident response, cost optimisation, scaling, security hardening </div>
+      <span class="coming-tag">Planned</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+        <div class="logo-mark">EL</div>
+        <span class="logo-name">Eknatha<em style="color:var(--accent);font-style:normal;">Labs</em></span>
+      </div>
+      <p>Practical DevOps & Platform Engineering — built by a practitioner, for practitioners.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Live Now</h4>
+      <a href="https://eknatha.github.io/github-profile-analyzer/" target="_blank" class="footer-live">GitHub Profile Analyzer</a>
+      <a href="https://eknatha.github.io/linux-command-explainer" target="_blank" class="footer-live">Linux Command Explainer</a>
+      <a href="https://eknatha.github.io/interview-prep" target="_blank" class="footer-live">Interview Prep Portal</a>
+    </div>
+    <div class="footer-col">
+      <h4>Coming Soon</h4>
+      <a href="https://labs.eknathalabs.com" target="_blank">Labs</a>
+      <a href="https://learn.eknathalabs.com" target="_blank">Learn</a>
+      <a href="https://terraform.eknathalabs.com" target="_blank">Terraform Lab</a>
+      <a href="https://blog.eknathalabs.com" target="_blank">Blog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://github.com/eknatha" target="_blank">GitHub</a>
+      <a href="https://eknathalabs.com" target="_blank">eknathalabs.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 EknathaLabs · Cloud · DevOps · Platform Engineering · Built in public 🚧</p>
+    <div class="footer-links">
+      <a href="https://github.com/eknatha" target="_blank">GitHub</a>
+      <a href="https://labs.eknathalabs.com" target="_blank">Labs</a>
+      <a href="https://blog.eknathalabs.com" target="_blank">Blog</a>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
