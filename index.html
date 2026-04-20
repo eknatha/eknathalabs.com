@@ -21,7 +21,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="EknathaLabs — Hands-on DevOps Labs">
-<meta name="twitter:description" content="Real terminal labs for Linux, Kubernetes, Terraform and Cloud. Built by a practitioner with 13 years of field experience.">
+<meta name="twitter:description" content="Real terminal labs for Linux, Kubernetes, Terraform and Cloud. Built by a practitioner with years of field experience.">
 <meta name="twitter:image" content="https://eknathalabs.com/og-image.png">
 
 <!-- Favicon -->
@@ -416,6 +416,164 @@ footer {
 .footer-links { display: flex; gap: 20px; }
 .footer-links a { font-family: var(--mono); font-size: 11.5px; color: var(--text3); text-decoration: none; transition: color 0.15s; }
 .footer-links a:hover { color: var(--accent); }
+
+/* ── TODAY'S LAB ── */
+.lab-section {
+  position: relative; z-index: 1;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 72px 48px;
+}
+.lab-inner { max-width: 860px; margin: 0 auto; }
+.lab-header { text-align: center; margin-bottom: 40px; }
+.lab-date-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(74,222,128,0.07);
+  border: 1px solid rgba(74,222,128,0.2);
+  border-radius: 100px; padding: 4px 16px;
+  font-family: var(--mono); font-size: 11px; color: var(--green);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.lab-live-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+.lab-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 16px; overflow: hidden;
+}
+.lab-card-top {
+  padding: 28px 32px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 20px;
+}
+.lab-num {
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  color: var(--accent); background: rgba(56,189,248,0.08);
+  border: 1px solid rgba(56,189,248,0.2);
+  padding: 4px 10px; border-radius: 5px;
+  white-space: nowrap; flex-shrink: 0; margin-top: 3px;
+}
+.lab-meta { flex: 1; }
+.lab-track {
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.track-linux { color: var(--green); }
+.track-k8s { color: var(--accent); }
+.track-terraform { color: var(--purple); }
+.track-platform { color: var(--coral); }
+.lab-title { font-family: var(--serif); font-size: clamp(18px, 2.5vw, 24px); font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 10px; }
+.lab-diff {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  padding: 3px 9px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.06em;
+}
+.diff-easy { background: rgba(74,222,128,0.1); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+.diff-medium { background: rgba(251,191,36,0.1); color: var(--amber); border: 1px solid rgba(251,191,36,0.2); }
+.diff-hard { background: rgba(251,113,133,0.1); color: var(--coral); border: 1px solid rgba(251,113,133,0.2); }
+
+.lab-scenario {
+  padding: 22px 32px;
+  border-bottom: 1px solid var(--border);
+}
+.lab-scenario-label {
+  font-family: var(--mono); font-size: 10px; color: var(--text3);
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;
+}
+.lab-scenario-text { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+.lab-hint-zone { padding: 22px 32px; border-bottom: 1px solid var(--border); }
+.lab-hint-btn {
+  background: transparent;
+  border: 1px solid var(--border2); border-radius: 7px;
+  color: var(--text2); font-family: var(--mono); font-size: 12px;
+  padding: 8px 16px; cursor: pointer; transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.lab-hint-btn:hover { background: var(--surface2); border-color: var(--border3); color: var(--text); }
+.lab-hint-text {
+  display: none; margin-top: 14px;
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: 9px; padding: 16px 18px;
+  font-family: var(--mono); font-size: 13px;
+  color: var(--accent); line-height: 1.7;
+}
+.lab-hint-text.visible { display: block; }
+
+.lab-answer-zone { padding: 22px 32px; border-bottom: 1px solid var(--border); }
+.lab-answer-label { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+.lab-cmd-input {
+  width: 100%; background: var(--bg);
+  border: 1px solid var(--border2); border-radius: 9px;
+  padding: 12px 16px; color: var(--green);
+  font-family: var(--mono); font-size: 14px;
+  outline: none; transition: border-color 0.2s;
+  caret-color: var(--green);
+}
+.lab-cmd-input::placeholder { color: var(--text3); }
+.lab-cmd-input:focus { border-color: var(--border3); }
+.lab-btn-row { display: flex; align-items: center; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.lab-check-btn {
+  background: var(--accent); color: #080c12;
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  padding: 9px 20px; border-radius: 7px; border: none;
+  cursor: pointer; transition: all 0.2s; letter-spacing: 0.04em;
+}
+.lab-check-btn:hover { background: #7dd3fc; }
+.lab-reset-btn {
+  background: transparent; color: var(--text3);
+  font-family: var(--mono); font-size: 12px;
+  padding: 9px 16px; border-radius: 7px;
+  border: 1px solid var(--border); cursor: pointer; transition: all 0.2s;
+}
+.lab-reset-btn:hover { border-color: var(--border2); color: var(--text2); }
+.lab-feedback {
+  display: none; margin-top: 12px;
+  padding: 12px 16px; border-radius: 8px;
+  font-family: var(--mono); font-size: 13px; line-height: 1.6;
+}
+.lab-feedback.correct {
+  display: block;
+  background: rgba(74,222,128,0.07);
+  border: 1px solid rgba(74,222,128,0.25);
+  color: var(--green);
+}
+.lab-feedback.wrong {
+  display: block;
+  background: rgba(251,113,133,0.07);
+  border: 1px solid rgba(251,113,133,0.25);
+  color: var(--coral);
+}
+
+.lab-footer {
+  padding: 16px 32px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
+.lab-footer-note { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+.lab-streak {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 11px; color: var(--amber);
+}
+.lab-streak-num { font-size: 14px; font-weight: 700; }
+.lab-nav-row { display: flex; justify-content: center; margin-top: 24px; gap: 10px; }
+.lab-nav-btn {
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text2); font-family: var(--mono); font-size: 12px;
+  padding: 8px 18px; border-radius: 7px; cursor: pointer; transition: all 0.2s;
+}
+.lab-nav-btn:hover { border-color: var(--border2); color: var(--text); background: var(--surface2); }
+.lab-progress-bar {
+  height: 3px; background: var(--border);
+  border-radius: 2px; margin: 0 32px 0;
+  overflow: hidden;
+}
+.lab-progress-fill {
+  height: 100%; background: var(--accent);
+  border-radius: 2px; transition: width 0.4s ease;
+}
 </style>
 </head>
 <body>
@@ -634,6 +792,209 @@ footer {
   </div>
 </section>
 
+<!-- TODAY'S LAB -->
+<section class="lab-section" id="todays-lab">
+  <div class="lab-inner">
+    <div class="lab-header">
+      <div class="lab-date-pill">
+        <span class="lab-live-dot"></span>
+        <span id="lab-date-label">Today's Lab</span>
+      </div>
+      <h2 class="sec-title" style="margin-bottom:4px;">Daily <span>Challenge</span></h2>
+      <p style="font-family:var(--mono);font-size:12px;color:var(--text3);">A new challenge every day. No sign-up needed.</p>
+    </div>
+
+    <div class="lab-card">
+      <div class="lab-progress-bar"><div class="lab-progress-fill" id="lab-progress" style="width:0%"></div></div>
+      <div style="height:12px;"></div>
+
+      <div class="lab-card-top">
+        <div class="lab-num" id="lab-num">LAB #001</div>
+        <div class="lab-meta">
+          <div class="lab-track" id="lab-track">Linux</div>
+          <div class="lab-title" id="lab-title">Loading today's challenge...</div>
+          <div class="lab-diff" id="lab-diff">Easy</div>
+        </div>
+      </div>
+
+      <div class="lab-scenario">
+        <div class="lab-scenario-label">// scenario</div>
+        <div class="lab-scenario-text" id="lab-scenario">Loading...</div>
+      </div>
+
+      <div class="lab-hint-zone">
+        <button class="lab-hint-btn" onclick="toggleHint()">
+          <span>💡</span> Show hint
+        </button>
+        <div class="lab-hint-text" id="lab-hint"></div>
+      </div>
+
+      <div class="lab-answer-zone">
+        <div class="lab-answer-label">// your answer</div>
+        <input type="text" class="lab-cmd-input" id="lab-input" placeholder="Type your command here..." onkeydown="if(event.key==='Enter') checkAnswer()">
+        <div class="lab-btn-row">
+          <button class="lab-check-btn" onclick="checkAnswer()">▶ Check Answer</button>
+          <button class="lab-reset-btn" onclick="resetAnswer()">↺ Reset</button>
+          <button class="lab-reset-btn" onclick="showAnswer()">👁 Reveal Answer</button>
+        </div>
+        <div class="lab-feedback" id="lab-feedback"></div>
+      </div>
+
+      <div class="lab-footer">
+        <span class="lab-footer-note" id="lab-day-count">Challenge #1 of 365</span>
+        <div class="lab-streak">
+          <span>🔥 Streak:</span>
+          <span class="lab-streak-num" id="lab-streak">0</span>
+          <span>days</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lab-nav-row">
+      <button class="lab-nav-btn" onclick="prevLab()">← Previous</button>
+      <button class="lab-nav-btn" onclick="nextLab()">Next →</button>
+    </div>
+  </div>
+</section>
+
+<script>
+const LABS = [
+  { track:'Linux', title:'Find large files eating disk space', diff:'Easy', scenario:'Your server is running low on disk space. Find all files larger than 100MB anywhere on the filesystem and list them sorted by size, largest first.', hint:'Use find with -size flag and pipe to sort. Try: find / -type f -size +100M', answer:'find / -type f -size +100M -exec ls -lh {} \\; 2>/dev/null | sort -k5 -rh', alt:['find / -size +100M -type f','find / -type f -size +100M 2>/dev/null'] },
+  { track:'Linux', title:'Kill all processes by name', diff:'Easy', scenario:'A runaway nginx process is consuming 100% CPU. Kill all processes named "nginx" at once without looking up individual PIDs.', hint:'pkill sends signals by process name. killall also works.', answer:'pkill nginx', alt:['killall nginx','pkill -9 nginx','killall -9 nginx'] },
+  { track:'Linux', title:'Check which process is using port 8080', diff:'Easy', scenario:'Something is already listening on port 8080 and your app cannot start. Find out which process owns that port.', hint:'ss or lsof can show port/process mappings. Try ss -tlnp or lsof -i', answer:'ss -tlnp | grep 8080', alt:['lsof -i :8080','lsof -i:8080','ss -lntp | grep 8080','netstat -tlnp | grep 8080'] },
+  { track:'Linux', title:'Count lines in all log files', diff:'Easy', scenario:'You need to report total log lines across all .log files in /var/log. Count lines in every .log file in that directory.', hint:'Combine find with wc -l, or use wc directly with a wildcard.', answer:'wc -l /var/log/*.log', alt:['find /var/log -name "*.log" -exec wc -l {} \\;','cat /var/log/*.log | wc -l'] },
+  { track:'Linux', title:'Show real-time disk I/O per process', diff:'Medium', scenario:'A production server is heavily loaded and you suspect disk I/O is the bottleneck. Show real-time per-process I/O statistics.', hint:'iotop is the go-to tool. Run it with -o to only show active processes.', answer:'iotop -o', alt:['iotop','sudo iotop -o','iotop -oPa'] },
+  { track:'Linux', title:'Extract lines between two patterns', diff:'Medium', scenario:'A 500MB log file contains multiple deploy events. Extract only the lines between "DEPLOY START" and "DEPLOY END" for the latest deployment.', hint:'sed -n with /pattern1/,/pattern2/p is efficient for large files.', answer:"sed -n '/DEPLOY START/,/DEPLOY END/p' /var/log/app.log", alt:["awk '/DEPLOY START/,/DEPLOY END/' /var/log/app.log"] },
+  { track:'Linux', title:'Schedule a job to run every 5 minutes', diff:'Easy', scenario:'You need a script /opt/healthcheck.sh to run automatically every 5 minutes. Add it to the crontab for the current user.', hint:'crontab -e opens the editor. The 5-minute cron expression is */5 * * * *', answer:'crontab -e', alt:['crontab -e'] },
+  { track:'Linux', title:'Find files modified in last 24 hours', diff:'Easy', scenario:'After a security alert, you need to audit which files under /etc were modified in the past 24 hours.', hint:'find with -mtime -1 means modified less than 1 day ago.', answer:'find /etc -mtime -1 -type f', alt:['find /etc -type f -mtime -1','find /etc -newer /etc/hostname -type f'] },
+  { track:'Linux', title:'Archive and compress a directory', diff:'Easy', scenario:'Backup the /opt/app directory into a compressed tarball named app-backup.tar.gz in /tmp.', hint:'tar -czf creates a gzipped archive. c=create, z=gzip, f=filename.', answer:'tar -czf /tmp/app-backup.tar.gz /opt/app', alt:['tar czf /tmp/app-backup.tar.gz /opt/app','tar -czvf /tmp/app-backup.tar.gz /opt/app'] },
+  { track:'Linux', title:'Monitor a log file in real time', diff:'Easy', scenario:'An app is throwing errors intermittently. Watch /var/log/app/error.log in real time and also see the last 50 lines from before you started watching.', hint:'tail -f follows a file. Add -n 50 to start from last 50 lines.', answer:'tail -f -n 50 /var/log/app/error.log', alt:['tail -fn50 /var/log/app/error.log','tail -50f /var/log/app/error.log'] },
+  { track:'Kubernetes', title:'Get all pods across every namespace', diff:'Easy', scenario:'You have just been given access to a new cluster and need a full picture of what is running. List all pods in all namespaces.', hint:'kubectl get pods with --all-namespaces or -A flag.', answer:'kubectl get pods --all-namespaces', alt:['kubectl get pods -A','kubectl get po -A','kubectl get po --all-namespaces'] },
+  { track:'Kubernetes', title:'Describe a crashlooping pod', diff:'Easy', scenario:'A pod named api-server-7d9f in namespace production keeps crashlooping. Get detailed information including events and last state.', hint:'kubectl describe gives full event history and container state details.', answer:'kubectl describe pod api-server-7d9f -n production', alt:['kubectl describe po api-server-7d9f -n production','kubectl describe pod api-server-7d9f --namespace production'] },
+  { track:'Kubernetes', title:'Get logs from a previous container crash', diff:'Medium', scenario:'A container in pod web-app-5c7d in namespace default crashed and restarted. Retrieve the logs from the previous (crashed) container instance.', hint:'kubectl logs has a --previous flag for the last terminated container.', answer:'kubectl logs web-app-5c7d --previous', alt:['kubectl logs web-app-5c7d -p','kubectl logs web-app-5c7d --previous -n default'] },
+  { track:'Kubernetes', title:'Scale a deployment to 5 replicas', diff:'Easy', scenario:'Traffic has spiked. Scale the frontend deployment in the production namespace to 5 replicas immediately.', hint:'kubectl scale with --replicas flag is the fastest approach.', answer:'kubectl scale deployment frontend --replicas=5 -n production', alt:['kubectl scale deploy frontend --replicas=5 -n production','kubectl scale deployment/frontend --replicas=5 -n production'] },
+  { track:'Kubernetes', title:'Exec into a running container', diff:'Easy', scenario:'You need to inspect the filesystem inside a pod named debug-pod in namespace dev. Open an interactive shell inside the container.', hint:'kubectl exec -it with -- /bin/sh or /bin/bash opens an interactive shell.', answer:'kubectl exec -it debug-pod -n dev -- /bin/sh', alt:['kubectl exec -it debug-pod -n dev -- /bin/bash','kubectl exec -it debug-pod --namespace dev -- sh'] },
+  { track:'Kubernetes', title:'Cordon a node before maintenance', diff:'Medium', scenario:'Node worker-3 needs emergency maintenance. Prevent new pods from being scheduled on it without evicting existing ones.', hint:'kubectl cordon marks a node as unschedulable. drain does cordon + eviction.', answer:'kubectl cordon worker-3', alt:['kubectl cordon node/worker-3'] },
+  { track:'Kubernetes', title:'Force delete a stuck terminating pod', diff:'Medium', scenario:'A pod has been stuck in Terminating state for 30 minutes and is blocking a deployment rollout. Force delete it immediately.', hint:'kubectl delete pod with --grace-period=0 --force bypasses graceful termination.', answer:'kubectl delete pod <pod-name> --grace-period=0 --force', alt:['kubectl delete pod <pod-name> --force --grace-period=0'] },
+  { track:'Kubernetes', title:'View resource usage across all nodes', diff:'Easy', scenario:'The cluster seems slow. Check CPU and memory utilisation across all nodes to find the bottleneck.', hint:'kubectl top nodes shows real-time resource usage per node.', answer:'kubectl top nodes', alt:['kubectl top node'] },
+  { track:'Terraform', title:'Initialise a new Terraform working directory', diff:'Easy', scenario:'You have just cloned a Terraform repo and need to set it up locally. Download the required providers and initialise the backend.', hint:'terraform init is always the first command in any Terraform workflow.', answer:'terraform init', alt:['terraform init -upgrade'] },
+  { track:'Terraform', title:'Preview changes before applying', diff:'Easy', scenario:'You have made changes to your Terraform config. See exactly what will be created, modified, or destroyed before touching real infrastructure.', hint:'terraform plan shows the execution plan without making any changes.', answer:'terraform plan', alt:['terraform plan -out=tfplan','terraform plan -var-file=prod.tfvars'] },
+  { track:'Terraform', title:'Target a single resource for apply', diff:'Medium', scenario:'You need to update only the aws_security_group.web resource in your config without touching anything else in the state.', hint:'terraform apply with -target flag scopes the apply to one resource.', answer:'terraform apply -target=aws_security_group.web', alt:['terraform apply --target=aws_security_group.web'] },
+  { track:'Terraform', title:'Import an existing resource into state', diff:'Medium', scenario:'An S3 bucket named my-app-bucket already exists in AWS but is not in your Terraform state. Import it under resource aws_s3_bucket.app.', hint:'terraform import maps an existing resource ID to a Terraform resource address.', answer:'terraform import aws_s3_bucket.app my-app-bucket', alt:['terraform import aws_s3_bucket.app my-app-bucket'] },
+  { track:'Terraform', title:'List all resources in state', diff:'Easy', scenario:'After a partial apply you need to see all resources currently tracked in the Terraform state file.', hint:'terraform state list shows all resource addresses in the current state.', answer:'terraform state list', alt:['terraform state list -state=terraform.tfstate'] },
+  { track:'Platform Eng', title:'Check GitHub Actions workflow run history', diff:'Easy', scenario:'A deployment pipeline failed in your repo. Use the GitHub CLI to list the last 10 workflow runs for the repo eknathalabs/platform.', hint:'gh run list limits output with --limit flag.', answer:'gh run list --limit 10 -R eknathalabs/platform', alt:['gh run list -L 10 --repo eknathalabs/platform','gh run list --limit=10 -R eknathalabs/platform'] },
+  { track:'Platform Eng', title:'Check ArgoCD application sync status', diff:'Easy', scenario:'Your team says a deployment is not reflecting the latest GitOps changes. Check the sync status of the ArgoCD app named frontend-prod.', hint:'argocd app get shows the full status including sync and health.', answer:'argocd app get frontend-prod', alt:['argocd app get frontend-prod --show-params','argocd app status frontend-prod'] },
+  { track:'Linux', title:'Find the top 10 memory-consuming processes', diff:'Easy', scenario:'The system is under memory pressure. List the top 10 processes sorted by memory usage, showing PID, name, and memory percentage.', hint:'ps aux sorted by %MEM column with head.', answer:'ps aux --sort=-%mem | head -11', alt:['ps aux | sort -k4 -rn | head -10','ps -eo pid,comm,%mem --sort=-%mem | head -11'] },
+  { track:'Linux', title:'Check open file handles for a process', diff:'Medium', scenario:'An application is failing with "too many open files". Find how many file descriptors the process with PID 1234 currently has open.', hint:'lsof -p shows all open files for a specific PID. Pipe to wc -l to count.', answer:'lsof -p 1234 | wc -l', alt:['ls /proc/1234/fd | wc -l','lsof -p 1234'] },
+  { track:'Kubernetes', title:'Create a temporary debug pod', diff:'Medium', scenario:'You need to run network diagnostics inside the cluster. Spin up a temporary busybox pod that auto-deletes when you exit, in namespace default.', hint:'kubectl run with --rm -it --restart=Never creates a disposable pod.', answer:'kubectl run debug --image=busybox --rm -it --restart=Never -- /bin/sh', alt:['kubectl run tmp --image=busybox -it --rm --restart=Never -- sh'] },
+  { track:'Terraform', title:'Destroy a single resource', diff:'Medium', scenario:'A test EC2 instance managed by Terraform is no longer needed. Destroy only that specific resource aws_instance.test without affecting others.', hint:'terraform destroy with -target scopes destruction to one resource.', answer:'terraform destroy -target=aws_instance.test', alt:['terraform destroy --target=aws_instance.test'] },
+  { track:'Platform Eng', title:'View recent Helm release history', diff:'Easy', scenario:'Something changed in the last Helm deployment of the nginx-ingress chart in namespace ingress-nginx. View its release history to see what changed and when.', hint:'helm history shows all revisions for a named release.', answer:'helm history nginx-ingress -n ingress-nginx', alt:['helm history nginx-ingress --namespace ingress-nginx','helm history nginx-ingress -n ingress-nginx --max 10'] },
+];
+
+const TRACK_CLASS = { Linux:'track-linux', Kubernetes:'track-k8s', Terraform:'track-terraform', 'Platform Eng':'track-platform' };
+const DIFF_CLASS = { Easy:'diff-easy', Medium:'diff-medium', Hard:'diff-hard' };
+
+function getDayIndex() {
+  const epoch = new Date('2025-01-01');
+  const now = new Date();
+  const diff = Math.floor((now - epoch) / (1000 * 60 * 60 * 24));
+  return diff % LABS.length;
+}
+
+let currentIdx = getDayIndex();
+let streak = parseInt(localStorage.getItem('el_streak') || '0');
+let lastDate = localStorage.getItem('el_last_date') || '';
+
+function todayStr() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function renderLab(idx) {
+  const lab = LABS[idx];
+  document.getElementById('lab-num').textContent = 'LAB #' + String(idx + 1).padStart(3, '0');
+  const trackEl = document.getElementById('lab-track');
+  trackEl.textContent = '// ' + lab.track;
+  trackEl.className = 'lab-track ' + (TRACK_CLASS[lab.track] || 'track-linux');
+  document.getElementById('lab-title').textContent = lab.title;
+  const diffEl = document.getElementById('lab-diff');
+  diffEl.textContent = lab.diff;
+  diffEl.className = 'lab-diff ' + (DIFF_CLASS[lab.diff] || 'diff-easy');
+  document.getElementById('lab-scenario').textContent = lab.scenario;
+  document.getElementById('lab-hint').textContent = '💡 ' + lab.hint;
+  document.getElementById('lab-hint').classList.remove('visible');
+  document.getElementById('lab-input').value = '';
+  const fb = document.getElementById('lab-feedback');
+  fb.className = 'lab-feedback';
+  fb.textContent = '';
+  const dayNum = getDayIndex() + 1;
+  document.getElementById('lab-day-count').textContent = 'Challenge #' + dayNum + ' of ' + LABS.length;
+  document.getElementById('lab-progress').style.width = Math.round(((idx + 1) / LABS.length) * 100) + '%';
+  const today = new Date();
+  document.getElementById('lab-date-label').textContent = today.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'}) + " · Today's Lab";
+  document.getElementById('lab-streak').textContent = streak;
+}
+
+function normalize(cmd) { return cmd.trim().replace(/\s+/g, ' ').toLowerCase(); }
+
+function checkAnswer() {
+  const lab = LABS[currentIdx];
+  const input = document.getElementById('lab-input').value;
+  if (!input.trim()) return;
+  const norm = normalize(input);
+  const correct = normalize(lab.answer);
+  const alts = (lab.alt || []).map(normalize);
+  const isCorrect = norm === correct || alts.includes(norm) || alts.some(a => norm.startsWith(a.split(' ')[0]) && norm.includes(a.split(' ').slice(-1)[0]));
+  const fb = document.getElementById('lab-feedback');
+  if (isCorrect) {
+    fb.className = 'lab-feedback correct';
+    fb.innerHTML = '✓ Correct! ' + (currentIdx === getDayIndex() ? 'Great work on today\'s challenge.' : 'Well done.');
+    if (currentIdx === getDayIndex() && todayStr() !== lastDate) {
+      streak++;
+      lastDate = todayStr();
+      localStorage.setItem('el_streak', streak);
+      localStorage.setItem('el_last_date', lastDate);
+      document.getElementById('lab-streak').textContent = streak;
+    }
+  } else {
+    fb.className = 'lab-feedback wrong';
+    fb.innerHTML = '✗ Not quite. Check the hint or reveal the answer.';
+  }
+}
+
+function showAnswer() {
+  const lab = LABS[currentIdx];
+  const fb = document.getElementById('lab-feedback');
+  fb.className = 'lab-feedback correct';
+  fb.innerHTML = '📋 Answer: <strong>' + lab.answer + '</strong>';
+}
+
+function resetAnswer() {
+  document.getElementById('lab-input').value = '';
+  const fb = document.getElementById('lab-feedback');
+  fb.className = 'lab-feedback';
+  fb.textContent = '';
+}
+
+function toggleHint() {
+  const h = document.getElementById('lab-hint');
+  h.classList.toggle('visible');
+  const btn = document.querySelector('.lab-hint-btn');
+  btn.innerHTML = h.classList.contains('visible') ? '<span>💡</span> Hide hint' : '<span>💡</span> Show hint';
+}
+
+function prevLab() {
+  currentIdx = (currentIdx - 1 + LABS.length) % LABS.length;
+  renderLab(currentIdx);
+}
+
+function nextLab() {
+  currentIdx = (currentIdx + 1) % LABS.length;
+  renderLab(currentIdx);
+}
+
+renderLab(currentIdx);
+</script>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
@@ -654,7 +1015,7 @@ footer {
       <h4>Coming Soon</h4>
       <a href="https://labs.eknathalabs.com" target="_blank">Labs</a>
       <a href="https://learn.eknathalabs.com" target="_blank">Learn</a>
-      <a href="https://terraform.eknathalabs.com" target="_blank">Terraform Lab</a>
+      <a href="https://terraform.eknathalabs.com" target="_blank">Terraform Challanges</a>
       <a href="https://blog.eknathalabs.com" target="_blank">Blog</a>
     </div>
     <div class="footer-col">
