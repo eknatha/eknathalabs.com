@@ -3,1038 +3,1288 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- SEO -->
-<title>EknathaLabs — Hands-on DevOps, Kubernetes & Platform Engineering Labs</title>
-<meta name="description" content="Real terminal labs, production-grade scenarios, and interactive playgrounds for Linux, Kubernetes, Terraform, and Cloud — built by a practitioner with years in the field.">
-<meta name="keywords" content="DevOps labs, Kubernetes lab, CKA prep, Platform Engineering, Linux for DevOps, Terraform, AWS, Azure, SRE">
-<meta name="author" content="EknathaLabs">
-<link rel="canonical" href="https://eknathalabs.com/">
-
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://eknathalabs.com/">
-<meta property="og:title" content="EknathaLabs — Hands-on DevOps & Platform Engineering Labs">
-<meta property="og:description" content="Real terminal labs, production-grade scenarios for Linux, Kubernetes, Terraform, and Cloud — built by a practitioner.">
-<meta property="og:image" content="https://eknathalabs.com/og-image.png">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="EknathaLabs — Hands-on DevOps Labs">
-<meta name="twitter:description" content="Real terminal labs for Linux, Kubernetes, Terraform and Cloud. Built by a practitioner with years of field experience.">
-<meta name="twitter:image" content="https://eknathalabs.com/og-image.png">
-
-<!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230a0e14'/><text x='16' y='22' text-anchor='middle' font-family='monospace' font-weight='700' font-size='14' fill='%2338bdf8'>EL</text></svg>">
-
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet">
+<title>EknathaLabs — Hands-on DevOps & Platform Engineering</title>
+<meta name="description" content="Real terminal labs, production-grade scenarios, and hands-on playgrounds for Linux, Kubernetes, Terraform, CI/CD, and Cloud.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0c0f;
+    --bg2: #0f1117;
+    --bg3: #161b24;
+    --border: rgba(255,255,255,0.07);
+    --border-glow: rgba(0,255,136,0.25);
+    --text: #e8edf5;
+    --muted: #6b7a8d;
+    --accent: #00ff88;
+    --accent2: #00d4ff;
+    --accent3: #ff6b35;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-display: 'Syne', sans-serif;
+  }
 
-:root {
-  --bg: #080c12;
-  --bg2: #0d1117;
-  --bg3: #111720;
-  --surface: #161e2e;
-  --surface2: #1c2538;
-  --border: rgba(56,189,248,0.1);
-  --border2: rgba(56,189,248,0.2);
-  --border3: rgba(56,189,248,0.35);
-  --accent: #38bdf8;
-  --accent2: #0ea5e9;
-  --green: #4ade80;
-  --amber: #fbbf24;
-  --purple: #c084fc;
-  --coral: #fb7185;
-  --text: #e8edf5;
-  --text2: #8b99b5;
-  --text3: #4d5d7a;
-  --font: 'DM Sans', sans-serif;
-  --mono: 'JetBrains Mono', monospace;
-  --serif: 'Fraunces', serif;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; }
 
-body {
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+  body {
+    font-family: var(--font-mono);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-/* AMBIENT BG */
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(56,189,248,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(192,132,252,0.04) 0%, transparent 50%);
-  pointer-events: none; z-index: 0;
-}
+  /* GRID BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
 
-body::after {
-  content: '';
-  position: fixed; inset: 0;
-  background-image:
-    linear-gradient(rgba(56,189,248,0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56,189,248,0.018) 1px, transparent 1px);
-  background-size: 52px 52px;
-  pointer-events: none; z-index: 0;
-}
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(10,12,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
 
-/* ── CONSTRUCTION BANNER ── */
-.banner {
-  position: relative; z-index: 200;
-  background: linear-gradient(90deg, #1c1200, #221800, #1c1200);
-  border-bottom: 1px solid rgba(251,191,36,0.35);
-  padding: 10px 24px;
-  display: flex; align-items: center; justify-content: center;
-  gap: 14px; flex-wrap: wrap;
-}
-.banner-pill {
-  background: var(--amber);
-  color: #1a1000;
-  font-family: var(--mono);
-  font-size: 10px; font-weight: 700;
-  padding: 3px 10px; border-radius: 4px;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  flex-shrink: 0;
-}
-.banner-text {
-  font-family: var(--mono);
-  font-size: 12px; color: rgba(251,191,36,0.85);
-  letter-spacing: 0.04em;
-}
-.banner-dot {
-  display: inline-block; width: 6px; height: 6px;
-  background: var(--amber); border-radius: 50%;
-  animation: blink 1.8s ease-in-out infinite;
-}
-@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-/* ── NAV ── */
-nav {
-  position: sticky; top: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 48px; height: 62px;
-  background: rgba(8,12,18,0.88);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
-.logo-mark {
-  width: 34px; height: 34px; border-radius: 8px;
-  background: linear-gradient(135deg, #38bdf8 0%, #c084fc 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--mono); font-weight: 700; font-size: 13px; color: #080c12;
-  flex-shrink: 0;
-}
-.logo-name { font-size: 16px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
-.logo-name em { color: var(--accent); font-style: normal; }
-.nav-right { display: flex; align-items: center; gap: 4px; }
-.nav-link {
-  font-size: 13px; font-weight: 500; color: var(--text2);
-  text-decoration: none; padding: 6px 13px; border-radius: 6px;
-  transition: all 0.18s;
-}
-.nav-link:hover { background: var(--surface); color: var(--text); }
-.nav-link-live { color: var(--green) !important; }
-.nav-chip {
-  font-size: 9px; font-family: var(--mono);
-  background: rgba(251,191,36,0.12);
-  color: var(--amber); border: 1px solid rgba(251,191,36,0.25);
-  padding: 1px 6px; border-radius: 3px; margin-left: 4px;
-  vertical-align: middle; letter-spacing: 0.06em;
-}
-.nav-cta {
-  background: var(--accent);
-  color: #080c12 !important;
-  font-weight: 600 !important;
-  padding: 7px 18px !important;
-  border-radius: 7px !important;
-  margin-left: 8px;
-}
-.nav-cta:hover { background: #7dd3fc !important; }
+  .nav-logo span {
+    color: var(--accent);
+  }
 
-/* ── HERO ── */
-.hero {
-  position: relative; z-index: 1;
-  padding: 88px 48px 72px;
-  max-width: 900px; margin: 0 auto;
-  text-align: center;
-}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(56,189,248,0.06);
-  border: 1px solid var(--border2);
-  border-radius: 100px; padding: 5px 18px;
-  font-family: var(--mono); font-size: 11.5px; color: var(--accent);
-  letter-spacing: 0.07em; text-transform: uppercase;
-  margin-bottom: 32px;
-}
-.pulse { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: pulse 2.2s ease-in-out infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.35;transform:scale(0.65);} }
+  .nav-badge {
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
 
-.hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(40px, 6.5vw, 68px);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.025em;
-  color: var(--text);
-  margin-bottom: 24px;
-}
-.hero h1 .c1 { color: var(--accent); }
-.hero h1 .c2 { color: var(--green); font-style: italic; }
-.hero h1 .c3 { color: var(--purple); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    list-style: none;
+  }
 
-.hero-sub {
-  font-size: 17.5px; color: var(--text2);
-  line-height: 1.72; max-width: 600px;
-  margin: 0 auto 44px; font-weight: 400;
-}
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
 
-.hero-actions { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
-.btn-primary {
-  background: var(--accent); color: #080c12;
-  font-family: var(--font); font-size: 14.5px; font-weight: 600;
-  padding: 13px 30px; border-radius: 9px; border: none;
-  cursor: pointer; text-decoration: none;
-  display: inline-flex; align-items: center; gap: 8px;
-  transition: all 0.2s;
-}
-.btn-primary:hover { background: #7dd3fc; transform: translateY(-1px); }
-.btn-ghost {
-  background: transparent; color: var(--text);
-  font-family: var(--font); font-size: 14px; font-weight: 500;
-  padding: 12px 24px; border-radius: 9px;
-  border: 1px solid var(--border2);
-  cursor: pointer; text-decoration: none;
-  transition: all 0.2s;
-}
-.btn-ghost:hover { background: var(--surface); border-color: var(--border3); }
-.hero-note { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+  .nav-links a:hover { color: var(--accent); }
 
-/* ── EMAIL CAPTURE ── */
-.capture-wrap {
-  position: relative; z-index: 1;
-  max-width: 520px; margin: 0 auto 80px;
-  padding: 0 48px;
-}
-.capture-box {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: 14px;
-  padding: 28px 28px;
-  text-align: center;
-}
-.capture-box h3 {
-  font-family: var(--mono); font-size: 12px;
-  color: var(--amber); letter-spacing: 0.08em;
-  text-transform: uppercase; margin-bottom: 8px;
-}
-.capture-box p { font-size: 13.5px; color: var(--text2); margin-bottom: 18px; }
-.email-row { display: flex; gap: 8px; }
-.email-input {
-  flex: 1; background: var(--bg2);
-  border: 1px solid var(--border2); border-radius: 8px;
-  padding: 10px 14px; color: var(--text);
-  font-family: var(--font); font-size: 13.5px;
-  outline: none; transition: border-color 0.2s;
-}
-.email-input::placeholder { color: var(--text3); }
-.email-input:focus { border-color: var(--border3); }
-.btn-notify {
-  background: var(--amber); color: #1a1000;
-  font-family: var(--font); font-size: 13px; font-weight: 600;
-  padding: 10px 18px; border-radius: 8px; border: none;
-  cursor: pointer; white-space: nowrap; transition: all 0.2s;
-}
-.btn-notify:hover { background: #fcd34d; }
-.capture-fine { font-size: 11px; color: var(--text3); font-family: var(--mono); margin-top: 10px; }
+  .nav-cta {
+    background: var(--accent) !important;
+    color: #000 !important;
+    padding: 6px 14px !important;
+    border-radius: 4px !important;
+    font-weight: 700 !important;
+  }
 
-/* ── TERMINAL ── */
-.terminal-wrap {
-  position: relative; z-index: 1;
-  max-width: 660px; margin: 0 auto 88px;
-  padding: 0 48px;
-}
-.terminal {
-  background: var(--bg2);
-  border: 1px solid var(--border2);
-  border-radius: 13px; overflow: hidden;
-}
-.t-bar {
-  background: var(--surface); padding: 11px 16px;
-  display: flex; align-items: center; gap: 7px;
-  border-bottom: 1px solid var(--border);
-}
-.dot { width: 11px; height: 11px; border-radius: 50%; }
-.d-r{background:#ff5f56;} .d-y{background:#ffbd2e;} .d-g{background:#27c93f;}
-.t-title { font-family: var(--mono); font-size: 11px; color: var(--text3); margin: 0 auto; }
-.t-body { padding: 20px 22px 24px; font-family: var(--mono); font-size: 13px; line-height: 1.85; }
-.tp{color:var(--green);} .tc{color:var(--text);} .to{color:var(--text3);}
-.ta{color:var(--accent);} .tpu{color:var(--purple);} .tam{color:var(--amber);}
-.cur { display:inline-block; width:8px; height:14px; background:var(--accent); vertical-align:text-bottom; animation: blink 1.2s step-end infinite; }
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 2rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 1;
+  }
 
-/* ── LIVE TOOLS ── */
-.section { position: relative; z-index: 1; padding: 72px 48px; }
-.sec-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; text-align: center; }
-.sec-title { font-family: var(--serif); font-size: clamp(28px, 4vw, 38px); font-weight: 700; color: var(--text); text-align: center; letter-spacing: -0.02em; margin-bottom: 48px; }
-.sec-title span { color: var(--accent); }
+  .hero-content {
+    max-width: 700px;
+  }
 
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 14px; max-width: 1080px; margin: 0 auto;
-}
-.tool-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 13px; padding: 22px 22px;
-  text-decoration: none; color: inherit;
-  display: flex; flex-direction: column; gap: 12px;
-  transition: all 0.22s; position: relative; overflow: hidden;
-}
-.tool-card::after {
-  content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 2px; opacity: 0; transition: opacity 0.22s;
-}
-.tool-card:hover { background: var(--surface2); border-color: var(--border2); transform: translateY(-2px); }
-.tool-card:hover::after { opacity: 1; }
-.tc-blue::after{background:var(--accent);} .tc-green::after{background:var(--green);}
-.tc-purple::after{background:var(--purple);} .tc-coral::after{background:var(--coral);}
-.tc-amber::after{background:var(--amber);}
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding: 6px 12px;
+    border: 1px solid rgba(0,255,136,0.3);
+    border-radius: 4px;
+    background: rgba(0,255,136,0.05);
+  }
 
-.tool-icon { font-size: 22px; width: 46px; height: 46px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.ti-blue{background:rgba(56,189,248,0.1);} .ti-green{background:rgba(74,222,128,0.1);}
-.ti-purple{background:rgba(192,132,252,0.1);} .ti-coral{background:rgba(251,113,133,0.1);}
-.ti-amber{background:rgba(251,191,36,0.1);}
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: blink 1.5s ease infinite;
+  }
 
-.tool-name { font-size: 14.5px; font-weight: 600; color: var(--text); }
-.tool-desc { font-size: 13px; color: var(--text2); line-height: 1.6; flex: 1; }
-.tool-footer { display: flex; align-items: center; justify-content: space-between; }
-.tool-url { font-family: var(--mono); font-size: 11px; color: var(--text3); }
-.tool-badge {
-  font-size: 10px; font-weight: 600; padding: 3px 8px;
-  border-radius: 4px; letter-spacing: 0.05em; text-transform: uppercase;
-}
-.tb-live { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.25); }
-.tb-soon { background: rgba(251,191,36,0.12); color: var(--amber); border: 1px solid rgba(251,191,36,0.25); }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
 
-/* ── ABOUT ── */
-.about-section {
-  position: relative; z-index: 1;
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.about-inner {
-  max-width: 900px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 64px; align-items: center;
-}
-.about-left {}
-.about-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
-.about-left h2 { font-family: var(--serif); font-size: clamp(26px, 3.5vw, 34px); font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 18px; letter-spacing: -0.02em; }
-.about-left h2 span { color: var(--green); font-style: italic; }
-.about-left p { font-size: 14.5px; color: var(--text2); line-height: 1.75; margin-bottom: 14px; }
-.about-creds { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-.cred {
-  font-family: var(--mono); font-size: 11px;
-  background: var(--surface2); border: 1px solid var(--border);
-  color: var(--text2); padding: 5px 12px; border-radius: 6px;
-}
-.cred-hl { border-color: rgba(56,189,248,0.3) !important; color: var(--accent) !important; }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
 
-.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.stat-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 11px; padding: 18px 18px;
-}
-.stat-num { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 5px; }
-.stat-lbl { font-size: 12px; color: var(--text3); font-weight: 500; }
-.stat-card.hl { border-color: rgba(192,132,252,0.25); }
-.stat-card.hl .stat-num { color: var(--purple); }
-.stat-card.g .stat-num { color: var(--green); }
-.stat-card.a .stat-num { color: var(--amber); }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
 
-/* ── COMING SOON ── */
-.coming-section { position: relative; z-index: 1; }
-.coming-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px; max-width: 1080px; margin: 0 auto;
-}
-.coming-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 13px; padding: 22px;
-  opacity: 0.7;
-}
-.coming-icon { font-size: 20px; margin-bottom: 12px; }
-.coming-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
-.coming-desc { font-size: 12.5px; color: var(--text3); line-height: 1.55; }
-.coming-tag {
-  display: inline-block; margin-top: 12px;
-  font-family: var(--mono); font-size: 10px; font-weight: 600;
-  background: rgba(251,191,36,0.1); color: var(--amber);
-  border: 1px solid rgba(251,191,36,0.2);
-  padding: 3px 9px; border-radius: 4px; letter-spacing: 0.06em; text-transform: uppercase;
-}
+  .hero-sub {
+    font-size: 0.95rem;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
 
-/* ── FOOTER ── */
-footer {
-  position: relative; z-index: 1;
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-  padding: 44px 48px 32px;
-}
-.footer-top {
-  display: flex; justify-content: space-between;
-  gap: 48px; margin-bottom: 36px; flex-wrap: wrap;
-  max-width: 1080px; margin-left: auto; margin-right: auto;
-}
-.footer-brand .logo-name { font-size: 15px; }
-.footer-brand p { font-size: 13px; color: var(--text3); margin-top: 10px; max-width: 260px; line-height: 1.6; }
-.footer-col h4 { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--text3); margin-bottom: 14px; }
-.footer-col a { display: block; font-size: 13.5px; color: var(--text2); text-decoration: none; margin-bottom: 9px; transition: color 0.15s; }
-.footer-col a:hover { color: var(--accent); }
-.footer-live::before { content: '● '; font-size: 9px; color: var(--green); }
-.footer-bottom {
-  border-top: 1px solid var(--border); padding-top: 20px;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 12px;
-  max-width: 1080px; margin-left: auto; margin-right: auto;
-}
-.footer-bottom p { font-family: var(--mono); font-size: 11.5px; color: var(--text3); }
-.footer-links { display: flex; gap: 20px; }
-.footer-links a { font-family: var(--mono); font-size: 11.5px; color: var(--text3); text-decoration: none; transition: color 0.15s; }
-.footer-links a:hover { color: var(--accent); }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
 
-/* ── TODAY'S LAB ── */
-.lab-section {
-  position: relative; z-index: 1;
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 72px 48px;
-}
-.lab-inner { max-width: 860px; margin: 0 auto; }
-.lab-header { text-align: center; margin-bottom: 40px; }
-.lab-date-pill {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(74,222,128,0.07);
-  border: 1px solid rgba(74,222,128,0.2);
-  border-radius: 100px; padding: 4px 16px;
-  font-family: var(--mono); font-size: 11px; color: var(--green);
-  letter-spacing: 0.06em; text-transform: uppercase;
-  margin-bottom: 14px;
-}
-.lab-live-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
-.lab-card {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: 16px; overflow: hidden;
-}
-.lab-card-top {
-  padding: 28px 32px 24px;
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: flex-start; gap: 20px;
-}
-.lab-num {
-  font-family: var(--mono); font-size: 11px; font-weight: 700;
-  color: var(--accent); background: rgba(56,189,248,0.08);
-  border: 1px solid rgba(56,189,248,0.2);
-  padding: 4px 10px; border-radius: 5px;
-  white-space: nowrap; flex-shrink: 0; margin-top: 3px;
-}
-.lab-meta { flex: 1; }
-.lab-track {
-  font-family: var(--mono); font-size: 10px; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.track-linux { color: var(--green); }
-.track-k8s { color: var(--accent); }
-.track-terraform { color: var(--purple); }
-.track-platform { color: var(--coral); }
-.lab-title { font-family: var(--serif); font-size: clamp(18px, 2.5vw, 24px); font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 10px; }
-.lab-diff {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-family: var(--mono); font-size: 10px; font-weight: 600;
-  padding: 3px 9px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.06em;
-}
-.diff-easy { background: rgba(74,222,128,0.1); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
-.diff-medium { background: rgba(251,191,36,0.1); color: var(--amber); border: 1px solid rgba(251,191,36,0.2); }
-.diff-hard { background: rgba(251,113,133,0.1); color: var(--coral); border: 1px solid rgba(251,113,133,0.2); }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #000;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
 
-.lab-scenario {
-  padding: 22px 32px;
-  border-bottom: 1px solid var(--border);
-}
-.lab-scenario-label {
-  font-family: var(--mono); font-size: 10px; color: var(--text3);
-  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;
-}
-.lab-scenario-text { font-size: 14px; color: var(--text2); line-height: 1.7; }
+  .btn-primary:hover {
+    background: #00e07a;
+    transform: translateY(-1px);
+  }
 
-.lab-hint-zone { padding: 22px 32px; border-bottom: 1px solid var(--border); }
-.lab-hint-btn {
-  background: transparent;
-  border: 1px solid var(--border2); border-radius: 7px;
-  color: var(--text2); font-family: var(--mono); font-size: 12px;
-  padding: 8px 16px; cursor: pointer; transition: all 0.2s;
-  display: inline-flex; align-items: center; gap: 7px;
-}
-.lab-hint-btn:hover { background: var(--surface2); border-color: var(--border3); color: var(--text); }
-.lab-hint-text {
-  display: none; margin-top: 14px;
-  background: var(--bg);
-  border: 1px solid var(--border2);
-  border-radius: 9px; padding: 16px 18px;
-  font-family: var(--mono); font-size: 13px;
-  color: var(--accent); line-height: 1.7;
-}
-.lab-hint-text.visible { display: block; }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text);
+    padding: 12px 24px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
 
-.lab-answer-zone { padding: 22px 32px; border-bottom: 1px solid var(--border); }
-.lab-answer-label { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
-.lab-cmd-input {
-  width: 100%; background: var(--bg);
-  border: 1px solid var(--border2); border-radius: 9px;
-  padding: 12px 16px; color: var(--green);
-  font-family: var(--mono); font-size: 14px;
-  outline: none; transition: border-color 0.2s;
-  caret-color: var(--green);
-}
-.lab-cmd-input::placeholder { color: var(--text3); }
-.lab-cmd-input:focus { border-color: var(--border3); }
-.lab-btn-row { display: flex; align-items: center; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
-.lab-check-btn {
-  background: var(--accent); color: #080c12;
-  font-family: var(--mono); font-size: 12px; font-weight: 700;
-  padding: 9px 20px; border-radius: 7px; border: none;
-  cursor: pointer; transition: all 0.2s; letter-spacing: 0.04em;
-}
-.lab-check-btn:hover { background: #7dd3fc; }
-.lab-reset-btn {
-  background: transparent; color: var(--text3);
-  font-family: var(--mono); font-size: 12px;
-  padding: 9px 16px; border-radius: 7px;
-  border: 1px solid var(--border); cursor: pointer; transition: all 0.2s;
-}
-.lab-reset-btn:hover { border-color: var(--border2); color: var(--text2); }
-.lab-feedback {
-  display: none; margin-top: 12px;
-  padding: 12px 16px; border-radius: 8px;
-  font-family: var(--mono); font-size: 13px; line-height: 1.6;
-}
-.lab-feedback.correct {
-  display: block;
-  background: rgba(74,222,128,0.07);
-  border: 1px solid rgba(74,222,128,0.25);
-  color: var(--green);
-}
-.lab-feedback.wrong {
-  display: block;
-  background: rgba(251,113,133,0.07);
-  border: 1px solid rgba(251,113,133,0.25);
-  color: var(--coral);
-}
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
 
-.lab-footer {
-  padding: 16px 32px;
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-}
-.lab-footer-note { font-family: var(--mono); font-size: 11px; color: var(--text3); }
-.lab-streak {
-  display: flex; align-items: center; gap: 8px;
-  font-family: var(--mono); font-size: 11px; color: var(--amber);
-}
-.lab-streak-num { font-size: 14px; font-weight: 700; }
-.lab-nav-row { display: flex; justify-content: center; margin-top: 24px; gap: 10px; }
-.lab-nav-btn {
-  background: var(--surface); border: 1px solid var(--border);
-  color: var(--text2); font-family: var(--mono); font-size: 12px;
-  padding: 8px 18px; border-radius: 7px; cursor: pointer; transition: all 0.2s;
-}
-.lab-nav-btn:hover { border-color: var(--border2); color: var(--text); background: var(--surface2); }
-.lab-progress-bar {
-  height: 3px; background: var(--border);
-  border-radius: 2px; margin: 0 32px 0;
-  overflow: hidden;
-}
-.lab-progress-fill {
-  height: 100%; background: var(--accent);
-  border-radius: 2px; transition: width 0.4s ease;
-}
+  /* TERMINAL WIDGET */
+  .hero-terminal {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 420px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(0,255,136,0.05), 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .terminal-bar {
+    padding: 10px 14px;
+    background: var(--bg3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .t-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .t-dot.red { background: #ff5f57; }
+  .t-dot.yellow { background: #febc2e; }
+  .t-dot.green { background: #28c840; }
+
+  .terminal-title {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-left: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  .terminal-body {
+    padding: 1.2rem;
+    font-size: 0.72rem;
+    line-height: 1.9;
+  }
+
+  .t-prompt { color: var(--accent); }
+  .t-cmd { color: var(--text); }
+  .t-out { color: var(--muted); }
+  .t-status-ok { color: var(--accent); }
+  .t-status-build { color: #febc2e; }
+  .t-status-plan { color: var(--accent2); }
+  .t-cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: var(--accent);
+    animation: cursor-blink 1s step-end infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* STATS */
+  .stats-row {
+    display: flex;
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat-item { }
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-tag {
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-tag::before { content: '// '; }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-lead {
+    font-size: 0.85rem;
+    color: var(--muted);
+    max-width: 500px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  /* TOOLS GRID */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .tool-card {
+    background: var(--bg2);
+    padding: 1.75rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tool-card:hover {
+    background: var(--bg3);
+  }
+
+  .tool-card:hover .tool-arrow { opacity: 1; transform: translate(2px, -2px); }
+
+  .tool-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .tool-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .tool-icon.linux { background: rgba(0,255,136,0.1); }
+  .tool-icon.k8s { background: rgba(0,212,255,0.1); }
+  .tool-icon.tf { background: rgba(148,0,255,0.1); }
+  .tool-icon.cicd { background: rgba(255,107,53,0.1); }
+  .tool-icon.docker { background: rgba(0,212,255,0.1); }
+  .tool-icon.git { background: rgba(255,107,53,0.1); }
+  .tool-icon.resume { background: rgba(0,255,136,0.1); }
+  .tool-icon.interview { background: rgba(148,0,255,0.1); }
+
+  .tool-status {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .status-live {
+    background: rgba(0,255,136,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(0,255,136,0.3);
+  }
+
+  .status-building {
+    background: rgba(254,188,46,0.1);
+    color: #febc2e;
+    border: 1px solid rgba(254,188,46,0.3);
+  }
+
+  .tool-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .tool-desc {
+    font-size: 0.73rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .tool-url {
+    font-size: 0.65rem;
+    color: rgba(0,255,136,0.5);
+    letter-spacing: 0.03em;
+    margin-top: auto;
+  }
+
+  .tool-arrow {
+    position: absolute;
+    right: 1.75rem;
+    bottom: 1.75rem;
+    color: var(--accent);
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: all 0.2s;
+  }
+
+  /* COMING SOON */
+  .coming-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .coming-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .coming-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .coming-card.k8s::before { background: linear-gradient(90deg, var(--accent2), transparent); }
+  .coming-card.tf::before { background: linear-gradient(90deg, #a855f7, transparent); }
+  .coming-card.platform::before { background: linear-gradient(90deg, var(--accent), transparent); }
+  .coming-card.cloud::before { background: linear-gradient(90deg, var(--accent3), transparent); }
+  .coming-card.chaos::before { background: linear-gradient(90deg, #ff3b3b, transparent); }
+  .coming-card.sysdesign::before { background: linear-gradient(90deg, #00d4ff, transparent); }
+
+  .coming-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .coming-name {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+  .coming-desc { font-size: 0.72rem; color: var(--muted); line-height: 1.7; }
+  .coming-tag {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #febc2e;
+    padding: 2px 7px;
+    border: 1px solid rgba(254,188,46,0.3);
+    border-radius: 3px;
+    background: rgba(254,188,46,0.08);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-text p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 1rem;
+  }
+
+  .about-text strong { color: var(--text); }
+
+  .certs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .cert-badge {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: var(--bg2);
+    font-weight: 500;
+  }
+
+  .about-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .metric-box {
+    background: var(--bg2);
+    padding: 1.75rem;
+    text-align: center;
+  }
+
+  .metric-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .metric-num.green { color: var(--accent); }
+  .metric-num.cyan { color: var(--accent2); }
+  .metric-num.orange { color: var(--accent3); }
+  .metric-num.purple { color: #a855f7; }
+
+  .metric-label {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* SIGNUP */
+  .signup-section {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .signup-section::before {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,255,136,0.08), transparent 70%);
+    pointer-events: none;
+  }
+
+  .signup-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .signup-section p {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .signup-form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .signup-form input {
+    flex: 1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 14px;
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .signup-form input:focus {
+    border-color: var(--accent);
+  }
+
+  .signup-form input::placeholder { color: var(--muted); }
+
+  .signup-form button {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+
+  .signup-form button:hover { background: #00e07a; }
+
+  .signup-note {
+    font-size: 0.65rem;
+    color: var(--muted);
+    margin-top: 0.75rem;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {}
+  .footer-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .footer-logo span { color: var(--accent); }
+  .footer-desc {
+    font-size: 0.7rem;
+    color: var(--muted);
+    max-width: 220px;
+    line-height: 1.7;
+  }
+
+  .footer-links { display: flex; gap: 3rem; }
+  .footer-col h4 {
+    font-size: 0.65rem;
+    color: var(--text);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    font-family: var(--font-display);
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.4rem; }
+  .footer-col a {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-col .live-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .footer-bottom {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-copy {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-github a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-github a:hover { color: var(--accent); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-terminal { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-links { gap: 2rem; }
+    .tools-grid { grid-template-columns: 1fr; }
+    .coming-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .nav-hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--muted);
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .nav-hamburger:hover span { background: var(--accent); }
+
+    .hero { padding: 80px 1rem 3rem; min-height: auto; }
+    .hero h1 { font-size: clamp(2rem, 9vw, 2.8rem); }
+    .hero-sub { font-size: 0.82rem; }
+    .hero-actions { flex-direction: column; }
+    .btn-primary, .btn-secondary { justify-content: center; }
+    .stats-row { gap: 1rem; flex-wrap: wrap; }
+    .stat-number { font-size: 1.4rem; }
+
+    section { padding: 3rem 1rem; }
+    .tools-grid { grid-template-columns: 1fr; border-radius: 8px; }
+    .coming-grid { grid-template-columns: 1fr; }
+
+    .signup-section { padding: 2rem 1.25rem; }
+    .signup-form { flex-direction: column; }
+    .signup-form input, .signup-form button { width: 100%; }
+
+    .footer-inner { flex-direction: column; gap: 2rem; }
+    .footer-links { flex-wrap: wrap; gap: 1.5rem; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+
+    .about-metrics { grid-template-columns: 1fr 1fr; }
+    .metric-num { font-size: 1.8rem; }
+  }
+
+  @media (min-width: 601px) {
+    .nav-hamburger { display: none; }
+  }
+
+  /* MOBILE NAV DRAWER */
+  @media (max-width: 600px) {
+    #nav-links {
+      display: none;
+      position: fixed;
+      top: 60px; left: 0; right: 0;
+      background: rgba(10,12,15,0.98);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      padding: 1.5rem;
+      gap: 1.25rem;
+      z-index: 99;
+    }
+    #nav-links.open { display: flex; }
+    #nav-links a { font-size: 0.9rem; }
+    #nav-links .nav-cta {
+      text-align: center;
+      padding: 10px 20px !important;
+    }
+  }
+  .fade-in {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-in.from-left {
+    transform: translateX(-40px);
+  }
+  .fade-in.from-left.visible {
+    transform: translateX(0);
+  }
+  .fade-in.from-right {
+    transform: translateX(40px);
+  }
+  .fade-in.from-right.visible {
+    transform: translateX(0);
+  }
+  /* stagger children of .stagger-children */
+  .stagger-children > * {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+  }
+  .stagger-children.visible > *:nth-child(1) { transition-delay: 0s; }
+  .stagger-children.visible > *:nth-child(2) { transition-delay: 0.08s; }
+  .stagger-children.visible > *:nth-child(3) { transition-delay: 0.16s; }
+  .stagger-children.visible > *:nth-child(4) { transition-delay: 0.24s; }
+  .stagger-children.visible > *:nth-child(5) { transition-delay: 0.32s; }
+  .stagger-children.visible > *:nth-child(6) { transition-delay: 0.40s; }
+  .stagger-children.visible > *:nth-child(n+7) { transition-delay: 0.48s; }
+  .stagger-children.visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
 </head>
 <body>
 
-<!-- BANNER -->
-<div class="banner">
-  <span class="banner-dot"></span>
-  <span class="banner-pill">🚧 Under Construction</span>
-  <span class="banner-text">Labs + More launching soon — building in public at github.com/eknatha</span>
-  <span class="banner-pill">Coming Soon</span>
-</div>
-
 <!-- NAV -->
 <nav>
-  <a href="https://eknathalabs.com" class="nav-logo">
-    <div class="logo-mark">EL</div>
-    <span class="logo-name">Eknatha<em>Labs</em></span>
+  <a href="#" class="nav-logo">
+    EL <span>EknathaLabs</span>
+    <span class="nav-badge">Beta</span>
   </a>
-  <div class="nav-right">
-    <a href="https://eknatha.github.io/github-profile-analyzer/" class="nav-link nav-link-live" target="_blank">Git Profile Analyzer</a>
-    <a href="https://eknatha.github.io/resumelytics/" class="nav-link nav-link-live" target="_blank">ATS Resume Analyzer</a>
-    <a href="https://labs.eknathalabs.com" class="nav-link" target="_blank">Labs <span class="nav-chip">Soon</span></a>
-    <a href="https://blog.eknathalabs.com" class="nav-link" target="_blank">Blog <span class="nav-chip">Soon</span></a>
-    <a href="https://github.com/eknatha" class="nav-link" target="_blank">GitHub</a>
-    <a href="#early-access" class="nav-link nav-cta">Get Early Access</a>
-  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#live-tools">Tools</a></li>
+    <li><a href="#coming-soon">Labs</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="https://github.com/eknatha" target="_blank" rel="noopener">GitHub</a></li>
+    <li><a href="#early-access" class="nav-cta">Get Early Access</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-eyebrow">
-    <span class="pulse"></span>
-    DevOps · Platform Engineering · Hands-on Labs
-  </div>
-  <h1>
-    Learn DevOps & Platform<br>
-    by <span class="c2">Actually</span> <span class="c1">Doing It</span>
-  </h1>
-  <p class="hero-sub">
-    Real terminal labs, production-grade scenarios, and hands-on playgrounds for Linux, Kubernetes, Terraform, CI/CD, and Cloud — built by a practitioner, not a content farm.
-  </p>
-  <div class="hero-actions">
-    <a href="#early-access" class="btn-primary">🔔 Get Early Access</a>
-    <a href="#live-tools" class="btn-ghost">Explore Live Tools →</a>
-  </div>
-  <p class="hero-note">↳ Site under construction · New content dropping regularly</p>
-</section>
+<div style="position:relative;">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">Building in public · DevOps &amp; Platform Engineering</div>
 
-<!-- EMAIL CAPTURE -->
-<div class="capture-wrap" id="early-access">
-  <div class="capture-box">
-    <h3>🚧 Launching Soon</h3>
-    <p>Get notified when labs go live — Linux, Kubernetes, Terraform, and Platform Engineering tracks.</p>
-    <div class="email-row">
-      <input type="email" class="email-input" placeholder="you@company.com">
-      <button class="btn-notify" onclick="this.textContent='✓ Done!'">Notify Me</button>
+      <h1>Learn DevOps by<br><em>Actually Doing It</em></h1>
+
+      <p class="hero-sub">
+        Real terminal labs. Production-grade scenarios. Hands-on playgrounds for Linux, Kubernetes, Terraform, CI/CD, and Cloud — built by a practitioner, not a content farm.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#live-tools" class="btn-primary">→ Explore Live Tools</a>
+        <a href="#early-access" class="btn-secondary">🔔 Get Early Access</a>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-number">13+</div>
+          <div class="stat-label">Years IT Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">CKS</div>
+          <div class="stat-label">Top 8% K8s Engineers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">7+</div>
+          <div class="stat-label">Linux Modules Ready</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">Free</div>
+          <div class="stat-label">Core Content Always</div>
+        </div>
+      </div>
     </div>
-    <p class="capture-fine">No spam. Unsubscribe anytime.</p>
+
+    <!-- TERMINAL -->
+    <div class="hero-terminal">
+      <div class="terminal-bar">
+        <div class="t-dot red"></div>
+        <div class="t-dot yellow"></div>
+        <div class="t-dot green"></div>
+        <span class="terminal-title">eknathalabs.com — zsh</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="t-prompt">eknatha@labs:~$</span> <span class="t-cmd">./init-platform.sh</span></div>
+        <div class="t-out">&nbsp;</div>
+        <div class="t-out">Starting EknathaLabs platform...</div>
+        <div class="t-out">&nbsp;</div>
+        <div><span class="t-out">▶ Linux modules (7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="t-status-ok">[READY ✓]</span></div>
+        <div><span class="t-out">▶ GitHub Analyzer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="t-status-ok">[LIVE  ✓]</span></div>
+        <div><span class="t-out">▶ ATS Resume Scanner&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="t-status-ok">[LIVE  ✓]</span></div>
+        <div><span class="t-out">▶ Interview Prep Portal&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="t-status-ok">[LIVE  ✓]</span></div>
+        <div><span class="t-out">▶ Kubernetes (CKA+CKS)&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="t-status-build">[BUILD ◆]</span></div>
+        <div><span class="t-out">▶ Terraform IaC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="t-status-build">[BUILD ◆]</span></div>
+        <div><span class="t-out">▶ Docker Labs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="t-status-build">[BUILD ◆]</span></div>
+        <div><span class="t-out">▶ CI/CD Pipelines&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="t-status-build">[BUILD ◆]</span></div>
+        <div><span class="t-out">▶ Platform Engineering&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="t-status-plan">[PLAN  ◇]</span></div>
+        <div class="t-out">&nbsp;</div>
+        <div class="t-out">STATUS: Built in public.</div>
+        <div class="t-out">→ github.com/eknatha</div>
+        <div class="t-out">&nbsp;</div>
+        <div><span class="t-prompt">eknatha@labs:~$</span> <span class="t-cursor"></span></div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- TERMINAL -->
-<div class="terminal-wrap">
-  <div class="terminal">
-    <div class="t-bar">
-      <div class="dot d-r"></div><div class="dot d-y"></div><div class="dot d-g"></div>
-      <span class="t-title">eknathalabs.com — bash</span>
-    </div>
-    <div class="t-body">
-      <div><span class="tp">eknatha@labs</span><span class="tc">:~$</span> <span class="ta">./init-platform.sh</span></div>
-      <div class="to">Starting EknathaLabs...</div>
-      <div class="to">► Linux modules (7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#4ade80">[READY]</span></div>
-      <div class="to">► Kubernetes (CKA+CKS)&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#fbbf24">[BUILDING]</span></div>
-      <div class="to">► Terraform IaC (AWS+Azure) <span style="color:#fbbf24">[BUILDING]</span></div>
-      <div class="to">► Platform Engineering&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#fbbf24">[BUILDING]</span></div>
-      <div class="to">► CI/CD pipelines&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#fbbf24">[BUILDING]</span></div>
-      <div class="to">► Future Technologies&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#fbbf24">[FUTURE]</span></div>
-      <div>&nbsp;</div>
-      <div><span class="tpu">STATUS</span>: <span class="tam">Built in public. Follow the journey → github.com/eknatha</span></div>
-      <div><span class="tp">eknatha@labs</span><span class="tc">:~$</span> <span class="cur"></span></div>
-    </div>
-  </div>
-</div>
+<div class="divider"></div>
 
 <!-- LIVE TOOLS -->
-<section class="section" id="live-tools">
-  <div class="sec-tag">// available_now</div>
-  <h2 class="sec-title">Live <span>Tools</span> & Resources</h2>
-  <div class="tools-grid">
-    <a href="https://eknatha.github.io/github-profile-analyzer/" target="_blank" class="tool-card tc-blue">
-      <div class="tool-icon ti-blue">📊</div>
-      <div class="tool-name">GitHub Profile Analyzer</div>
-      <div class="tool-desc">0–100 score across 5 dimensions, radar chart, repo health monitor, hirability score, and shareable score card PNG.</div>
-      <div class="tool-footer">
-        <span class="tool-url">eknatha.github.io/github-profile-analyzer</span>
-        <span class="tool-badge tb-live">Live</span>
+<section id="live-tools">
+  <div class="fade-in">
+    <div class="section-tag">available_now</div>
+    <h2>Live Tools & Resources</h2>
+    <p class="section-lead">Production-grade tools you can use right now — no sign-up, no paywalls, built from real practitioner experience.</p>
+  </div>
+
+  <div class="tools-grid stagger-children fade-in">
+
+    <a href="https://eknatha.github.io/github-profile-analyzer/" target="_blank" rel="noopener" class="tool-card">
+      <div class="tool-card-head">
+        <div class="tool-icon git">📊</div>
+        <span class="tool-status status-live">Live</span>
       </div>
+      <div class="tool-name">GitHub Profile Analyzer</div>
+      <div class="tool-desc">0–100 score across 5 dimensions. Radar chart, repo health monitor, hirability score, and shareable scorecard PNG.</div>
+      <div class="tool-url">eknatha.github.io/github-profile-analyzer</div>
+      <span class="tool-arrow">↗</span>
     </a>
-    <a href="https://eknatha.github.io/linux-command-explainer" target="_blank" class="tool-card tc-green">
-      <div class="tool-icon ti-green">🐧</div>
+
+    <a href="https://eknatha.github.io/resumelytics/" target="_blank" rel="noopener" class="tool-card">
+      <div class="tool-card-head">
+        <div class="tool-icon resume">🎯</div>
+        <span class="tool-status status-live">Live</span>
+      </div>
+      <div class="tool-name">ATS Resume Analyzer</div>
+      <div class="tool-desc">Beat applicant tracking systems. Keyword analysis, format scoring, and targeted improvement recommendations.</div>
+      <div class="tool-url">eknatha.github.io/resumelytics</div>
+      <span class="tool-arrow">↗</span>
+    </a>
+
+    <a href="https://eknatha.github.io/linux-command-explainer/" target="_blank" rel="noopener" class="tool-card">
+      <div class="tool-card-head">
+        <div class="tool-icon linux">🐧</div>
+        <span class="tool-status status-live">Live</span>
+      </div>
       <div class="tool-name">Linux Command Explainer</div>
       <div class="tool-desc">Explain any Linux command in plain English. Pipe chain visualiser, regex decoder, ELI5 mode, OS compatibility checker, and danger pre-run checklist.</div>
-      <div class="tool-footer">
-        <span class="tool-url">eknatha.github.io/linux-command-explainer</span>
-        <span class="tool-badge tb-live">Live</span>
-      </div>
+      <div class="tool-url">eknatha.github.io/linux-command-explainer</div>
+      <span class="tool-arrow">↗</span>
     </a>
-    <a href="https://eknatha.github.io/interview-prep" target="_blank" class="tool-card tc-purple">
-      <div class="tool-icon ti-purple">🎯</div>
-      <div class="tool-name">Devops & Platform Eng Interview Prep</div>
+
+    <a href="https://eknatha.github.io/interview-prep/" target="_blank" rel="noopener" class="tool-card">
+      <div class="tool-card-head">
+        <div class="tool-icon interview">📚</div>
+        <span class="tool-status status-live">Live</span>
+      </div>
+      <div class="tool-name">DevOps Interview Prep</div>
       <div class="tool-desc">12+ guides with dark mode, interview mode, flashcard mode, and a working visitor counter. Covers Kubernetes, Terraform, Linux, CI/CD, and cloud.</div>
-      <div class="tool-footer">
-        <span class="tool-url">eknatha.github.io/interview-prep</span>
-        <span class="tool-badge tb-live">Live</span>
-      </div>
+      <div class="tool-url">eknatha.github.io/interview-prep</div>
+      <span class="tool-arrow">↗</span>
     </a>
-    <a href="https://labs.eknathalabs.com" target="_blank" class="tool-card tc-amber">
-      <div class="tool-icon ti-amber">🧪</div>
-      <div class="tool-name">Interactive Labs</div>
-      <div class="tool-desc">Hands-on terminal labs for Linux, Kubernetes, Terraform, and Platform Engineering. Production-grade scenarios, not toy examples.</div>
-      <div class="tool-footer">
-        <span class="tool-url">labs.eknathalabs.com</span>
-        <span class="tool-badge tb-soon">Coming Soon</span>
+
+    <a href="https://kubelab.eknathalabs.com/" target="_blank" rel="noopener" class="tool-card">
+      <div class="tool-card-head">
+        <div class="tool-icon k8s">☸️</div>
+        <span class="tool-status status-building">Building</span>
       </div>
+      <div class="tool-name">Kubernetes Lab</div>
+      <div class="tool-desc">Interactive K8s playground. Real cluster scenarios, RBAC, network policies, pod security — mapped to CKA and CKS objectives.</div>
+      <div class="tool-url">kubelab.eknathalabs.com</div>
+      <span class="tool-arrow">↗</span>
     </a>
-    <a href="https://terraform.eknathalabs.com" target="_blank" class="tool-card tc-coral">
-      <div class="tool-icon ti-coral">🏗️</div>
+
+    <a href="https://terraform.eknathalabs.com/" target="_blank" rel="noopener" class="tool-card">
+      <div class="tool-card-head">
+        <div class="tool-icon tf">🏗️</div>
+        <span class="tool-status status-building">Building</span>
+      </div>
       <div class="tool-name">Terraform Lab</div>
-      <div class="tool-desc">Multi-cloud IaC on AWS and Azure and GCP. Reusable modules, state management, CI/CD integration, and real-world infra patterns.</div>
-      <div class="tool-footer">
-        <span class="tool-url">terraform.eknathalabs.com</span>
-        <span class="tool-badge tb-soon">Coming Soon</span>
-      </div>
+      <div class="tool-desc">Multi-cloud IaC on AWS, Azure, and GCP. Reusable modules, state management, CI/CD integration, and real-world infra patterns.</div>
+      <div class="tool-url">terraform.eknathalabs.com</div>
+      <span class="tool-arrow">↗</span>
     </a>
-    <a href="https://learn.eknathalabs.com" target="_blank" class="tool-card tc-green">
-      <div class="tool-icon ti-green">🎓</div>
-      <div class="tool-name">Learn Platform</div>
-      <div class="tool-desc">Structured DevOps and Platform Engineering learning paths. Docker, Kubernetes, Cloud, and the full PE toolkit — guided and self-paced.</div>
-      <div class="tool-footer">
-        <span class="tool-url">learn.eknathalabs.com</span>
-        <span class="tool-badge tb-soon">Coming Soon</span>
+
+    <a href="https://docker.eknathalabs.com/" target="_blank" rel="noopener" class="tool-card">
+      <div class="tool-card-head">
+        <div class="tool-icon docker">🐳</div>
+        <span class="tool-status status-building">Building</span>
       </div>
+      <div class="tool-name">Docker Lab</div>
+      <div class="tool-desc">Containers from first principles to production. Compose, networking, volumes, multi-stage builds, and security hardening.</div>
+      <div class="tool-url">docker.eknathalabs.com</div>
+      <span class="tool-arrow">↗</span>
     </a>
+
+    <a href="https://cicd.eknathalabs.com/" target="_blank" rel="noopener" class="tool-card">
+      <div class="tool-card-head">
+        <div class="tool-icon cicd">⚙️</div>
+        <span class="tool-status status-building">Building</span>
+      </div>
+      <div class="tool-name">CI/CD Lab</div>
+      <div class="tool-desc">GitHub Actions, ArgoCD, and GitOps workflows. From zero to production pipeline — with real deployment scenarios.</div>
+      <div class="tool-url">cicd.eknathalabs.com</div>
+      <span class="tool-arrow">↗</span>
+    </a>
+
   </div>
 </section>
 
-<!-- ABOUT / CREDIBILITY -->
-<section class="section about-section">
-  <div class="about-inner">
-    <div class="about-left">
-      <div class="about-tag">// about the builder</div>
-      <h2>Built by a <span>practitioner</span>,<br>not a content farm</h2>
-      <p>EknathaLabs is built by someone who has spent years in the trenches — cloud operations, incident response, Kubernetes at scale, multi-cloud migrations on AWS, Azure, Openstack.</p>
-      <p>Every lab maps to a real scenario. Every guide is written from experience, not from copying documentation.</p>
-      <div class="about-creds">
-        <span class="cred"> 13+ yrs IT experience</span>
-        <span class="cred">7+ yrs cloud ops</span>
-        <span class="cred cred-hl">CKA + CKS</span>
-        <span class="cred">AWS</span>
-        <span class="cred">Azure</span>
-        <span class="cred">Linux</span>
-        <span class="cred">Kubernetes</span>
-        <span class="cred">Terraform</span>
-        <span class="cred">OpenStack</span>
-      </div>
-    </div>
-    <div class="about-stats">
-      <div class="stat-card">
-        <div class="stat-num">13+ yrs</div>
-        <div class="stat-lbl">Total IT Experience</div>
-      </div>
-      <div class="stat-card hl">
-        <div class="stat-num">CKS</div>
-        <div class="stat-lbl">Top 8% of K8s Engineers</div>
-      </div>
-      <div class="stat-card g">
-        <div class="stat-num">7+</div>
-        <div class="stat-lbl">Linux Modules Ready</div>
-      </div>
-      <div class="stat-card a">
-        <div class="stat-num">Free</div>
-        <div class="stat-lbl">Core Content Always Free</div>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="divider"></div>
 
-<!-- COMING SOON PATHS -->
-<section class="section coming-section">
-  <div class="sec-tag">// coming_soon</div>
-  <h2 class="sec-title">What's <span>Coming</span></h2>
-  <div class="coming-grid">
-    <div class="coming-card">
+<!-- COMING SOON -->
+<section id="coming-soon">
+  <div class="fade-in">
+    <div class="section-tag">coming_soon</div>
+    <h2>What's Coming</h2>
+    <p class="section-lead">Structured learning paths and interactive labs — built from production experience, not documentation.</p>
+  </div>
+
+  <div class="coming-grid stagger-children fade-in">
+    <div class="coming-card k8s">
       <div class="coming-icon">☸️</div>
-      <div class="coming-name">Kubernetes Labs </div>
-      <div class="coming-desc">Real cluster scenarios, RBAC, network policies, pod security, and GitOps via ArgoCD. Mapped  to CKA and CKS exam objectives as Well.</div>
+      <div class="coming-name">Kubernetes Track</div>
+      <div class="coming-desc">Real cluster scenarios, RBAC, network policies, pod security, and GitOps via ArgoCD. Fully mapped to CKA and CKS exam objectives.</div>
       <span class="coming-tag">Building</span>
     </div>
-    <div class="coming-card">
+
+    <div class="coming-card tf">
       <div class="coming-icon">🏗️</div>
       <div class="coming-name">Terraform & IaC</div>
-      <div class="coming-desc">Multi-cloud infra as code. Reusable module patterns, state management, drift detection, and CI/CD-integrated pipelines </div>
+      <div class="coming-desc">Multi-cloud infra as code. Reusable module patterns, state management, drift detection, and CI/CD-integrated pipelines.</div>
       <span class="coming-tag">Building</span>
     </div>
-    <div class="coming-card">
+
+    <div class="coming-card platform">
       <div class="coming-icon">⚙️</div>
       <div class="coming-name">Platform Engineering</div>
       <div class="coming-desc">Internal developer platforms, golden paths, GitHub Actions, observability stacks — the tools that make platform engineers indispensable.</div>
       <span class="coming-tag">Planned</span>
     </div>
-    <div class="coming-card">
+
+    <div class="coming-card cloud">
       <div class="coming-icon">☁️</div>
-      <div class="coming-name">Cloud Operations (AWS + Azure)</div>
-      <div class="coming-desc">Production operations scenarios: incident response, cost optimisation, scaling, security hardening </div>
+      <div class="coming-name">Cloud Operations</div>
+      <div class="coming-desc">AWS + Azure production operations: incident response, cost optimisation, scaling strategies, and security hardening.</div>
+      <span class="coming-tag">Planned</span>
+    </div>
+
+    <div class="coming-card chaos">
+      <div class="coming-icon">💥</div>
+      <div class="coming-name">Kubernetes Chaos Simulator</div>
+      <div class="coming-desc">Inject real failures into live clusters — pod crashes, network partitions, node evictions. Learn resilience engineering by breaking things on purpose.</div>
+      <span class="coming-tag">Planned</span>
+    </div>
+
+    <div class="coming-card sysdesign">
+      <div class="coming-icon">🧩</div>
+      <div class="coming-name">System Design Playground</div>
+      <div class="coming-desc">Interactive canvas to design distributed systems. Drag-and-drop components, estimate throughput, model failure modes, and get architecture feedback.</div>
       <span class="coming-tag">Planned</span>
     </div>
   </div>
 </section>
 
-<!-- TODAY'S LAB -->
-<section class="lab-section" id="todays-lab">
-  <div class="lab-inner">
-    <div class="lab-header">
-      <div class="lab-date-pill">
-        <span class="lab-live-dot"></span>
-        <span id="lab-date-label">Today's Lab</span>
-      </div>
-      <h2 class="sec-title" style="margin-bottom:4px;">Daily <span>Challenge</span></h2>
-      <p style="font-family:var(--mono);font-size:12px;color:var(--text3);">A new challenge every day. No sign-up needed.</p>
-    </div>
+<div class="divider"></div>
 
-    <div class="lab-card">
-      <div class="lab-progress-bar"><div class="lab-progress-fill" id="lab-progress" style="width:0%"></div></div>
-      <div style="height:12px;"></div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text fade-in from-left">
+      <div class="section-tag">about_the_builder</div>
+      <h2>Built by a practitioner, not a content farm</h2>
+      <p>EknathaLabs is built by someone who has spent <strong>13+ years in the trenches</strong> — cloud operations, incident response, Kubernetes at scale, multi-cloud migrations on AWS, Azure, and OpenStack.</p>
+      <p>Every lab maps to a real scenario I've encountered. Every guide is written from experience, not from copying documentation. The goal is to give you the kind of hands-on knowledge that actually gets you hired — and keeps you effective on the job.</p>
+      <p>Built in public on <strong>GitHub</strong>. Core content stays free. Always.</p>
 
-      <div class="lab-card-top">
-        <div class="lab-num" id="lab-num">LAB #001</div>
-        <div class="lab-meta">
-          <div class="lab-track" id="lab-track">Linux</div>
-          <div class="lab-title" id="lab-title">Loading today's challenge...</div>
-          <div class="lab-diff" id="lab-diff">Easy</div>
-        </div>
-      </div>
-
-      <div class="lab-scenario">
-        <div class="lab-scenario-label">// scenario</div>
-        <div class="lab-scenario-text" id="lab-scenario">Loading...</div>
-      </div>
-
-      <div class="lab-hint-zone">
-        <button class="lab-hint-btn" onclick="toggleHint()">
-          <span>💡</span> Show hint
-        </button>
-        <div class="lab-hint-text" id="lab-hint"></div>
-      </div>
-
-      <div class="lab-answer-zone">
-        <div class="lab-answer-label">// your answer</div>
-        <input type="text" class="lab-cmd-input" id="lab-input" placeholder="Type your command here..." onkeydown="if(event.key==='Enter') checkAnswer()">
-        <div class="lab-btn-row">
-          <button class="lab-check-btn" onclick="checkAnswer()">▶ Check Answer</button>
-          <button class="lab-reset-btn" onclick="resetAnswer()">↺ Reset</button>
-          <button class="lab-reset-btn" onclick="showAnswer()">👁 Reveal Answer</button>
-        </div>
-        <div class="lab-feedback" id="lab-feedback"></div>
-      </div>
-
-      <div class="lab-footer">
-        <span class="lab-footer-note" id="lab-day-count">Challenge #1 of 365</span>
-        <div class="lab-streak">
-          <span>🔥 Streak:</span>
-          <span class="lab-streak-num" id="lab-streak">0</span>
-          <span>days</span>
-        </div>
+      <div class="certs">
+        <span class="cert-badge">CKA</span>
+        <span class="cert-badge">CKS · Top 8%</span>
+        <span class="cert-badge">AWS</span>
+        <span class="cert-badge">Azure</span>
+        <span class="cert-badge">Linux</span>
+        <span class="cert-badge">Kubernetes</span>
+        <span class="cert-badge">Terraform</span>
+        <span class="cert-badge">OpenStack</span>
+        <span class="cert-badge">7+ yrs Cloud Ops</span>
       </div>
     </div>
 
-    <div class="lab-nav-row">
-      <button class="lab-nav-btn" onclick="prevLab()">← Previous</button>
-      <button class="lab-nav-btn" onclick="nextLab()">Next →</button>
+    <div class="about-metrics fade-in from-right">
+      <div class="metric-box">
+        <div class="metric-num green">13+</div>
+        <div class="metric-label">Years IT Experience</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num cyan">CKS</div>
+        <div class="metric-label">Top 8% K8s Engineers</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num orange">7+</div>
+        <div class="metric-label">Linux Modules Ready</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-num purple">Free</div>
+        <div class="metric-label">Core Content Always</div>
+      </div>
     </div>
   </div>
 </section>
 
-<script>
-const LABS = [
-  { track:'Linux', title:'Find large files eating disk space', diff:'Easy', scenario:'Your server is running low on disk space. Find all files larger than 100MB anywhere on the filesystem and list them sorted by size, largest first.', hint:'Use find with -size flag and pipe to sort. Try: find / -type f -size +100M', answer:'find / -type f -size +100M -exec ls -lh {} \\; 2>/dev/null | sort -k5 -rh', alt:['find / -size +100M -type f','find / -type f -size +100M 2>/dev/null'] },
-  { track:'Linux', title:'Kill all processes by name', diff:'Easy', scenario:'A runaway nginx process is consuming 100% CPU. Kill all processes named "nginx" at once without looking up individual PIDs.', hint:'pkill sends signals by process name. killall also works.', answer:'pkill nginx', alt:['killall nginx','pkill -9 nginx','killall -9 nginx'] },
-  { track:'Linux', title:'Check which process is using port 8080', diff:'Easy', scenario:'Something is already listening on port 8080 and your app cannot start. Find out which process owns that port.', hint:'ss or lsof can show port/process mappings. Try ss -tlnp or lsof -i', answer:'ss -tlnp | grep 8080', alt:['lsof -i :8080','lsof -i:8080','ss -lntp | grep 8080','netstat -tlnp | grep 8080'] },
-  { track:'Linux', title:'Count lines in all log files', diff:'Easy', scenario:'You need to report total log lines across all .log files in /var/log. Count lines in every .log file in that directory.', hint:'Combine find with wc -l, or use wc directly with a wildcard.', answer:'wc -l /var/log/*.log', alt:['find /var/log -name "*.log" -exec wc -l {} \\;','cat /var/log/*.log | wc -l'] },
-  { track:'Linux', title:'Show real-time disk I/O per process', diff:'Medium', scenario:'A production server is heavily loaded and you suspect disk I/O is the bottleneck. Show real-time per-process I/O statistics.', hint:'iotop is the go-to tool. Run it with -o to only show active processes.', answer:'iotop -o', alt:['iotop','sudo iotop -o','iotop -oPa'] },
-  { track:'Linux', title:'Extract lines between two patterns', diff:'Medium', scenario:'A 500MB log file contains multiple deploy events. Extract only the lines between "DEPLOY START" and "DEPLOY END" for the latest deployment.', hint:'sed -n with /pattern1/,/pattern2/p is efficient for large files.', answer:"sed -n '/DEPLOY START/,/DEPLOY END/p' /var/log/app.log", alt:["awk '/DEPLOY START/,/DEPLOY END/' /var/log/app.log"] },
-  { track:'Linux', title:'Schedule a job to run every 5 minutes', diff:'Easy', scenario:'You need a script /opt/healthcheck.sh to run automatically every 5 minutes. Add it to the crontab for the current user.', hint:'crontab -e opens the editor. The 5-minute cron expression is */5 * * * *', answer:'crontab -e', alt:['crontab -e'] },
-  { track:'Linux', title:'Find files modified in last 24 hours', diff:'Easy', scenario:'After a security alert, you need to audit which files under /etc were modified in the past 24 hours.', hint:'find with -mtime -1 means modified less than 1 day ago.', answer:'find /etc -mtime -1 -type f', alt:['find /etc -type f -mtime -1','find /etc -newer /etc/hostname -type f'] },
-  { track:'Linux', title:'Archive and compress a directory', diff:'Easy', scenario:'Backup the /opt/app directory into a compressed tarball named app-backup.tar.gz in /tmp.', hint:'tar -czf creates a gzipped archive. c=create, z=gzip, f=filename.', answer:'tar -czf /tmp/app-backup.tar.gz /opt/app', alt:['tar czf /tmp/app-backup.tar.gz /opt/app','tar -czvf /tmp/app-backup.tar.gz /opt/app'] },
-  { track:'Linux', title:'Monitor a log file in real time', diff:'Easy', scenario:'An app is throwing errors intermittently. Watch /var/log/app/error.log in real time and also see the last 50 lines from before you started watching.', hint:'tail -f follows a file. Add -n 50 to start from last 50 lines.', answer:'tail -f -n 50 /var/log/app/error.log', alt:['tail -fn50 /var/log/app/error.log','tail -50f /var/log/app/error.log'] },
-  { track:'Kubernetes', title:'Get all pods across every namespace', diff:'Easy', scenario:'You have just been given access to a new cluster and need a full picture of what is running. List all pods in all namespaces.', hint:'kubectl get pods with --all-namespaces or -A flag.', answer:'kubectl get pods --all-namespaces', alt:['kubectl get pods -A','kubectl get po -A','kubectl get po --all-namespaces'] },
-  { track:'Kubernetes', title:'Describe a crashlooping pod', diff:'Easy', scenario:'A pod named api-server-7d9f in namespace production keeps crashlooping. Get detailed information including events and last state.', hint:'kubectl describe gives full event history and container state details.', answer:'kubectl describe pod api-server-7d9f -n production', alt:['kubectl describe po api-server-7d9f -n production','kubectl describe pod api-server-7d9f --namespace production'] },
-  { track:'Kubernetes', title:'Get logs from a previous container crash', diff:'Medium', scenario:'A container in pod web-app-5c7d in namespace default crashed and restarted. Retrieve the logs from the previous (crashed) container instance.', hint:'kubectl logs has a --previous flag for the last terminated container.', answer:'kubectl logs web-app-5c7d --previous', alt:['kubectl logs web-app-5c7d -p','kubectl logs web-app-5c7d --previous -n default'] },
-  { track:'Kubernetes', title:'Scale a deployment to 5 replicas', diff:'Easy', scenario:'Traffic has spiked. Scale the frontend deployment in the production namespace to 5 replicas immediately.', hint:'kubectl scale with --replicas flag is the fastest approach.', answer:'kubectl scale deployment frontend --replicas=5 -n production', alt:['kubectl scale deploy frontend --replicas=5 -n production','kubectl scale deployment/frontend --replicas=5 -n production'] },
-  { track:'Kubernetes', title:'Exec into a running container', diff:'Easy', scenario:'You need to inspect the filesystem inside a pod named debug-pod in namespace dev. Open an interactive shell inside the container.', hint:'kubectl exec -it with -- /bin/sh or /bin/bash opens an interactive shell.', answer:'kubectl exec -it debug-pod -n dev -- /bin/sh', alt:['kubectl exec -it debug-pod -n dev -- /bin/bash','kubectl exec -it debug-pod --namespace dev -- sh'] },
-  { track:'Kubernetes', title:'Cordon a node before maintenance', diff:'Medium', scenario:'Node worker-3 needs emergency maintenance. Prevent new pods from being scheduled on it without evicting existing ones.', hint:'kubectl cordon marks a node as unschedulable. drain does cordon + eviction.', answer:'kubectl cordon worker-3', alt:['kubectl cordon node/worker-3'] },
-  { track:'Kubernetes', title:'Force delete a stuck terminating pod', diff:'Medium', scenario:'A pod has been stuck in Terminating state for 30 minutes and is blocking a deployment rollout. Force delete it immediately.', hint:'kubectl delete pod with --grace-period=0 --force bypasses graceful termination.', answer:'kubectl delete pod <pod-name> --grace-period=0 --force', alt:['kubectl delete pod <pod-name> --force --grace-period=0'] },
-  { track:'Kubernetes', title:'View resource usage across all nodes', diff:'Easy', scenario:'The cluster seems slow. Check CPU and memory utilisation across all nodes to find the bottleneck.', hint:'kubectl top nodes shows real-time resource usage per node.', answer:'kubectl top nodes', alt:['kubectl top node'] },
-  { track:'Terraform', title:'Initialise a new Terraform working directory', diff:'Easy', scenario:'You have just cloned a Terraform repo and need to set it up locally. Download the required providers and initialise the backend.', hint:'terraform init is always the first command in any Terraform workflow.', answer:'terraform init', alt:['terraform init -upgrade'] },
-  { track:'Terraform', title:'Preview changes before applying', diff:'Easy', scenario:'You have made changes to your Terraform config. See exactly what will be created, modified, or destroyed before touching real infrastructure.', hint:'terraform plan shows the execution plan without making any changes.', answer:'terraform plan', alt:['terraform plan -out=tfplan','terraform plan -var-file=prod.tfvars'] },
-  { track:'Terraform', title:'Target a single resource for apply', diff:'Medium', scenario:'You need to update only the aws_security_group.web resource in your config without touching anything else in the state.', hint:'terraform apply with -target flag scopes the apply to one resource.', answer:'terraform apply -target=aws_security_group.web', alt:['terraform apply --target=aws_security_group.web'] },
-  { track:'Terraform', title:'Import an existing resource into state', diff:'Medium', scenario:'An S3 bucket named my-app-bucket already exists in AWS but is not in your Terraform state. Import it under resource aws_s3_bucket.app.', hint:'terraform import maps an existing resource ID to a Terraform resource address.', answer:'terraform import aws_s3_bucket.app my-app-bucket', alt:['terraform import aws_s3_bucket.app my-app-bucket'] },
-  { track:'Terraform', title:'List all resources in state', diff:'Easy', scenario:'After a partial apply you need to see all resources currently tracked in the Terraform state file.', hint:'terraform state list shows all resource addresses in the current state.', answer:'terraform state list', alt:['terraform state list -state=terraform.tfstate'] },
-  { track:'Platform Eng', title:'Check GitHub Actions workflow run history', diff:'Easy', scenario:'A deployment pipeline failed in your repo. Use the GitHub CLI to list the last 10 workflow runs for the repo eknathalabs/platform.', hint:'gh run list limits output with --limit flag.', answer:'gh run list --limit 10 -R eknathalabs/platform', alt:['gh run list -L 10 --repo eknathalabs/platform','gh run list --limit=10 -R eknathalabs/platform'] },
-  { track:'Platform Eng', title:'Check ArgoCD application sync status', diff:'Easy', scenario:'Your team says a deployment is not reflecting the latest GitOps changes. Check the sync status of the ArgoCD app named frontend-prod.', hint:'argocd app get shows the full status including sync and health.', answer:'argocd app get frontend-prod', alt:['argocd app get frontend-prod --show-params','argocd app status frontend-prod'] },
-  { track:'Linux', title:'Find the top 10 memory-consuming processes', diff:'Easy', scenario:'The system is under memory pressure. List the top 10 processes sorted by memory usage, showing PID, name, and memory percentage.', hint:'ps aux sorted by %MEM column with head.', answer:'ps aux --sort=-%mem | head -11', alt:['ps aux | sort -k4 -rn | head -10','ps -eo pid,comm,%mem --sort=-%mem | head -11'] },
-  { track:'Linux', title:'Check open file handles for a process', diff:'Medium', scenario:'An application is failing with "too many open files". Find how many file descriptors the process with PID 1234 currently has open.', hint:'lsof -p shows all open files for a specific PID. Pipe to wc -l to count.', answer:'lsof -p 1234 | wc -l', alt:['ls /proc/1234/fd | wc -l','lsof -p 1234'] },
-  { track:'Kubernetes', title:'Create a temporary debug pod', diff:'Medium', scenario:'You need to run network diagnostics inside the cluster. Spin up a temporary busybox pod that auto-deletes when you exit, in namespace default.', hint:'kubectl run with --rm -it --restart=Never creates a disposable pod.', answer:'kubectl run debug --image=busybox --rm -it --restart=Never -- /bin/sh', alt:['kubectl run tmp --image=busybox -it --rm --restart=Never -- sh'] },
-  { track:'Terraform', title:'Destroy a single resource', diff:'Medium', scenario:'A test EC2 instance managed by Terraform is no longer needed. Destroy only that specific resource aws_instance.test without affecting others.', hint:'terraform destroy with -target scopes destruction to one resource.', answer:'terraform destroy -target=aws_instance.test', alt:['terraform destroy --target=aws_instance.test'] },
-  { track:'Platform Eng', title:'View recent Helm release history', diff:'Easy', scenario:'Something changed in the last Helm deployment of the nginx-ingress chart in namespace ingress-nginx. View its release history to see what changed and when.', hint:'helm history shows all revisions for a named release.', answer:'helm history nginx-ingress -n ingress-nginx', alt:['helm history nginx-ingress --namespace ingress-nginx','helm history nginx-ingress -n ingress-nginx --max 10'] },
-];
+<div class="divider"></div>
 
-const TRACK_CLASS = { Linux:'track-linux', Kubernetes:'track-k8s', Terraform:'track-terraform', 'Platform Eng':'track-platform' };
-const DIFF_CLASS = { Easy:'diff-easy', Medium:'diff-medium', Hard:'diff-hard' };
-
-function getDayIndex() {
-  const epoch = new Date('2025-01-01');
-  const now = new Date();
-  const diff = Math.floor((now - epoch) / (1000 * 60 * 60 * 24));
-  return diff % LABS.length;
-}
-
-let currentIdx = getDayIndex();
-let streak = parseInt(localStorage.getItem('el_streak') || '0');
-let lastDate = localStorage.getItem('el_last_date') || '';
-
-function todayStr() {
-  return new Date().toISOString().slice(0, 10);
-}
-
-function renderLab(idx) {
-  const lab = LABS[idx];
-  document.getElementById('lab-num').textContent = 'LAB #' + String(idx + 1).padStart(3, '0');
-  const trackEl = document.getElementById('lab-track');
-  trackEl.textContent = '// ' + lab.track;
-  trackEl.className = 'lab-track ' + (TRACK_CLASS[lab.track] || 'track-linux');
-  document.getElementById('lab-title').textContent = lab.title;
-  const diffEl = document.getElementById('lab-diff');
-  diffEl.textContent = lab.diff;
-  diffEl.className = 'lab-diff ' + (DIFF_CLASS[lab.diff] || 'diff-easy');
-  document.getElementById('lab-scenario').textContent = lab.scenario;
-  document.getElementById('lab-hint').textContent = '💡 ' + lab.hint;
-  document.getElementById('lab-hint').classList.remove('visible');
-  document.getElementById('lab-input').value = '';
-  const fb = document.getElementById('lab-feedback');
-  fb.className = 'lab-feedback';
-  fb.textContent = '';
-  const dayNum = getDayIndex() + 1;
-  document.getElementById('lab-day-count').textContent = 'Challenge #' + dayNum + ' of ' + LABS.length;
-  document.getElementById('lab-progress').style.width = Math.round(((idx + 1) / LABS.length) * 100) + '%';
-  const today = new Date();
-  document.getElementById('lab-date-label').textContent = today.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'}) + " · Today's Lab";
-  document.getElementById('lab-streak').textContent = streak;
-}
-
-function normalize(cmd) { return cmd.trim().replace(/\s+/g, ' ').toLowerCase(); }
-
-function checkAnswer() {
-  const lab = LABS[currentIdx];
-  const input = document.getElementById('lab-input').value;
-  if (!input.trim()) return;
-  const norm = normalize(input);
-  const correct = normalize(lab.answer);
-  const alts = (lab.alt || []).map(normalize);
-  const isCorrect = norm === correct || alts.includes(norm) || alts.some(a => norm.startsWith(a.split(' ')[0]) && norm.includes(a.split(' ').slice(-1)[0]));
-  const fb = document.getElementById('lab-feedback');
-  if (isCorrect) {
-    fb.className = 'lab-feedback correct';
-    fb.innerHTML = '✓ Correct! ' + (currentIdx === getDayIndex() ? 'Great work on today\'s challenge.' : 'Well done.');
-    if (currentIdx === getDayIndex() && todayStr() !== lastDate) {
-      streak++;
-      lastDate = todayStr();
-      localStorage.setItem('el_streak', streak);
-      localStorage.setItem('el_last_date', lastDate);
-      document.getElementById('lab-streak').textContent = streak;
-    }
-  } else {
-    fb.className = 'lab-feedback wrong';
-    fb.innerHTML = '✗ Not quite. Check the hint or reveal the answer.';
-  }
-}
-
-function showAnswer() {
-  const lab = LABS[currentIdx];
-  const fb = document.getElementById('lab-feedback');
-  fb.className = 'lab-feedback correct';
-  fb.innerHTML = '📋 Answer: <strong>' + lab.answer + '</strong>';
-}
-
-function resetAnswer() {
-  document.getElementById('lab-input').value = '';
-  const fb = document.getElementById('lab-feedback');
-  fb.className = 'lab-feedback';
-  fb.textContent = '';
-}
-
-function toggleHint() {
-  const h = document.getElementById('lab-hint');
-  h.classList.toggle('visible');
-  const btn = document.querySelector('.lab-hint-btn');
-  btn.innerHTML = h.classList.contains('visible') ? '<span>💡</span> Hide hint' : '<span>💡</span> Show hint';
-}
-
-function prevLab() {
-  currentIdx = (currentIdx - 1 + LABS.length) % LABS.length;
-  renderLab(currentIdx);
-}
-
-function nextLab() {
-  currentIdx = (currentIdx + 1) % LABS.length;
-  renderLab(currentIdx);
-}
-
-renderLab(currentIdx);
-</script>
+<!-- EARLY ACCESS -->
+<section id="early-access">
+  <div class="signup-section fade-in">
+    <div class="section-tag" style="text-align:center;">get_notified</div>
+    <h2>Get Early Access</h2>
+    <p>Be the first to know when Linux, Kubernetes, Terraform, and Platform Engineering labs go live. No spam — just launch notifications.</p>
+    <form class="signup-form" onsubmit="handleSignup(event)">
+      <input type="email" placeholder="your@email.com" id="email-input" required>
+      <button type="submit">Notify Me</button>
+    </form>
+    <p class="signup-note">No spam. Unsubscribe anytime. Built in public at github.com/eknatha</p>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
+  <div class="footer-inner">
     <div class="footer-brand">
-      <div class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-        <div class="logo-mark">EL</div>
-        <span class="logo-name">Eknatha<em style="color:var(--accent);font-style:normal;">Labs</em></span>
+      <div class="footer-logo">EL <span>EknathaLabs</span></div>
+      <p class="footer-desc">Practical DevOps &amp; Platform Engineering — built by a practitioner, for practitioners.</p>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Live Now</h4>
+        <ul>
+          <li><a href="https://eknatha.github.io/github-profile-analyzer/" target="_blank" rel="noopener"><span class="live-dot"></span>GitHub Analyzer</a></li>
+          <li><a href="https://eknatha.github.io/resumelytics/" target="_blank" rel="noopener"><span class="live-dot"></span>Resume Analyzer</a></li>
+          <li><a href="https://eknatha.github.io/linux-command-explainer/" target="_blank" rel="noopener"><span class="live-dot"></span>Linux Explainer</a></li>
+          <li><a href="https://eknatha.github.io/interview-prep/" target="_blank" rel="noopener"><span class="live-dot"></span>Interview Prep</a></li>
+        </ul>
       </div>
-      <p>Practical DevOps & Platform Engineering — built by a practitioner, for practitioners.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Live Now</h4>
-      <a href="https://eknatha.github.io/github-profile-analyzer/" target="_blank" class="footer-live">GitHub Profile Analyzer</a>
-      <a href="https://eknatha.github.io/resumelytics/" target="_blank" class="footer-live">ATS Resume Analyzer</a>
-      <a href="https://eknatha.github.io/linux-command-explainer" target="_blank" class="footer-live">Linux Command Explainer</a>
-      <a href="https://eknatha.github.io/interview-prep" target="_blank" class="footer-live">Interview Prep Portal</a>
-    </div>
-    <div class="footer-col">
-      <h4>Coming Soon</h4>
-      <a href="https://labs.eknathalabs.com" target="_blank">Labs</a>
-      <a href="https://learn.eknathalabs.com" target="_blank">Learn</a>
-      <a href="https://terraform.eknathalabs.com" target="_blank">Terraform Challanges</a>
-      <a href="https://blog.eknathalabs.com" target="_blank">Blog</a>
-    </div>
-    <div class="footer-col">
-      <h4>Connect</h4>
-      <a href="https://github.com/eknatha" target="_blank">GitHub</a>
-      <a href="https://eknathalabs.com" target="_blank">eknathalabs.com</a>
+
+      <div class="footer-col">
+        <h4>Labs</h4>
+        <ul>
+          <li><a href="https://kubelab.eknathalabs.com/" target="_blank" rel="noopener">Kubernetes Lab</a></li>
+          <li><a href="https://terraform.eknathalabs.com/" target="_blank" rel="noopener">Terraform Lab</a></li>
+          <li><a href="https://docker.eknathalabs.com/" target="_blank" rel="noopener">Docker Lab</a></li>
+          <li><a href="https://cicd.eknathalabs.com/" target="_blank" rel="noopener">CI/CD Lab</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://github.com/eknatha" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://eknathalabs.com">eknathalabs.com</a></li>
+          <li><a href="#early-access">Early Access</a></li>
+        </ul>
+      </div>
     </div>
   </div>
+
   <div class="footer-bottom">
-    <p>© 2026 EknathaLabs · Cloud · DevOps · Platform Engineering · Built in public 🚧</p>
-    <div class="footer-links">
-      <a href="https://github.com/eknatha" target="_blank">GitHub</a>
-      <a href="https://labs.eknathalabs.com" target="_blank">Labs</a>
-      <a href="https://blog.eknathalabs.com" target="_blank">Blog</a>
+    <p class="footer-copy">© 2026 EknathaLabs · Cloud · DevOps · Platform Engineering · Built in public 🚧</p>
+    <div class="footer-github">
+      <a href="https://github.com/eknatha" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        github.com/eknatha
+      </a>
     </div>
   </div>
 </footer>
 
+<script>
+  // Mobile hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger && hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  // Close nav on link click
+  navLinks && navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Scroll fade-in + stagger observer
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in, .stagger-children').forEach(el => obs.observe(el));
+
+  // Signup form
+  function handleSignup(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    const input = document.getElementById('email-input');
+    btn.textContent = "✓ You're on the list!";
+    btn.style.background = '#00d4ff';
+    input.value = '';
+    input.disabled = true;
+    btn.disabled = true;
+  }
+</script>
 </body>
 </html>
