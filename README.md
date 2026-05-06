@@ -1,123 +1,149 @@
-# EknathaLabs — Hands-on DevOps & Platform Engineering
+# ⬡ EknathaLabs
 
-> Real terminal labs. Production-grade scenarios. Built by a practitioner, not a content farm.
+> **Hands-on DevOps & Platform Engineering — built by a practitioner, for practitioners.**
 
-[![Live](https://img.shields.io/badge/status-live-3fb950?style=flat-square&logo=github)](https://eknathalabs.com)
-[![Built in Public](https://img.shields.io/badge/built-in%20public-58a6ff?style=flat-square)](https://github.com/eknathareddyp)
-[![License](https://img.shields.io/badge/license-MIT-8b949e?style=flat-square)](./LICENSE)
+[![Website](https://img.shields.io/badge/website-eknathalabs.com-3fb950?style=flat-square&logo=googlechrome&logoColor=white)](https://eknathalabs.com)
+[![GitHub](https://img.shields.io/badge/github-eknatha-181717?style=flat-square&logo=github)](https://github.com/eknatha)
+[![Status](https://img.shields.io/badge/status-built%20in%20public-3fb950?style=flat-square)](#)
+[![License](https://img.shields.io/badge/core%20content-free-58a6ff?style=flat-square)](#)
 
 ---
 
 ## What is EknathaLabs?
 
-EknathaLabs is a hands-on DevOps and Platform Engineering learning platform built and maintained by [Eknatha Reddy Puli](https://github.com/eknatha) — a practitioner with 14+ years of IT experience and 7+ years in cloud operations across AWS, Azure, and OpenStack.
+EknathaLabs is a hands-on DevOps and Platform Engineering learning platform built from **14+ years of real production experience** — cloud operations, incident response, Kubernetes at scale, and multi-cloud migrations across AWS, Azure, and OpenStack.
 
-Every tool and lab on this platform maps to a real production scenario. No fluff, no documentation re-hashing — just the kind of hands-on experience that gets you hired and keeps you effective on the job.
+Every lab maps to a real scenario encountered in production. Every guide is written from experience, not from copying documentation. The goal: give engineers the kind of knowledge that **actually gets you hired** — and keeps you effective on the job.
 
-**Core content is always free.**
-
----
-
-## Live Platform
-
-| Subdomain | Description | Status |
-|---|---|---|
-| [eknathalabs.com](https://eknathalabs.com) | Main landing page (this repo) | ✅ Live |
-| [linux.eknathalabs.com](https://linux.eknathalabs.com) | Linux for DevOps — 7 production-grade modules | ✅ Live |
-| [linux-command-explainer.eknathalabs.com](https://linux-command-explainer.eknathalabs.com) | Explain any Linux command in plain English | ✅ Live |
-| [github-profile-analyzer.eknathalabs.com](https://github-profile-analyzer.eknathalabs.com) | GitHub profile scorer & hirability analyzer | ✅ Live |
-| [resumelytics.eknathalabs.com](https://resumelytics.eknathalabs.com) | ATS resume keyword & format analyzer | ✅ Live |
-| [interview-prep.eknathalabs.com](https://interview-prep.eknathalabs.com) | DevOps interview prep with flashcard mode | ✅ Live |
-| [docker.eknathalabs.com](https://docker.eknathalabs.com) | Docker lab — containers from first principles | ✅ Live |
-| [blog.eknathalabs.com](https://blog.eknathalabs.com) | In-depth DevOps & platform engineering articles | ✅ Live |
-| [learn.eknathalabs.com](https://learn.eknathalabs.com) | Structured learning paths (CKA, CKS, Terraform) |  🔨 Building |
-| [kubelab.eknathalabs.com](https://kubelab.eknathalabs.com) | Interactive Kubernetes lab — CKA/CKS mapped | 🔨 Building |
-| [terraform.eknathalabs.com](https://terraform.eknathalabs.com) | Multi-cloud Terraform IaC lab | 🔨 Building |
-| [cicd.eknathalabs.com](https://cicd.eknathalabs.com) | GitHub Actions, ArgoCD, GitOps lab | 🔨 Building |
-| [chaoslab.eknathalabs.com](https://chaoslab.eknathalabs.com) | Kubernetes chaos & resilience engineering | 📋 Planned |
+Core content is **always free**. No paywalls, no sign-up walls.
 
 ---
 
-## This Repository
+## 🟢 Live Tools & Resources
 
-This repo contains the source for **eknathalabs.com** — the main landing page that links to all tools and labs on the platform.
+All tools are available now — no sign-up required.
 
-### Stack
+| Tool | URL | Description |
+|------|-----|-------------|
+| ⬡ **ArchLab** | [arch.eknathalabs.com](https://arch.eknathalabs.com) | AI-powered architecture diagram generator. AWS, Azure, GCP, K8s, CI/CD, Terraform, Docker — AI mode or 20+ offline templates |
+| 📊 **GitHub Profile Analyzer** | [github-profile-analyzer.eknathalabs.com](https://github-profile-analyzer.eknathalabs.com) | 0–100 score across 5 dimensions. Radar chart, repo health monitor, hirability score, shareable scorecard PNG |
+| 🎯 **ATS Resume Analyzer** | [resumelytics.eknathalabs.com](https://resumelytics.eknathalabs.com) | Beat applicant tracking systems. Keyword analysis, format scoring, and targeted improvement recommendations |
+| 🐧 **Linux Command Explainer** | [linux-command-explainer.eknathalabs.com](https://linux-command-explainer.eknathalabs.com) | Explain any Linux command in plain English. Pipe chain visualiser, regex decoder, ELI5 mode, danger checklist |
+| 📚 **DevOps Interview Prep** | [interview-prep.eknathalabs.com](https://interview-prep.eknathalabs.com) | 12+ guides with dark mode, interview mode, and flashcard mode. Covers K8s, Terraform, Linux, CI/CD, and cloud |
+| ⚡ **Linux for DevOps** | [linux.eknathalabs.com](https://linux.eknathalabs.com) | 7 comprehensive modules: file management, process management, networking, disk, log analysis, user management, monitoring |
+| 🐳 **Docker Lab** | [docker.eknathalabs.com](https://docker.eknathalabs.com) | Containers from first principles to production. Compose, networking, volumes, multi-stage builds, security hardening |
+| ✍️ **Blog** | [blog.eknathalabs.com](https://blog.eknathalabs.com) | In-depth articles on Kubernetes internals, platform engineering patterns, incident retrospectives, and cloud architecture |
 
-- Pure HTML5, CSS3, and vanilla JavaScript — zero dependencies, zero build steps
-- Hosted on GitHub Pages (or your preferred static host)
-- Fonts loaded from Google Fonts: `Syne`, `DM Sans`, `JetBrains Mono`
-- No frameworks, no npm, no bundler — just drop `index.html` and ship
+---
 
-### File Structure
+## 🔨 Labs Under Construction
+
+Active development — deep-dive interactive labs coming soon.
+
+| # | Lab | URL | Status |
+|---|-----|-----|--------|
+| 01 | ☸️ **Kubernetes Lab** | [kubelab.eknathalabs.com](https://kubelab.eknathalabs.com) | 🟡 Building |
+| 02 | 🏗️ **Terraform Lab** | [terraform.eknathalabs.com](https://terraform.eknathalabs.com) | 🟡 Building |
+| 03 | ⚙️ **CI/CD Lab** | [cicd.eknathalabs.com](https://cicd.eknathalabs.com) | 🟡 Building |
+| 04 | 💥 **Chaos Lab** | [chaoslab.eknathalabs.com](https://chaoslab.eknathalabs.com) | ⬜ Planned |
+
+**Kubernetes Lab** — Real cluster scenarios, RBAC, network policies, pod security — mapped to CKA and CKS objectives.
+
+**Terraform Lab** — Multi-cloud IaC on AWS, Azure, and GCP. Reusable modules, state management, and CI/CD integration.
+
+**CI/CD Lab** — GitHub Actions, ArgoCD, and GitOps workflows. From zero to production pipeline with real deployment scenarios.
+
+**Chaos Lab** — Inject real failures into live clusters: pod crashes, network partitions, node evictions. Resilience engineering by breaking things.
+
+---
+
+## 🎓 Structured Learning
+
+| Resource | URL | Description |
+|----------|-----|-------------|
+| 📖 **Learning Paths** | [learn.eknathalabs.com](https://learn.eknathalabs.com) | Curated paths for CKA, CKS, Terraform Associate, and Platform Engineering. Roadmaps, study guides, and exercises |
+
+---
+
+## 🗺️ Roadmap
+
+Planned content and tools:
+
+- **☁️ Cloud Operations Track** — AWS + Azure production operations: incident response, cost optimisation, scaling strategies, security hardening
+- **🧩 System Design Playground** — Interactive canvas to design distributed systems. Drag-and-drop components, throughput estimation, failure mode modelling
+- **🔭 Platform Engineering Track** — Internal developer platforms, golden paths, GitHub Actions, observability stacks
+- **🔐 Security & CKS Prep** — Dedicated CKS exam preparation: pod security, network policies, runtime security, supply chain, cluster hardening
+
+---
+
+## 👤 About the Builder
+
+**Eknatha Reddy Puli** · [@eknatha](https://github.com/eknatha)
+
+- 🏅 **CKA + CKS + GCP ACE ** certification ( in Progress )
+- ☁️ **AWS** and **Azure** certification ( Planned )
+- 🐧 Deep **Linux** expertise
+- 🏗️ **Terraform**, **OpenStack**, **System Design** and multi-cloud operations
+- 📍 Based in Bengaluru, India · Open to relocation
+
+**14+ years in IT** — 7+ years in cloud operations across AWS, Azure, and OpenStack. Transitioning into Platform Engineering, building EknathaLabs in public as both a learning resource and a portfolio.
 
 ```
-eknathalabs.com/
-├── index.html          # Main landing page
-├── README.md           # This file
-└── LICENSE             # MIT License
-```
+eknatha@labs:~$ ./stats.sh
 
-
----
-
-## Platform Roadmap
-
-```
-Phase 1 — Tools (Complete)
-  ✅ Linux for DevOps (7 modules)
-  ✅ Linux Command Explainer
-  ✅ GitHub Profile Analyzer
-  ✅ ATS Resume Analyzer
-  ✅ DevOps Interview Prep
-  ✅ Docker Lab
-  ✅ Blog
-  ✅ Structured Learning Paths
-
-Phase 2 — Interactive Labs (In Progress)
-  🔨 Kubernetes Lab (CKA + CKS mapped scenarios)
-  🔨 Terraform Lab (multi-cloud, reusable modules)
-  🔨 CI/CD Lab (GitHub Actions + ArgoCD + GitOps)
-
-Phase 3 — Advanced Content (Planned)
-  📋 Chaos Lab (fault injection, resilience engineering)
-  📋 Cloud Operations Track (AWS + Azure)
-  📋 Platform Engineering Track (IDP, golden paths)
-  📋 System Design Playground (interactive canvas)
-  📋 CKS Security Deep-Dive
+  IT Experience   : 14+ years
+  Cloud Ops       : 7+ years (AWS, Azure, OpenStack)
+  Certifications  : CKA, CKS, AWS, GCP, Azure ( Planned )
+  Core Content    : always free
+  Built in public : github.com/eknatha
 ```
 
 ---
 
-## About the Builder
+## 🌐 Platform Status
 
-**Eknatha Reddy Puli** 
-
-- 14+ years IT experience, 7+ years cloud operations
-- AWS · Azure · GCP · OpenStack · Kubernetes · Terraform · CICD · Linux · Python · System Design
-- CKA + CKS + GCP ACE Certification ( Progress ) 
-- Building and learning in public
-
-**Links**
-- GitHub: [github.com/eknathareddyp](https://github.com/eknathareddyp)
-- Platform: [eknathalabs.com](https://eknathalabs.com)
-- Blog: [blog.eknathalabs.com](https://blog.eknathalabs.com)
-
-
----
-
-## License
-
-MIT © 2026 Eknatha Reddy Puli — [eknathalabs.com](https://eknathalabs.com)
-
-Free to use, adapt, and learn from. Attribution appreciated but not required.
+```
+▶ arch.eknathalabs.com             LIVE ✓
+▶ linux.eknathalabs.com            LIVE ✓
+▶ github-profile-analyzer          LIVE ✓
+▶ resumelytics                     LIVE ✓
+▶ interview-prep                   LIVE ✓
+▶ linux-command-explainer          LIVE ✓
+▶ docker.eknathalabs.com           LIVE ✓
+▶ blog.eknathalabs.com             LIVE ✓
+▶ learn.eknathalabs.com            BUILD ◆
+▶ kubelab.eknathalabs.com          BUILD ◆
+▶ terraform.eknathalabs.com        BUILD ◆
+▶ cicd.eknathalabs.com             BUILD ◆
+▶ chaoslab.eknathalabs.com         PLAN  ◇
+```
 
 ---
 
-<div align="center">
+## 🔔 Get Early Access
 
-**Built in public · DevOps & Platform Engineering**
+Be the first to know when Kubernetes, Terraform, and Platform Engineering labs go live.
 
-[eknathalabs.com](https://eknathalabs.com) · [blog.eknathalabs.com](https://blog.eknathalabs.com) · [github.com/eknatha](https://github.com/eknatha)
+👉 [eknathalabs.com/#access](https://eknathalabs.com/#access) — No spam. Unsubscribe anytime.
 
-</div>
+---
+
+## 🔗 Links
+
+| | |
+|---|---|
+| 🌐 Main site | [eknathalabs.com](https://eknathalabs.com) |
+| 🐙 GitHub | [github.com/eknathareddyp](https://github.com/eknathareddyp) |
+| ⬡ ArchLab | [arch.eknathalabs.com](https://arch.eknathalabs.com) |
+| 🐧 Linux Lab | [linux.eknathalabs.com](https://linux.eknathalabs.com) |
+| 📊 GitHub Analyzer | [github-profile-analyzer.eknathalabs.com](https://github-profile-analyzer.eknathalabs.com) |
+| 🎯 Resume Analyzer | [resumelytics.eknathalabs.com](https://resumelytics.eknathalabs.com) |
+| 🐧 Linux Explainer | [linux-command-explainer.eknathalabs.com](https://linux-command-explainer.eknathalabs.com) |
+| 📚 Interview Prep | [interview-prep.eknathalabs.com](https://interview-prep.eknathalabs.com) |
+| 🐳 Docker Lab | [docker.eknathalabs.com](https://docker.eknathalabs.com) |
+| ✍️ Blog | [blog.eknathalabs.com](https://blog.eknathalabs.com) |
+| 🎓 Learn | [learn.eknathalabs.com](https://learn.eknathalabs.com) |
+
+---
+
+© 2026 EknathaLabs · Cloud · DevOps · Platform Engineering · Built in public 🚧
