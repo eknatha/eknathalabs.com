@@ -7,38 +7,42 @@
 <title>EknathaLabs — Hands-on DevOps & Platform Engineering</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #080c10;
-    --bg2: #0d1117;
-    --bg3: #161b22;
-    --bg4: #21262d;
-    --border: rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.14);
-    --text: #e6edf3;
+    --bg: #060a0e;
+    --bg2: #0b1017;
+    --bg3: #131920;
+    --bg4: #1c2330;
+    --border: rgba(255,255,255,0.06);
+    --border2: rgba(255,255,255,0.12);
+    --border3: rgba(255,255,255,0.2);
+    --text: #dde6f0;
     --text2: #8b949e;
-    --text3: #6e7681;
+    --text3: #55616e;
     --green: #3fb950;
-    --green-dim: #1a4126;
+    --green-bright: #5edb70;
+    --green-dim: #0f2a18;
+    --green-mid: #1a4126;
     --cyan: #58a6ff;
-    --cyan-dim: #0d2a4a;
+    --cyan-dim: #0a1f3a;
     --amber: #d29922;
-    --amber-dim: #3d2b00;
+    --amber-dim: #2e2000;
     --red: #f85149;
     --purple: #bc8cff;
-    --purple-dim: #2d1f5e;
+    --purple-dim: #211640;
     --font-head: 'Syne', sans-serif;
     --font-body: 'DM Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     --radius: 10px;
-    --radius-lg: 16px;
-    --glow-green: 0 0 40px rgba(63,185,80,0.12);
-    --glow-cyan: 0 0 40px rgba(88,166,255,0.12);
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --glow-green: 0 0 60px rgba(63,185,80,0.1), 0 0 120px rgba(63,185,80,0.04);
+    --glow-cyan: 0 0 60px rgba(88,166,255,0.1);
+    --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -50,54 +54,82 @@
     overflow-x: hidden;
   }
 
-  /* ── Grid noise overlay ── */
+  /* Grid overlay */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
     background-image:
-      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-    background-size: 40px 40px;
+      linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+    background-size: 48px 48px;
     pointer-events: none;
     z-index: 0;
+  }
+
+  /* Ambient glow blobs */
+  .ambient {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.35;
+  }
+  .ambient-1 {
+    width: 700px; height: 500px;
+    top: -100px; right: -200px;
+    background: radial-gradient(circle, rgba(63,185,80,0.12), transparent 70%);
+  }
+  .ambient-2 {
+    width: 500px; height: 400px;
+    bottom: 30%; left: -150px;
+    background: radial-gradient(circle, rgba(88,166,255,0.08), transparent 70%);
   }
 
   /* ── NAV ── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(8,12,16,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
+    z-index: 200;
     padding: 0 2rem;
-    height: 60px;
+    height: 62px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+    border-bottom: 1px solid transparent;
+  }
+
+  nav.scrolled {
+    background: rgba(6,10,14,0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom-color: var(--border);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.3);
   }
 
   .nav-logo {
     font-family: var(--font-head);
     font-weight: 800;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--text);
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    letter-spacing: -0.01em;
   }
 
-  .nav-logo .logo-badge {
+  .logo-badge {
     background: var(--green);
     color: #000;
     font-family: var(--font-mono);
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 700;
-    padding: 2px 6px;
+    padding: 2px 7px;
     border-radius: 4px;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
   }
 
   .nav-links {
@@ -110,29 +142,89 @@
   .nav-links a {
     color: var(--text2);
     text-decoration: none;
-    font-size: 0.88rem;
+    font-size: 0.875rem;
     font-weight: 400;
-    transition: color 0.2s;
+    transition: color var(--transition);
+    position: relative;
   }
-
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 1px;
+    background: var(--green);
+    transform: scaleX(0);
+    transition: transform var(--transition);
+    transform-origin: left;
+  }
   .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-links a.active { color: var(--green); }
+  .nav-links a.active::after { transform: scaleX(1); }
 
   .nav-cta {
-    background: var(--green);
+    background: var(--green) !important;
     color: #000 !important;
-    font-weight: 500 !important;
-    padding: 6px 16px;
-    border-radius: 6px;
-    font-size: 0.85rem !important;
-    transition: opacity 0.2s !important;
+    font-weight: 600 !important;
+    padding: 7px 18px !important;
+    border-radius: 7px;
+    font-size: 0.83rem !important;
+    transition: all var(--transition) !important;
+    letter-spacing: 0.01em;
   }
-  .nav-cta:hover { opacity: 0.85; }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--green-bright) !important; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(63,185,80,0.35) !important; }
+
+  /* Mobile hamburger */
+  .hamburger {
+    display: none;
+    background: none;
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 4px;
+    transition: border-color var(--transition);
+  }
+  .hamburger:hover { border-color: var(--border3); }
+  .hamburger span {
+    display: block;
+    width: 18px; height: 2px;
+    background: var(--text2);
+    border-radius: 1px;
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 62px; left: 0; right: 0;
+    background: rgba(6,10,14,0.97);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    z-index: 199;
+    flex-direction: column;
+    gap: 0;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: color var(--transition);
+  }
+  .mobile-menu a:hover { color: var(--text); }
+  .mobile-menu a:last-child { border-bottom: none; color: var(--green); font-weight: 500; }
 
   /* ── LAYOUT ── */
-  section {
-    position: relative;
-    z-index: 1;
-  }
+  section { position: relative; z-index: 1; }
 
   .container {
     max-width: 1100px;
@@ -140,25 +232,31 @@
     padding: 0 2rem;
   }
 
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+  .reveal-delay-6 { transition-delay: 0.6s; }
+
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 100px 2rem 60px;
+    padding: 110px 2rem 80px;
     position: relative;
     overflow: hidden;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    top: 20%;
-    right: -200px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(63,185,80,0.06) 0%, transparent 70%);
-    pointer-events: none;
   }
 
   .hero-inner {
@@ -166,141 +264,132 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 5rem;
     align-items: center;
     width: 100%;
   }
 
   .hero-eyebrow {
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     color: var(--green);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.4rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    opacity: 0;
+    animation: heroIn 0.8s 0.2s cubic-bezier(0.4,0,0.2,1) forwards;
   }
-
   .hero-eyebrow::before {
     content: '';
     display: inline-block;
-    width: 24px;
-    height: 1px;
+    width: 28px; height: 1px;
     background: var(--green);
   }
 
   h1 {
     font-family: var(--font-head);
-    font-size: clamp(2.6rem, 5vw, 3.8rem);
+    font-size: clamp(2.6rem, 5vw, 3.9rem);
     font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -0.02em;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
     margin-bottom: 1.5rem;
     color: #fff;
+    opacity: 0;
+    animation: heroIn 0.8s 0.35s cubic-bezier(0.4,0,0.2,1) forwards;
   }
-
   h1 em {
     font-style: normal;
     color: var(--green);
   }
 
   .hero-sub {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     color: var(--text2);
     max-width: 500px;
     margin-bottom: 2.5rem;
-    line-height: 1.8;
+    line-height: 1.85;
+    opacity: 0;
+    animation: heroIn 0.8s 0.5s cubic-bezier(0.4,0,0.2,1) forwards;
   }
 
   .hero-actions {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    opacity: 0;
+    animation: heroIn 0.8s 0.65s cubic-bezier(0.4,0,0.2,1) forwards;
   }
 
-  .btn-primary {
-    background: var(--green);
-    color: #000;
-    font-family: var(--font-body);
-    font-weight: 500;
-    font-size: 0.92rem;
-    padding: 12px 24px;
-    border-radius: var(--radius);
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+  @keyframes heroIn {
+    to { opacity: 1; transform: none; }
+    from { opacity: 0; transform: translateY(20px); }
   }
-  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
 
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 0.92rem;
-    padding: 11px 24px;
-    border-radius: var(--radius);
-    border: 1px solid var(--border2);
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.3); background: var(--bg3); }
-
-  /* Stats row */
   .hero-stats {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
     margin-top: 3rem;
     padding-top: 2rem;
     border-top: 1px solid var(--border);
+    opacity: 0;
+    animation: heroIn 0.8s 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
   }
 
   .stat-item { text-align: left; }
   .stat-num {
     font-family: var(--font-head);
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: #fff;
     display: block;
+    line-height: 1.1;
   }
   .stat-label {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     color: var(--text3);
     font-family: var(--font-mono);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
   }
 
-  /* Terminal */
+  /* ── TERMINAL ── */
+  .terminal-wrap {
+    opacity: 0;
+    animation: heroIn 0.9s 0.45s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+
   .terminal {
     background: var(--bg2);
     border: 1px solid var(--border2);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     overflow: hidden;
-    box-shadow: var(--glow-green), 0 24px 60px rgba(0,0,0,0.4);
+    box-shadow: var(--glow-green), 0 32px 80px rgba(0,0,0,0.5);
     font-family: var(--font-mono);
-    font-size: 0.82rem;
+    font-size: 0.8rem;
+    position: relative;
+  }
+
+  .terminal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(63,185,80,0.4), transparent);
   }
 
   .terminal-bar {
     background: var(--bg3);
-    padding: 10px 16px;
+    padding: 12px 16px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     border-bottom: 1px solid var(--border);
   }
 
-  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot { width: 11px; height: 11px; border-radius: 50%; }
   .dot-r { background: #ff5f57; }
   .dot-y { background: #febc2e; }
   .dot-g { background: #28c840; }
@@ -308,72 +397,121 @@
   .terminal-title {
     margin-left: auto;
     margin-right: auto;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     color: var(--text3);
-    transform: translateX(-20px);
+    transform: translateX(-22px);
+    letter-spacing: 0.04em;
   }
 
   .terminal-body {
-    padding: 20px;
+    padding: 20px 22px;
     min-height: 340px;
   }
 
-  .t-line {
-    line-height: 1.9;
-  }
-
+  .t-line { line-height: 2; }
   .t-prompt { color: var(--green); }
-  .t-cmd { color: var(--text); }
   .t-comment { color: var(--text3); }
   .t-label { color: var(--cyan); }
-  .t-ok { color: var(--green); }
+  .t-ok { color: var(--green); font-weight: 500; }
   .t-build { color: var(--amber); }
   .t-plan { color: var(--text3); }
-  .t-blank { display: block; height: 8px; }
+  .t-blank { display: block; height: 6px; }
 
   .t-cursor {
     display: inline-block;
-    width: 8px;
-    height: 14px;
+    width: 7px; height: 15px;
     background: var(--green);
     animation: blink 1.1s step-end infinite;
     vertical-align: middle;
     margin-left: 2px;
+    border-radius: 1px;
   }
-
   @keyframes blink { 50% { opacity: 0; } }
 
-  /* ── SECTION HEADERS ── */
-  .section-head {
-    margin-bottom: 3.5rem;
+  /* Typing animation */
+  .t-typed {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    display: inline-block;
+    animation: type 1.2s steps(30) 1.2s forwards;
   }
+  @keyframes type { to { width: 100%; } }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    background: var(--green);
+    color: #000;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 12px 26px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover {
+    background: var(--green-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(63,185,80,0.35);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.9rem;
+    padding: 11px 26px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border2);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-ghost:hover {
+    border-color: var(--border3);
+    background: var(--bg3);
+    transform: translateY(-2px);
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-head { margin-bottom: 3.5rem; }
 
   .section-tag {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     color: var(--green);
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.8rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
   .section-tag::before {
     content: '';
     display: inline-block;
-    width: 16px;
-    height: 1px;
+    width: 18px; height: 1px;
     background: var(--green);
   }
 
   h2 {
     font-family: var(--font-head);
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
     font-weight: 700;
     color: #fff;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
     margin-bottom: 0.75rem;
   }
 
@@ -381,33 +519,43 @@
     color: var(--text2);
     font-size: 1rem;
     max-width: 560px;
+    line-height: 1.7;
   }
 
-  /* ── TOOL CARDS ── */
+  /* ── TOOLS SECTION ── */
   .tools-section {
-    padding: 80px 2rem;
+    padding: 90px 2rem;
     background: var(--bg2);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .tools-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, var(--green), transparent);
   }
 
   .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 1.2rem;
   }
 
   .tool-card {
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 1.4rem;
+    padding: 1.5rem;
     text-decoration: none;
     color: inherit;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    transition: all 0.22s;
+    gap: 0.8rem;
+    transition: all var(--transition);
     position: relative;
     overflow: hidden;
   }
@@ -418,21 +566,21 @@
     inset: 0;
     border-radius: var(--radius-lg);
     opacity: 0;
-    transition: opacity 0.22s;
+    transition: opacity var(--transition);
   }
 
   .tool-card:hover {
     border-color: var(--border2);
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.35);
   }
-
   .tool-card:hover::before { opacity: 1; }
 
   .tool-card.live::before {
-    background: radial-gradient(circle at top left, rgba(63,185,80,0.05), transparent 60%);
+    background: radial-gradient(circle at top left, rgba(63,185,80,0.06), transparent 65%);
   }
   .tool-card.building::before {
-    background: radial-gradient(circle at top left, rgba(210,153,34,0.05), transparent 60%);
+    background: radial-gradient(circle at top left, rgba(210,153,34,0.06), transparent 65%);
   }
 
   .tool-card-top {
@@ -442,39 +590,38 @@
   }
 
   .tool-icon {
-    width: 40px;
-    height: 40px;
+    width: 42px; height: 42px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
+    flex-shrink: 0;
   }
-
-  .tool-icon.green { background: var(--green-dim); }
-  .tool-icon.amber { background: var(--amber-dim); }
-  .tool-icon.cyan  { background: var(--cyan-dim); }
-  .tool-icon.purple { background: var(--purple-dim); }
+  .tool-icon.green { background: var(--green-dim); border: 1px solid rgba(63,185,80,0.15); }
+  .tool-icon.amber { background: var(--amber-dim); border: 1px solid rgba(210,153,34,0.15); }
+  .tool-icon.cyan  { background: var(--cyan-dim); border: 1px solid rgba(88,166,255,0.15); }
+  .tool-icon.purple { background: var(--purple-dim); border: 1px solid rgba(188,140,255,0.15); }
 
   .status-badge {
     font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    padding: 3px 9px;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    padding: 3px 10px;
     border-radius: 20px;
-    font-weight: 500;
+    font-weight: 600;
+    flex-shrink: 0;
   }
-
   .badge-live {
     background: var(--green-dim);
     color: var(--green);
-    border: 1px solid rgba(63,185,80,0.25);
+    border: 1px solid rgba(63,185,80,0.3);
   }
-
+  .badge-live::before { content: '● '; font-size: 0.5rem; vertical-align: middle; }
   .badge-build {
     background: var(--amber-dim);
     color: var(--amber);
-    border: 1px solid rgba(210,153,34,0.25);
+    border: 1px solid rgba(210,153,34,0.3);
   }
 
   .tool-name {
@@ -483,41 +630,42 @@
     font-weight: 600;
     color: #fff;
   }
-
   .tool-desc {
-    font-size: 0.88rem;
+    font-size: 0.875rem;
     color: var(--text2);
-    line-height: 1.6;
+    line-height: 1.65;
+    flex: 1;
   }
-
   .tool-tags {
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
-    margin-top: auto;
   }
-
   .tag {
     font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-size: 0.66rem;
     color: var(--text3);
     background: var(--bg3);
     border: 1px solid var(--border);
     padding: 2px 8px;
     border-radius: 4px;
+    transition: color var(--transition), border-color var(--transition);
   }
-
+  .tool-card:hover .tag {
+    color: var(--text2);
+    border-color: var(--border2);
+  }
   .tool-link {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     color: var(--cyan);
-    margin-top: 0.25rem;
+    opacity: 0.7;
+    transition: opacity var(--transition);
   }
+  .tool-card:hover .tool-link { opacity: 1; }
 
-  /* ── CATEGORY SECTIONS ── */
-  .labs-section {
-    padding: 80px 2rem;
-  }
+  /* ── LABS SECTION ── */
+  .labs-section { padding: 90px 2rem; }
 
   .labs-list {
     display: grid;
@@ -529,78 +677,143 @@
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 1.4rem;
+    padding: 1.4rem 1.6rem;
     display: flex;
-    gap: 1rem;
+    gap: 1.1rem;
     align-items: flex-start;
     text-decoration: none;
     color: inherit;
-    transition: all 0.2s;
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
   }
-
+  .lab-card::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--amber);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform var(--transition);
+  }
   .lab-card:hover {
     border-color: var(--border2);
     background: var(--bg3);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
   }
+  .lab-card:hover::after { transform: scaleY(1); }
 
   .lab-num {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     color: var(--text3);
-    min-width: 24px;
-    padding-top: 3px;
+    min-width: 22px;
+    padding-top: 4px;
   }
-
   .lab-info { flex: 1; }
-
   .lab-name {
     font-family: var(--font-head);
     font-size: 0.95rem;
     font-weight: 600;
     color: #fff;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
   }
-
   .lab-url {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: var(--cyan);
-    opacity: 0.7;
+    opacity: 0.6;
+    transition: opacity var(--transition);
   }
-
+  .lab-card:hover .lab-url { opacity: 1; }
   .lab-desc {
     font-size: 0.83rem;
     color: var(--text2);
-    margin-top: 6px;
-    line-height: 1.55;
+    margin-top: 7px;
+    line-height: 1.6;
   }
-
   .lab-status {
     font-family: var(--font-mono);
-    font-size: 0.62rem;
-    padding: 2px 7px;
-    border-radius: 3px;
-    margin-top: 6px;
+    font-size: 0.6rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 8px;
     display: inline-block;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── RESOURCES ── */
+  .resources-section { padding: 90px 2rem; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .resource-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 2.2rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+  .resource-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    border-radius: var(--radius-xl);
+    background: radial-gradient(ellipse at top left, rgba(63,185,80,0.06), transparent 60%);
+    transition: opacity var(--transition);
+  }
+  .resource-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 56px rgba(0,0,0,0.35);
+  }
+  .resource-card:hover::before { opacity: 1; }
+
+  .resource-card .big-icon { font-size: 2.5rem; line-height: 1; }
+  .resource-card h3 {
+    font-family: var(--font-head);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .resource-card p {
+    font-size: 0.88rem;
+    color: var(--text2);
+    line-height: 1.75;
+    flex: 1;
+  }
+  .resource-card .go {
+    font-family: var(--font-mono);
+    font-size: 0.73rem;
+    color: var(--cyan);
+    margin-top: auto;
+    transition: gap var(--transition);
   }
 
   /* ── ABOUT ── */
   .about-section {
-    padding: 80px 2rem;
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    padding: 90px 2rem;
   }
-
   .about-inner {
     display: grid;
-    grid-template-columns: 1fr 1.6fr;
-    gap: 4rem;
+    grid-template-columns: 1fr 1.65fr;
+    gap: 5rem;
     align-items: start;
   }
-
-  .about-left { }
 
   .cert-badges {
     display: flex;
@@ -608,16 +821,16 @@
     gap: 8px;
     margin-top: 1.5rem;
   }
-
   .cert {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     padding: 5px 12px;
     border-radius: 6px;
     border: 1px solid var(--border2);
     color: var(--text2);
+    transition: all var(--transition);
   }
-
+  .cert:hover { border-color: var(--border3); color: var(--text); }
   .cert.highlight {
     border-color: rgba(63,185,80,0.4);
     color: var(--green);
@@ -630,108 +843,118 @@
     gap: 1rem;
     margin-top: 2rem;
   }
-
   .about-stat {
-    background: var(--bg3);
+    background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 1rem 1.2rem;
+    transition: border-color var(--transition);
   }
-
+  .about-stat:hover { border-color: var(--border2); }
   .about-stat .num {
     font-family: var(--font-head);
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 700;
     color: #fff;
     display: block;
+    line-height: 1.1;
   }
-
   .about-stat .lbl {
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     color: var(--text3);
     font-family: var(--font-mono);
+    margin-top: 3px;
   }
 
   .about-text p {
     color: var(--text2);
-    margin-bottom: 1.2rem;
-    font-size: 0.98rem;
-    line-height: 1.85;
+    margin-bottom: 1.25rem;
+    font-size: 0.97rem;
+    line-height: 1.9;
   }
-
   .about-text strong { color: var(--text); font-weight: 500; }
 
-  /* ── BLOG / LEARN ── */
-  .resources-section {
-    padding: 80px 2rem;
-  }
-
-  .resources-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-  }
-
-  .resource-card {
+  /* ── COMING SOON ── */
+  .coming-section {
+    padding: 90px 2rem;
     background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .coming-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1rem;
+  }
+  .coming-card {
+    background: var(--bg3);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 2rem;
-    text-decoration: none;
-    color: inherit;
+    padding: 1.6rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    transition: all 0.22s;
+    gap: 0.65rem;
+    opacity: 0.7;
+    transition: all var(--transition);
+  }
+  .coming-card:hover { opacity: 1; border-color: var(--border2); transform: translateY(-2px); }
+  .coming-card .c-icon { font-size: 1.6rem; line-height: 1; margin-bottom: 0.2rem; }
+  .coming-card h3 {
+    font-family: var(--font-head);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  .coming-card p {
+    font-size: 0.83rem;
+    color: var(--text2);
+    line-height: 1.65;
+  }
+  .coming-status {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--text3);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 0.4rem;
+    width: fit-content;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 90px 2rem;
+    text-align: center;
+    background: var(--bg);
     position: relative;
     overflow: hidden;
   }
-
-  .resource-card:hover {
-    border-color: var(--border2);
-    transform: translateY(-3px);
-  }
-
-  .resource-card .big-icon {
-    font-size: 2.5rem;
-    line-height: 1;
-  }
-
-  .resource-card h3 {
-    font-family: var(--font-head);
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #fff;
-  }
-
-  .resource-card p {
-    font-size: 0.88rem;
-    color: var(--text2);
-    line-height: 1.7;
-  }
-
-  .resource-card .go {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--cyan);
-    margin-top: auto;
-  }
-
-  /* ── CTA / EARLY ACCESS ── */
-  .cta-section {
-    padding: 80px 2rem;
-    text-align: center;
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 800px 400px at center, rgba(63,185,80,0.07), transparent 70%);
+    pointer-events: none;
   }
 
   .cta-glow {
+    position: relative;
     display: inline-block;
-    background: radial-gradient(ellipse, rgba(63,185,80,0.12), transparent 70%);
-    padding: 4rem 3rem;
-    border-radius: 24px;
-    border: 1px solid rgba(63,185,80,0.12);
-    max-width: 600px;
+    background: linear-gradient(135deg, rgba(63,185,80,0.06), transparent 60%);
+    padding: 4.5rem 3.5rem;
+    border-radius: 28px;
+    border: 1px solid rgba(63,185,80,0.15);
+    max-width: 620px;
+    backdrop-filter: blur(8px);
+  }
+  .cta-glow::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 20%; right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(63,185,80,0.5), transparent);
   }
 
   .cta-section h2 { margin-bottom: 1rem; }
@@ -740,46 +963,49 @@
     max-width: 440px;
     margin: 0 auto 2rem;
     font-size: 0.95rem;
+    line-height: 1.75;
   }
 
   .email-form {
     display: flex;
     gap: 0.75rem;
-    max-width: 420px;
+    max-width: 440px;
     margin: 0 auto;
   }
-
   .email-form input {
     flex: 1;
     background: var(--bg3);
     border: 1px solid var(--border2);
     color: var(--text);
     font-family: var(--font-body);
-    font-size: 0.88rem;
-    padding: 11px 16px;
+    font-size: 0.875rem;
+    padding: 12px 18px;
     border-radius: var(--radius);
     outline: none;
-    transition: border-color 0.2s;
+    transition: border-color var(--transition), box-shadow var(--transition);
   }
   .email-form input::placeholder { color: var(--text3); }
-  .email-form input:focus { border-color: rgba(63,185,80,0.5); }
+  .email-form input:focus {
+    border-color: rgba(63,185,80,0.45);
+    box-shadow: 0 0 0 3px rgba(63,185,80,0.08);
+  }
 
   .cta-note {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: var(--text3);
-    margin-top: 1rem;
+    margin-top: 1.25rem;
+    letter-spacing: 0.02em;
   }
 
   /* ── FOOTER ── */
   footer {
     background: var(--bg);
     border-top: 1px solid var(--border);
-    padding: 3rem 2rem;
+    padding: 4rem 2rem 2.5rem;
     position: relative;
     z-index: 1;
   }
-
   .footer-inner {
     max-width: 1100px;
     margin: 0 auto;
@@ -787,170 +1013,110 @@
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 3rem;
   }
-
   .footer-brand {
     font-family: var(--font-head);
     font-weight: 800;
     font-size: 1.1rem;
     color: #fff;
     margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
   }
-
   .footer-tagline {
-    font-size: 0.83rem;
+    font-size: 0.82rem;
     color: var(--text3);
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
   }
-
-  .footer-social {
-    display: flex;
-    gap: 0.75rem;
-  }
-
+  .footer-social { display: flex; gap: 0.6rem; }
   .social-btn {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     color: var(--text2);
     border: 1px solid var(--border2);
     padding: 5px 12px;
     border-radius: 6px;
     text-decoration: none;
-    transition: all 0.2s;
+    transition: all var(--transition);
   }
-  .social-btn:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
+  .social-btn:hover { color: #fff; border-color: var(--border3); background: var(--bg3); }
 
   .footer-col h4 {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     color: var(--text3);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
   }
-
-  .footer-col ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
   .footer-col a {
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     color: var(--text2);
     text-decoration: none;
-    transition: color 0.2s;
+    transition: color var(--transition);
   }
   .footer-col a:hover { color: var(--text); }
 
   .footer-bottom {
     max-width: 1100px;
-    margin: 2rem auto 0;
+    margin: 2.5rem auto 0;
     padding-top: 2rem;
     border-top: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-
   .footer-copy {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     color: var(--text3);
   }
+  .footer-copy a { color: var(--green); text-decoration: none; }
+  .footer-copy a:hover { text-decoration: underline; }
 
-  .footer-copy a {
-    color: var(--green);
-    text-decoration: none;
-  }
-
-  /* ── COMING SOON SECTION ── */
-  .coming-section {
-    padding: 80px 2rem;
-    background: var(--bg);
-  }
-
-  .coming-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
-  }
-
-  .coming-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    opacity: 0.75;
-    transition: all 0.2s;
-  }
-  .coming-card:hover { opacity: 1; border-color: var(--border2); }
-
-  .coming-card .c-icon {
-    font-size: 1.5rem;
-    line-height: 1;
-    margin-bottom: 0.25rem;
-  }
-
-  .coming-card h3 {
-    font-family: var(--font-head);
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #fff;
-  }
-
-  .coming-card p {
-    font-size: 0.83rem;
-    color: var(--text2);
-    line-height: 1.6;
-  }
-
-  .coming-status {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--text3);
-    border: 1px solid var(--border);
-    padding: 2px 8px;
-    border-radius: 3px;
-    display: inline-block;
-    margin-top: 0.5rem;
-    width: fit-content;
-  }
-
-  /* Divider */
+  /* Section divider */
   .section-divider {
-    width: 100%;
-    height: 1px;
-    background: var(--border);
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
   }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    nav { padding: 0 1rem; }
+    nav { padding: 0 1.25rem; }
     .nav-links { display: none; }
-    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .hero { padding: 80px 1.5rem 50px; min-height: auto; }
+    .hamburger { display: flex; }
+
+    .hero { padding: 90px 1.25rem 60px; min-height: auto; }
+    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
     h1 { font-size: 2.2rem; }
+    .hero-stats { gap: 1.5rem; }
+
+    .tools-section, .labs-section, .resources-section,
+    .about-section, .coming-section, .cta-section { padding: 70px 1.25rem; }
+
     .tools-grid, .labs-list, .coming-grid { grid-template-columns: 1fr; }
-    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .resources-grid { grid-template-columns: 1fr; }
     .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .container { padding: 0 1rem; }
-    .hero-stats { gap: 1.25rem; }
-    .cta-glow { padding: 2rem 1.5rem; }
-    .email-form { flex-direction: column; }
     .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    .cta-glow { padding: 2.5rem 1.5rem; }
+    .email-form { flex-direction: column; }
+    .container { padding: 0 1.25rem; }
+  }
+
+  @media (max-width: 480px) {
+    .footer-inner { grid-template-columns: 1fr; }
+    .about-stats-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
 <body>
 
+<div class="ambient ambient-1"></div>
+<div class="ambient ambient-2"></div>
+
 <!-- NAV -->
-<nav>
+<nav id="nav">
   <a href="/" class="nav-logo">
     <span>EknathaLabs</span>
     <span class="logo-badge">BETA</span>
@@ -960,9 +1126,22 @@
     <li><a href="#labs">Labs</a></li>
     <li><a href="#resources">Learn</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="https://github.com/eknathareddyp" target="_blank">GitHub</a></li>
+    <li><a href="https://github.com/eknatha" target="_blank">GitHub</a></li>
     <li><a href="#access" class="nav-cta">Get Access</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-menu" id="mobile-menu">
+  <a href="#tools" class="mm-link">Tools</a>
+  <a href="#labs" class="mm-link">Labs</a>
+  <a href="#resources" class="mm-link">Learn</a>
+  <a href="#about" class="mm-link">About</a>
+  <a href="https://github.com/eknatha" target="_blank" class="mm-link">GitHub ↗</a>
+  <a href="#access" class="mm-link">Get Early Access →</a>
 </nav>
 
 <!-- HERO -->
@@ -980,7 +1159,7 @@
       </div>
       <div class="hero-stats">
         <div class="stat-item">
-          <span class="stat-num">13+</span>
+          <span class="stat-num">14+</span>
           <span class="stat-label">yrs IT exp</span>
         </div>
         <div class="stat-item">
@@ -994,35 +1173,38 @@
       </div>
     </div>
 
-    <div class="terminal" role="img" aria-label="EknathaLabs platform status terminal">
-      <div class="terminal-bar">
-        <div class="dot dot-r"></div>
-        <div class="dot dot-y"></div>
-        <div class="dot dot-g"></div>
-        <div class="terminal-title">eknathalabs.com — zsh</div>
-      </div>
-      <div class="terminal-body">
-        <div class="t-line"><span class="t-prompt">eknatha@labs</span><span class="t-comment">:~$</span> <span class="t-cmd">./init-platform.sh</span></div>
-        <span class="t-blank"></span>
-        <div class="t-line"><span class="t-comment">Starting EknathaLabs platform...</span></div>
-        <span class="t-blank"></span>
-        <div class="t-line">▶ <span class="t-label">linux.eknathalabs.com</span>       <span class="t-ok">LIVE ✓</span></div>
-        <div class="t-line">▶ <span class="t-label">github-profile-analyzer</span>       <span class="t-ok">LIVE ✓</span></div>
-        <div class="t-line">▶ <span class="t-label">resumelytics</span>                  <span class="t-ok">LIVE ✓</span></div>
-        <div class="t-line">▶ <span class="t-label">interview-prep</span>                <span class="t-ok">LIVE ✓</span></div>
-        <div class="t-line">▶ <span class="t-label">linux-command-explainer</span>       <span class="t-ok">LIVE ✓</span></div>
-        <div class="t-line">▶ <span class="t-label">docker.eknathalabs.com</span>        <span class="t-ok">LIVE ✓</span></div>
-        <div class="t-line">▶ <span class="t-label">blog.eknathalabs.com</span>          <span class="t-ok">LIVE ✓</span></div>
-        <div class="t-line">▶ <span class="t-label">learn.eknathalabs.com</span>         <span class="t-build">BUILD ◆</span></div>
-        <div class="t-line">▶ <span class="t-label">kubelab.eknathalabs.com</span>       <span class="t-build">BUILD ◆</span></div>
-        <div class="t-line">▶ <span class="t-label">terraform.eknathalabs.com</span>     <span class="t-build">BUILD ◆</span></div>
-        <div class="t-line">▶ <span class="t-label">cicd.eknathalabs.com</span>          <span class="t-build">BUILD ◆</span></div>
-        <div class="t-line">▶ <span class="t-label">chaoslab.eknathalabs.com</span>      <span class="t-plan">PLAN  ◇</span></div>
-        <span class="t-blank"></span>
-        <div class="t-line"><span class="t-comment">STATUS: Built in public.</span></div>
-        <div class="t-line"><span class="t-comment">→ github.com/eknathareddyp</span></div>
-        <span class="t-blank"></span>
-        <div class="t-line"><span class="t-prompt">eknatha@labs</span><span class="t-comment">:~$</span> <span class="t-cursor"></span></div>
+    <div class="terminal-wrap">
+      <div class="terminal" role="img" aria-label="EknathaLabs platform status terminal">
+        <div class="terminal-bar">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <div class="terminal-title">eknathalabs.com — zsh</div>
+        </div>
+        <div class="terminal-body">
+          <div class="t-line"><span class="t-prompt">eknatha@labs</span><span class="t-comment">:~$</span> <span class="t-cmd t-typed">./init-platform.sh</span></div>
+          <span class="t-blank"></span>
+          <div class="t-line"><span class="t-comment">Starting EknathaLabs platform...</span></div>
+          <span class="t-blank"></span>
+          <div class="t-line">▶ <span class="t-label">linux.eknathalabs.com      </span>  <span class="t-ok">LIVE ✓</span></div>
+          <div class="t-line">▶ <span class="t-label">github-profile-analyzer    </span>  <span class="t-ok">LIVE ✓</span></div>
+          <div class="t-line">▶ <span class="t-label">resumelytics               </span>  <span class="t-ok">LIVE ✓</span></div>
+          <div class="t-line">▶ <span class="t-label">interview-prep             </span>  <span class="t-ok">LIVE ✓</span></div>
+          <div class="t-line">▶ <span class="t-label">linux-command-explainer    </span>  <span class="t-ok">LIVE ✓</span></div>
+          <div class="t-line">▶ <span class="t-label">docker.eknathalabs.com     </span>  <span class="t-ok">LIVE ✓</span></div>
+          <div class="t-line">▶ <span class="t-label">blog.eknathalabs.com       </span>  <span class="t-ok">LIVE ✓</span></div>
+          <div class="t-line">▶ <span class="t-label">arch.eknathalabs.com       </span>  <span class="t-ok">LIVE ✓</span></div>
+          <div class="t-line">▶ <span class="t-label">learn.eknathalabs.com      </span>  <span class="t-build">BUILD ◆</span></div>
+          <div class="t-line">▶ <span class="t-label">kubelab.eknathalabs.com    </span>  <span class="t-build">BUILD ◆</span></div>
+          <div class="t-line">▶ <span class="t-label">terraform.eknathalabs.com  </span>  <span class="t-build">BUILD ◆</span></div>
+          <div class="t-line">▶ <span class="t-label">cicd.eknathalabs.com       </span>  <span class="t-build">BUILD ◆</span></div>
+          <div class="t-line">▶ <span class="t-label">chaoslab.eknathalabs.com   </span>  <span class="t-plan">PLAN  ◇</span></div>
+          <span class="t-blank"></span>
+          <div class="t-line"><span class="t-comment">STATUS: Built in public.</span></div>
+          <div class="t-line"><span class="t-comment">→ github.com/eknatha</span></div>
+          <span class="t-blank"></span>
+          <div class="t-line"><span class="t-prompt">eknatha@labs</span><span class="t-comment">:~$</span> <span class="t-cursor"></span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -1031,14 +1213,14 @@
 <!-- LIVE TOOLS -->
 <section class="tools-section" id="tools">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="section-tag">available now</div>
       <h2>Live Tools & Resources</h2>
       <p class="section-sub">Production-grade tools you can use right now — no sign-up, no paywalls.</p>
     </div>
     <div class="tools-grid">
 
-      <a href="https://github-profile-analyzer.eknathalabs.com" target="_blank" class="tool-card live">
+      <a href="https://github-profile-analyzer.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-1">
         <div class="tool-card-top">
           <div class="tool-icon green">📊</div>
           <span class="status-badge badge-live">LIVE</span>
@@ -1046,14 +1228,12 @@
         <div class="tool-name">GitHub Profile Analyzer</div>
         <div class="tool-desc">0–100 score across 5 dimensions. Radar chart, repo health monitor, hirability score, and shareable scorecard PNG.</div>
         <div class="tool-tags">
-          <span class="tag">github</span>
-          <span class="tag">portfolio</span>
-          <span class="tag">hiring</span>
+          <span class="tag">github</span><span class="tag">portfolio</span><span class="tag">hiring</span>
         </div>
         <div class="tool-link">github-profile-analyzer.eknathalabs.com ↗</div>
       </a>
 
-      <a href="https://resumelytics.eknathalabs.com" target="_blank" class="tool-card live">
+      <a href="https://resumelytics.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-2">
         <div class="tool-card-top">
           <div class="tool-icon cyan">🎯</div>
           <span class="status-badge badge-live">LIVE</span>
@@ -1061,14 +1241,12 @@
         <div class="tool-name">ATS Resume Analyzer</div>
         <div class="tool-desc">Beat applicant tracking systems. Keyword analysis, format scoring, and targeted improvement recommendations.</div>
         <div class="tool-tags">
-          <span class="tag">resume</span>
-          <span class="tag">ATS</span>
-          <span class="tag">job-search</span>
+          <span class="tag">resume</span><span class="tag">ATS</span><span class="tag">job-search</span>
         </div>
         <div class="tool-link">resumelytics.eknathalabs.com ↗</div>
       </a>
 
-      <a href="https://linux-command-explainer.eknathalabs.com" target="_blank" class="tool-card live">
+      <a href="https://linux-command-explainer.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-3">
         <div class="tool-card-top">
           <div class="tool-icon green">🐧</div>
           <span class="status-badge badge-live">LIVE</span>
@@ -1076,14 +1254,12 @@
         <div class="tool-name">Linux Command Explainer</div>
         <div class="tool-desc">Explain any Linux command in plain English. Pipe chain visualiser, regex decoder, ELI5 mode, OS compatibility checker, and danger pre-run checklist.</div>
         <div class="tool-tags">
-          <span class="tag">linux</span>
-          <span class="tag">cli</span>
-          <span class="tag">bash</span>
+          <span class="tag">linux</span><span class="tag">cli</span><span class="tag">bash</span>
         </div>
         <div class="tool-link">linux-command-explainer.eknathalabs.com ↗</div>
       </a>
 
-      <a href="https://interview-prep.eknathalabs.com" target="_blank" class="tool-card live">
+      <a href="https://interview-prep.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-4">
         <div class="tool-card-top">
           <div class="tool-icon purple">📚</div>
           <span class="status-badge badge-live">LIVE</span>
@@ -1091,14 +1267,12 @@
         <div class="tool-name">DevOps Interview Prep</div>
         <div class="tool-desc">12+ guides with dark mode, interview mode, flashcard mode. Covers Kubernetes, Terraform, Linux, CI/CD, and cloud.</div>
         <div class="tool-tags">
-          <span class="tag">interview</span>
-          <span class="tag">k8s</span>
-          <span class="tag">terraform</span>
+          <span class="tag">interview</span><span class="tag">k8s</span><span class="tag">terraform</span>
         </div>
         <div class="tool-link">interview-prep.eknathalabs.com ↗</div>
       </a>
 
-      <a href="https://linux.eknathalabs.com" target="_blank" class="tool-card live">
+      <a href="https://linux.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-5">
         <div class="tool-card-top">
           <div class="tool-icon green">⚡</div>
           <span class="status-badge badge-live">LIVE</span>
@@ -1106,14 +1280,12 @@
         <div class="tool-name">Linux for DevOps</div>
         <div class="tool-desc">7 comprehensive modules covering file management, process management, networking, disk, log analysis, user management, and system monitoring.</div>
         <div class="tool-tags">
-          <span class="tag">linux</span>
-          <span class="tag">devops</span>
-          <span class="tag">7 modules</span>
+          <span class="tag">linux</span><span class="tag">devops</span><span class="tag">7 modules</span>
         </div>
         <div class="tool-link">linux.eknathalabs.com ↗</div>
       </a>
 
-      <a href="https://docker.eknathalabs.com" target="_blank" class="tool-card live">
+      <a href="https://docker.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-6">
         <div class="tool-card-top">
           <div class="tool-icon cyan">🐳</div>
           <span class="status-badge badge-live">LIVE</span>
@@ -1121,38 +1293,51 @@
         <div class="tool-name">Docker Lab</div>
         <div class="tool-desc">Containers from first principles to production. Compose, networking, volumes, multi-stage builds, and security hardening.</div>
         <div class="tool-tags">
-          <span class="tag">docker</span>
-          <span class="tag">containers</span>
-          <span class="tag">compose</span>
+          <span class="tag">docker</span><span class="tag">containers</span><span class="tag">compose</span>
         </div>
         <div class="tool-link">docker.eknathalabs.com ↗</div>
+      </a>
+
+      <a href="https://arch.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-1">
+        <div class="tool-card-top">
+          <div class="tool-icon purple">⬡</div>
+          <span class="status-badge badge-live">LIVE</span>
+        </div>
+        <div class="tool-name">ArchLab — AI Diagram Generator</div>
+        <div class="tool-desc">Generate production-grade architecture diagrams in seconds. AWS, Azure, GCP, Kubernetes, CI/CD, Terraform, and more — AI-powered or offline with 20+ quick templates.</div>
+        <div class="tool-tags">
+          <span class="tag">architecture</span><span class="tag">AI</span><span class="tag">diagrams</span><span class="tag">cloud</span>
+        </div>
+        <div class="tool-link">arch.eknathalabs.com ↗</div>
       </a>
 
     </div>
   </div>
 </section>
 
+<div class="section-divider"></div>
+
 <!-- LABS IN BUILD -->
 <section class="labs-section" id="labs">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="section-tag">active development</div>
       <h2>Labs Under Construction</h2>
       <p class="section-sub">Coming soon — deep-dive interactive labs and structured learning paths.</p>
     </div>
     <div class="labs-list">
 
-      <a href="https://kubelab.eknathalabs.com" target="_blank" class="lab-card">
+      <a href="https://kubelab.eknathalabs.com" target="_blank" class="lab-card reveal reveal-delay-1">
         <div class="lab-num">01</div>
         <div class="lab-info">
           <div class="lab-name">☸️ Kubernetes Lab</div>
           <div class="lab-url">kubelab.eknathalabs.com</div>
           <div class="lab-desc">Real cluster scenarios, RBAC, network policies, pod security — mapped to CKA and CKS objectives.</div>
-          <span class="lab-status badge-build" style="background:var(--amber-dim);color:var(--amber);border:1px solid rgba(210,153,34,0.25);">building</span>
+          <span class="lab-status" style="background:var(--amber-dim);color:var(--amber);border:1px solid rgba(210,153,34,0.25);">building</span>
         </div>
       </a>
 
-      <a href="https://terraform.eknathalabs.com" target="_blank" class="lab-card">
+      <a href="https://terraform.eknathalabs.com" target="_blank" class="lab-card reveal reveal-delay-2">
         <div class="lab-num">02</div>
         <div class="lab-info">
           <div class="lab-name">🏗️ Terraform Lab</div>
@@ -1162,7 +1347,7 @@
         </div>
       </a>
 
-      <a href="https://cicd.eknathalabs.com" target="_blank" class="lab-card">
+      <a href="https://cicd.eknathalabs.com" target="_blank" class="lab-card reveal reveal-delay-3">
         <div class="lab-num">03</div>
         <div class="lab-info">
           <div class="lab-name">⚙️ CI/CD Lab</div>
@@ -1172,7 +1357,7 @@
         </div>
       </a>
 
-      <a href="https://chaoslab.eknathalabs.com" target="_blank" class="lab-card">
+      <a href="https://chaoslab.eknathalabs.com" target="_blank" class="lab-card reveal reveal-delay-4">
         <div class="lab-num">04</div>
         <div class="lab-info">
           <div class="lab-name">💥 Chaos Lab</div>
@@ -1188,22 +1373,22 @@
 
 <div class="section-divider"></div>
 
-<!-- RESOURCES: Blog + Learn -->
+<!-- RESOURCES -->
 <section class="resources-section" id="resources">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="section-tag">knowledge base</div>
       <h2>Blog & Learning Paths</h2>
       <p class="section-sub">Deep articles and structured courses from 13 years of hands-on production experience.</p>
     </div>
     <div class="resources-grid">
-      <a href="https://blog.eknathalabs.com" target="_blank" class="resource-card">
+      <a href="https://blog.eknathalabs.com" target="_blank" class="resource-card reveal reveal-delay-1">
         <div class="big-icon">✍️</div>
         <h3>EknathaLabs Blog</h3>
         <p>In-depth articles on Kubernetes internals, platform engineering patterns, incident retrospectives, and cloud architecture — written from real production experience.</p>
         <div class="go">blog.eknathalabs.com ↗</div>
       </a>
-      <a href="https://learn.eknathalabs.com" target="_blank" class="resource-card">
+      <a href="https://learn.eknathalabs.com" target="_blank" class="resource-card reveal reveal-delay-2">
         <div class="big-icon">🎓</div>
         <h3>Structured Learning</h3>
         <p>Curated learning paths for CKA, CKS, Terraform Associate, and Platform Engineering. Roadmaps, study guides, and hands-on exercises in one place.</p>
@@ -1217,7 +1402,7 @@
 <section class="about-section" id="about">
   <div class="container">
     <div class="about-inner">
-      <div class="about-left">
+      <div class="about-left reveal">
         <div class="section-tag">the builder</div>
         <h2>Eknatha Reddy</h2>
         <div class="cert-badges">
@@ -1247,7 +1432,7 @@
           </div>
         </div>
       </div>
-      <div class="about-text">
+      <div class="about-text reveal reveal-delay-2">
         <p>
           EknathaLabs is built by someone who has spent <strong>14+ years in the trenches</strong> — cloud operations, incident response, Kubernetes at scale, multi-cloud migrations across AWS, Azure, and OpenStack.
         </p>
@@ -1257,7 +1442,7 @@
         <p>
           The CKS credential is held by fewer than 8% of Kubernetes engineers globally. That same depth and specificity goes into every resource on this platform. No fluff, no padding — just <strong>production-grade knowledge</strong>.
         </p>
-        <a href="https://github.com/eknathareddyp" target="_blank" class="btn-ghost" style="display:inline-flex; margin-top: 0.5rem;">→ View GitHub Profile</a>
+        <a href="https://github.com/eknatha" target="_blank" class="btn-ghost" style="display:inline-flex; margin-top: 0.5rem;">→ View GitHub Profile</a>
       </div>
     </div>
   </div>
@@ -1266,31 +1451,31 @@
 <!-- COMING SOON -->
 <section class="coming-section">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="section-tag">roadmap</div>
       <h2>What's Coming Next</h2>
       <p class="section-sub">Planned content and tools on the roadmap.</p>
     </div>
     <div class="coming-grid">
-      <div class="coming-card">
+      <div class="coming-card reveal reveal-delay-1">
         <div class="c-icon">☁️</div>
         <h3>Cloud Operations Track</h3>
         <p>AWS + Azure production operations: incident response, cost optimisation, scaling strategies, and security hardening.</p>
         <span class="coming-status">planned</span>
       </div>
-      <div class="coming-card">
+      <div class="coming-card reveal reveal-delay-2">
         <div class="c-icon">🧩</div>
         <h3>System Design Playground</h3>
         <p>Interactive canvas to design distributed systems. Drag-and-drop components, estimate throughput, model failure modes.</p>
         <span class="coming-status">planned</span>
       </div>
-      <div class="coming-card">
+      <div class="coming-card reveal reveal-delay-3">
         <div class="c-icon">🔭</div>
         <h3>Platform Engineering Track</h3>
         <p>Internal developer platforms, golden paths, GitHub Actions, observability stacks — the tools that make platform engineers indispensable.</p>
         <span class="coming-status">planned</span>
       </div>
-      <div class="coming-card">
+      <div class="coming-card reveal reveal-delay-4">
         <div class="c-icon">🔐</div>
         <h3>Security & CKS Prep</h3>
         <p>Dedicated CKS exam preparation: pod security, network policies, runtime security, supply chain, and cluster hardening.</p>
@@ -1302,7 +1487,7 @@
 
 <!-- CTA -->
 <section class="cta-section" id="access">
-  <div class="cta-glow">
+  <div class="cta-glow reveal">
     <div class="section-tag" style="justify-content:center; margin-bottom:1rem;">get notified</div>
     <h2>Get Early Access</h2>
     <p>Be the first to know when Linux, Kubernetes, Terraform, and Platform Engineering labs go live. No spam — just launch notifications.</p>
@@ -1310,7 +1495,7 @@
       <input type="email" placeholder="your@email.com" id="email-input" required>
       <button type="submit" class="btn-primary">Notify Me</button>
     </form>
-    <div class="cta-note">No spam. Unsubscribe anytime. Built in public at github.com/eknathareddyp</div>
+    <div class="cta-note">No spam. Unsubscribe anytime. Built in public at github.com/eknatha</div>
   </div>
 </section>
 
@@ -1321,11 +1506,10 @@
       <div class="footer-brand">EknathaLabs</div>
       <div class="footer-tagline">Practical DevOps & Platform Engineering — built by a practitioner, for practitioners. Core content always free.</div>
       <div class="footer-social">
-        <a href="https://github.com/eknathareddyp" target="_blank" class="social-btn">GitHub</a>
+        <a href="https://github.com/eknatha" target="_blank" class="social-btn">GitHub ↗</a>
         <a href="https://eknathalabs.com" class="social-btn">eknathalabs.com</a>
       </div>
     </div>
-
     <div class="footer-col">
       <h4>Live Now</h4>
       <ul>
@@ -1335,9 +1519,9 @@
         <li><a href="https://linux-command-explainer.eknathalabs.com">Linux Explainer</a></li>
         <li><a href="https://interview-prep.eknathalabs.com">Interview Prep</a></li>
         <li><a href="https://docker.eknathalabs.com">Docker Lab</a></li>
+        <li><a href="https://arch.eknathalabs.com">ArchLab</a></li>
       </ul>
     </div>
-
     <div class="footer-col">
       <h4>Labs</h4>
       <ul>
@@ -1347,24 +1531,76 @@
         <li><a href="https://chaoslab.eknathalabs.com">Chaos Lab</a></li>
       </ul>
     </div>
-
     <div class="footer-col">
       <h4>Knowledge</h4>
       <ul>
         <li><a href="https://blog.eknathalabs.com">Blog</a></li>
         <li><a href="https://learn.eknathalabs.com">Learn</a></li>
-        <li><a href="https://github.com/eknathareddyp">GitHub</a></li>
+        <li><a href="https://github.com/eknatha">GitHub</a></li>
         <li><a href="#access">Early Access</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">© 2026 EknathaLabs · Cloud · DevOps · Platform Engineering · Built in public 🚧</div>
-    <div class="footer-copy"><a href="https://github.com/eknathareddyp">github.com/eknathareddyp</a></div>
+    <div class="footer-copy"><a href="https://github.com/eknatha">github.com/eknatha</a></div>
   </div>
 </footer>
 
 <script>
+  // ── NAV SCROLL EFFECT ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // ── ACTIVE NAV LINKS ──
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      const href = a.getAttribute('href');
+      a.classList.toggle('active', href === `#${current}`);
+    });
+  }, { passive: true });
+
+  // ── MOBILE MENU ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('.mm-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ── SCROLL REVEAL ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => observer.observe(el));
+
+  // ── EMAIL SUBMIT ──
   function handleSubmit(e) {
     e.preventDefault();
     const input = document.getElementById('email-input');
@@ -1372,27 +1608,25 @@
     btn.textContent = 'Subscribed ✓';
     btn.style.background = '#3fb950';
     input.value = '';
-    input.placeholder = 'Thanks! You\'re on the list.';
+    input.placeholder = "You're on the list!";
     input.disabled = true;
+    btn.disabled = true;
     setTimeout(() => {
       btn.textContent = 'Notify Me';
       btn.style.background = '';
+      btn.disabled = false;
       input.disabled = false;
       input.placeholder = 'your@email.com';
-    }, 4000);
+    }, 5000);
   }
 
-  // Smooth active nav highlighting
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 80) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === `#${current}` ? '#3fb950' : '';
-    });
+  // ── TERMINAL TYPEWRITER ──
+  // Stagger terminal lines appearing
+  const tLines = document.querySelectorAll('.terminal-body .t-line');
+  tLines.forEach((line, i) => {
+    line.style.opacity = '0';
+    line.style.transition = `opacity 0.3s`;
+    setTimeout(() => { line.style.opacity = '1'; }, 1400 + i * 80);
   });
 </script>
 </body>
