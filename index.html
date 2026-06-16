@@ -1697,9 +1697,11 @@
     var el = document.getElementById('visitor-count');
     if (!el) return;
 
-    var HIT = 'https://countapi.mileshilliard.com/api/v1/hit/eknathalabs.com/site_visits';
+    // CountAPI uses a single flat key — no slashes, no dots, no namespaces.
+    var KEY = 'eknathalabs_com_total_visits';
+    var HIT = 'https://countapi.mileshilliard.com/api/v1/hit/' + KEY;
 
-    function format(n) { return n.toLocaleString('en-US'); }
+    function format(n) { return Number(n).toLocaleString('en-US'); }
 
     function animateTo(target) {
       el.classList.remove('is-loading');
@@ -1720,14 +1722,22 @@
       requestAnimationFrame(step);
     }
 
-    fetch(HIT)
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
-        var n = (data && (data.value !== undefined ? data.value : data.count));
-        if (typeof n === 'number') animateTo(n);
-        else throw new Error('no value');
+    fetch(HIT, { cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
       })
-      .catch(function () {
+      .then(function (data) {
+        // API may return value/count as a number or numeric string
+        var raw = data && (data.value !== undefined ? data.value
+                         : data.count !== undefined ? data.count
+                         : data.val);
+        var n = Number(raw);
+        if (!isNaN(n)) animateTo(n);
+        else throw new Error('no numeric value in response');
+      })
+      .catch(function (err) {
+        console.warn('Visitor counter failed:', err);
         // Fail gracefully — never show a frozen zero
         el.classList.remove('is-loading');
         el.textContent = '—';
