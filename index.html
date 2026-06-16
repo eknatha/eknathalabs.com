@@ -377,6 +377,33 @@
     margin-top: 2px;
   }
 
+  /* Highlighted visitor-count stat */
+  .stat-item.stat-visitors {
+    position: relative;
+    padding: 0.5rem 1.1rem;
+    margin: -0.5rem 0 -0.5rem 0;
+    border: 1px solid rgba(63,185,80,0.4);
+    border-radius: var(--radius);
+    background: var(--green-dim);
+    box-shadow: var(--glow-green);
+  }
+  .stat-item.stat-visitors .stat-num {
+    color: var(--green-bright);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-item.stat-visitors .stat-label { color: var(--green); }
+  .stat-item.stat-visitors .stat-num.is-loading {
+    color: var(--text3);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+  }
+  @keyframes visitorPop {
+    0% { transform: scale(0.96); opacity: 0.4; }
+    60% { transform: scale(1.04); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .stat-item.stat-visitors .stat-num.counted { animation: visitorPop 0.5s cubic-bezier(0.4,0,0.2,1); }
+
   /* ── TERMINAL ── */
   .terminal-wrap {
     opacity: 0;
@@ -1154,10 +1181,10 @@
 <section class="hero" id="home">
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-eyebrow">Built in public · DevOps & Platform Engineering</div>
-      <h1>Learn DevOps by <em>Actually Doing It</em></h1>
+      <div class="hero-eyebrow">Built in public · <div class="hero-eyebrow">
+      <h1>Learn by <em>Actually Doing It</em></h1>
       <p class="hero-sub">
-        Real terminal labs. Production-grade scenarios. Hands-on playgrounds for Linux, Kubernetes, Terraform, CI/CD, Docker, and Cloud — built by a practitioner, not a content farm.
+        Real terminal labs. Production-grade scenarios. Hands-on playgrounds for Linux, Cloud, Kubernetes, Terraform, CI/CD, Docker, Security and More — built by a practitioner, not a content farm.
       </p>
       <div class="hero-actions">
         <a href="#tools" class="btn-primary">→ Explore Live Tools</a>
@@ -1165,16 +1192,16 @@
       </div>
       <div class="hero-stats">
         <div class="stat-item">
-          <span class="stat-num">14+</span>
-          <span class="stat-label">yrs IT exp</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">11+</span>
+          <span class="stat-num">13+</span>
           <span class="stat-label">live resources</span>
         </div>
         <div class="stat-item">
           <span class="stat-num">Free</span>
           <span class="stat-label">core content</span>
+        </div>
+        <div class="stat-item stat-visitors">
+          <span class="stat-num is-loading" id="visitor-count">···</span>
+          <span class="stat-label">total visitors</span>
         </div>
       </div>
     </div>
@@ -1202,6 +1229,8 @@
           <div class="t-line">▶ <span class="t-label">arch.eknathalabs.com       </span>  <span class="t-ok">LIVE ✓</span></div>
           <div class="t-line">▶ <span class="t-label">certs.eknathalabs.com      </span>  <span class="t-ok">LIVE ✓</span></div>
           <div class="t-line">▶ <span class="t-label">db.eknathalabs.com         </span>  <span class="t-ok">LIVE ✓</span></div>
+          <div class="t-line">▶ <span class="t-label">paperlab.eknathalabs.com   </span>  <span class="t-ok">LIVE ✓</span></div>
+          <div class="t-line">▶ <span class="t-label">imagelab.eknathalabs.com   </span>  <span class="t-ok">LIVE ✓</span></div>
           <div class="t-line">▶ <span class="t-label">learn.eknathalabs.com      </span>  <span class="t-build">BUILD ◆</span></div>
           <div class="t-line">▶ <span class="t-label">kubelab.eknathalabs.com    </span>  <span class="t-build">BUILD ◆</span></div>
           <div class="t-line">▶ <span class="t-label">terraform.eknathalabs.com  </span>  <span class="t-build">BUILD ◆</span></div>
@@ -1261,7 +1290,7 @@
           <span class="status-badge badge-live">LIVE</span>
         </div>
         <div class="tool-name">Linux Command Explainer</div>
-        <div class="tool-desc">Explain any Linux command in plain English. Pipe chain visualiser, regex decoder, ELI5 mode, OS compatibility checker, and danger pre-run checklist.</div>
+        <div class="tool-desc">Explain any of ~200 Linux commands in plain English — firewall tooling, container & Kubernetes utilities, eBPF, and advanced shell scripting. Pipe chain visualiser, regex decoder, ELI5 mode, and danger pre-run checklist.</div>
         <div class="tool-tags">
           <span class="tag">linux</span><span class="tag">cli</span><span class="tag">bash</span>
         </div>
@@ -1274,7 +1303,7 @@
           <span class="status-badge badge-live">LIVE</span>
         </div>
         <div class="tool-name">DevOps Interview Prep</div>
-        <div class="tool-desc">20+ guides with dark mode, interview mode, flashcard mode. Covers Kubernetes, Terraform, Linux, CI/CD, and cloud.</div>
+        <div class="tool-desc">Deep guides with dark mode, interview mode, and flashcard mode across Kubernetes, Terraform, Linux, CI/CD, and cloud — expanding toward 120 questions each, with an AI-powered prep agent in the works.</div>
         <div class="tool-tags">
           <span class="tag">interview</span><span class="tag">k8s</span><span class="tag">terraform</span>
         </div>
@@ -1287,9 +1316,9 @@
           <span class="status-badge badge-live">LIVE</span>
         </div>
         <div class="tool-name">Linux for DevOps</div>
-        <div class="tool-desc">7 comprehensive modules covering file management, process management, networking, disk, log analysis, user management, and system monitoring.</div>
+        <div class="tool-desc">25 hands-on practice labs plus LFCS-style quiz questions and inline tutorials — file & process management, networking, disk, log analysis, user management, and system monitoring.</div>
         <div class="tool-tags">
-          <span class="tag">linux</span><span class="tag">devops</span><span class="tag">7 modules</span>
+          <span class="tag">linux</span><span class="tag">devops</span><span class="tag">25 labs</span>
         </div>
         <div class="tool-link">linux.eknathalabs.com ↗</div>
       </a>
@@ -1344,6 +1373,32 @@
           <span class="tag">databases</span><span class="tag">sql</span><span class="tag">nosql</span>
         </div>
         <div class="tool-link">db.eknathalabs.com ↗</div>
+      </a>
+
+      <a href="https://paperlab.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-4">
+        <div class="tool-card-top">
+          <div class="tool-icon amber" aria-hidden="true">📄</div>
+          <span class="status-badge badge-live">LIVE</span>
+        </div>
+        <div class="tool-name">PaperLab — PDF Toolkit</div>
+        <div class="tool-desc">Merge, split, compress, convert, and reorder PDFs — all in the browser, fully offline. Self-registering module architecture, zero uploads, your files never leave your device.</div>
+        <div class="tool-tags">
+          <span class="tag">pdf</span><span class="tag">offline</span><span class="tag">privacy</span>
+        </div>
+        <div class="tool-link">paperlab.eknathalabs.com ↗</div>
+      </a>
+
+      <a href="https://imagelab.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-5">
+        <div class="tool-card-top">
+          <div class="tool-icon purple" aria-hidden="true">🖼️</div>
+          <span class="status-badge badge-live">LIVE</span>
+        </div>
+        <div class="tool-name">ImageLab — Image Toolkit</div>
+        <div class="tool-desc">Resize, compress, convert, crop, and edit images entirely in-browser. Privacy-first and offline-capable — a fast, no-upload image workbench for everyday tasks.</div>
+        <div class="tool-tags">
+          <span class="tag">images</span><span class="tag">offline</span><span class="tag">convert</span>
+        </div>
+        <div class="tool-link">imagelab.eknathalabs.com ↗</div>
       </a>
 
     </div>
@@ -1451,7 +1506,8 @@
         <div class="section-tag">the builder</div>
         <h2>Eknatha Reddy</h2>
         <div class="cert-badges">
-          <span class="cert highlight">CKA + CKS</span>
+          <span class="cert highlight">CKS (Planned)</span>
+          <span class="cert">CKA (renewing)</span>
           <span class="cert">AWS</span>
           <span class="cert">Azure</span>
           <span class="cert">Linux</span>
@@ -1553,6 +1609,8 @@
         <li><a href="https://arch.eknathalabs.com">ArchLab</a></li>
         <li><a href="https://certs.eknathalabs.com">Certifications Hub</a></li>
         <li><a href="https://db.eknathalabs.com">DB Encyclopedia</a></li>
+        <li><a href="https://paperlab.eknathalabs.com">PaperLab — PDF Toolkit</a></li>
+        <li><a href="https://imagelab.eknathalabs.com">ImageLab — Image Toolkit</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1634,7 +1692,48 @@
 
   revealEls.forEach(el => observer.observe(el));
 
-  // ── TERMINAL TYPEWRITER ──
+  // ── TOTAL VISITOR COUNTER ──
+  (function () {
+    var el = document.getElementById('visitor-count');
+    if (!el) return;
+
+    var HIT = 'https://countapi.mileshilliard.com/api/v1/hit/eknathalabs.com/site_visits';
+
+    function format(n) { return n.toLocaleString('en-US'); }
+
+    function animateTo(target) {
+      el.classList.remove('is-loading');
+      el.classList.add('counted');
+      var start = 0;
+      var dur = 900;
+      var t0 = performance.now();
+      // Start near the target for large numbers so it doesn't crawl from 0
+      if (target > 200) start = Math.floor(target * 0.85);
+      function step(now) {
+        var p = Math.min((now - t0) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        var val = Math.floor(start + (target - start) * eased);
+        el.textContent = format(val);
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = format(target);
+      }
+      requestAnimationFrame(step);
+    }
+
+    fetch(HIT)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var n = (data && (data.value !== undefined ? data.value : data.count));
+        if (typeof n === 'number') animateTo(n);
+        else throw new Error('no value');
+      })
+      .catch(function () {
+        // Fail gracefully — never show a frozen zero
+        el.classList.remove('is-loading');
+        el.textContent = '—';
+      });
+  })();
+
   // Stagger terminal lines appearing
   const tLines = document.querySelectorAll('.terminal-body .t-line');
   tLines.forEach((line, i) => {
