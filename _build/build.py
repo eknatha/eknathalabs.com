@@ -38,10 +38,10 @@ LINES = [
      "stops": [
          ("Linux Command Explainer", "linux-command-explainer", "d.linux-command-explainer", None, False),
          ("Database Encyclopedia", "db", "d.db", None, False),
-         ("Ganaka", "ganaka", "d.ganaka", "chip.offline", False),
      ]},
-    {"name": "Files", "key": "files", "color": "#6a3fc0", "app": "UtilitiesApplication",
+    {"name": "Tools", "key": "files", "color": "#6a3fc0", "app": "UtilitiesApplication",
      "stops": [
+         ("Ganaka", "ganaka", "d.ganaka", "chip.offline", False),
          ("Patram", "patram", "d.patram", "chip.offline", False),
          ("Bimba", "bimba", "d.bimba", "chip.offline", False),
      ]},
