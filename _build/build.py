@@ -28,6 +28,7 @@ LINES = [
          ("MARGA", "marga", "d.marga", None, True),
          ("Linux for DevOps", "linux", "d.linux", None, False),
          ("Certifications Hub", "certs", "d.certs", None, False),
+         ("Bhasha", "bhasha", "d.bhasha", "chip.offline", False),
      ]},
     {"name": "Career", "key": "career", "color": "#c62833", "app": "BusinessApplication",
      "stops": [

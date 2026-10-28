@@ -11,7 +11,7 @@ Live at **https://eknathalabs.com**
 
 | Line | Tools |
 | --- | --- |
-| Learn | **MARGA** (featured, structured learning paths), Linux for DevOps, Certifications Hub |
+| Learn | **MARGA** (featured, structured learning paths), Linux for DevOps, Certifications Hub, Bhasha (spoken-language learning, offline) |
 | Career | Resumelytics, InterviewHub (interviewhub.eknathalabs.com) |
 | Reference | Linux Command Explainer, Database Encyclopedia |
 | Tools | Ganaka (119 offline calculators), Patram (PDF toolkit), Bimba (image toolkit) |
