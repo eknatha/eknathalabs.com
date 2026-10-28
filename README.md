@@ -13,7 +13,7 @@ Live at **https://eknathalabs.com**
 | --- | --- |
 | Learn | **MARGA** (featured, structured learning paths), Linux for DevOps, Certifications Hub |
 | Career | Resumelytics, InterviewHub (interviewhub.eknathalabs.com) |
-| Reference | Linux Command Explainer, Database Encyclopedia |
+| Reference | Linux Command Explainer, Database Encyclopedia, Ganaka (119 offline calculators) |
 | Files | Patram (PDF toolkit), Bimba (image toolkit), both fully offline |
 
 In the workshop (building): Kubernetes Lab, Docker Lab, Terraform Lab, CI/CD Lab, ArchLab.

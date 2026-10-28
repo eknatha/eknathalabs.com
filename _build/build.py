@@ -38,6 +38,7 @@ LINES = [
      "stops": [
          ("Linux Command Explainer", "linux-command-explainer", "d.linux-command-explainer", None, False),
          ("Database Encyclopedia", "db", "d.db", None, False),
+         ("Ganaka", "ganaka", "d.ganaka", "chip.offline", False),
      ]},
     {"name": "Files", "key": "files", "color": "#6a3fc0", "app": "UtilitiesApplication",
      "stops": [
