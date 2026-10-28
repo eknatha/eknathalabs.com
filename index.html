@@ -2,1688 +2,1073 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="EknathaLabs — Hands-on DevOps & Platform Engineering. Real terminal labs, production-grade scenarios for Linux, Kubernetes, Terraform, CI/CD, Docker, and Cloud.">
-<title>EknathaLabs — Hands-on DevOps & Platform Engineering</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EknathaLabs — Free tools and learning for everyone</title>
+<meta name="description" content="Free tools, labs and learning across every kind of technology. No account, no paywall. Technology, open to everyone.">
 <link rel="canonical" href="https://eknathalabs.com/">
 <meta name="author" content="Eknatha Reddy">
-<meta name="theme-color" content="#060a0e">
+<meta name="theme-color" content="#1c1b4b">
+<meta name="color-scheme" content="light">
 
-<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://eknathalabs.com/">
-<meta property="og:title" content="EknathaLabs — Hands-on DevOps & Platform Engineering">
-<meta property="og:description" content="Real terminal labs and production-grade scenarios for Linux, Kubernetes, Terraform, CI/CD, Docker, and Cloud — built by a CKS-certified practitioner.">
+<meta property="og:site_name" content="EknathaLabs">
+<meta property="og:title" content="EknathaLabs — Free tools and learning for everyone">
+<meta property="og:description" content="Free tools, labs and learning across every kind of technology. No account, no paywall. Technology, open to everyone.">
 <meta property="og:image" content="https://eknathalabs.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:site_name" content="EknathaLabs">
-
-<!-- Twitter -->
+<meta property="og:image:alt" content="EknathaLabs: Technology, open to everyone.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="EknathaLabs — Hands-on DevOps & Platform Engineering">
-<meta name="twitter:description" content="Real terminal labs and production-grade scenarios for Linux, Kubernetes, Terraform, CI/CD, Docker, and Cloud — built by a CKS-certified practitioner.">
+<meta name="twitter:title" content="EknathaLabs — Free tools and learning for everyone">
+<meta name="twitter:description" content="Free tools, labs and learning across every kind of technology. No account, no paywall.">
 <meta name="twitter:image" content="https://eknathalabs.com/og-image.png">
 
-<!-- Inline SVG favicon — terminal prompt, zero external dependency -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23060a0e'/%3E%3Cpath d='M16 20l12 12-12 12' fill='none' stroke='%233fb950' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='34' y1='44' x2='48' y2='44' stroke='%233fb950' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/poppins-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://eknathalabs.com/#website",
+      "url": "https://eknathalabs.com/",
+      "name": "EknathaLabs",
+      "description": "Free tools, labs and learning across every kind of technology.",
+      "inLanguage": [
+        "en",
+        "hi",
+        "te",
+        "kn",
+        "ta",
+        "ml"
+      ],
+      "publisher": {
+        "@id": "https://eknathalabs.com/#org"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://eknathalabs.com/#org",
+      "name": "EknathaLabs",
+      "alternateName": "ప్రయోగశాల",
+      "url": "https://eknathalabs.com/",
+      "logo": "https://eknathalabs.com/icon-512.png",
+      "founder": {
+        "@type": "Person",
+        "name": "Eknatha Reddy Puli"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/eknathareddypuli"
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "name": "Free EknathaLabs tools",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "MARGA",
+            "url": "https://marga.eknathalabs.com/",
+            "description": "Structured learning paths. Marga means \"path\": curated roadmaps for cloud, DevOps and SRE, from first steps to job-ready skills.",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "Any (web browser)",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Linux for DevOps",
+            "url": "https://linux.eknathalabs.com/",
+            "description": "25 hands-on practice labs plus LFCS-style quiz questions and inline tutorials.",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "Any (web browser)",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Docker Lab",
+            "url": "https://docker.eknathalabs.com/",
+            "description": "Containers from first principles to production: Compose, networking, volumes, multi-stage builds and hardening.",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "Any (web browser)",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Certifications Hub",
+            "url": "https://certs.eknathalabs.com/",
+            "description": "Roadmaps for CKA, CKS, AWS, Azure and Terraform with exam objectives and study plans.",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "Any (web browser)",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Resumelytics",
+            "url": "https://resumelytics.eknathalabs.com/",
+            "description": "ATS resume analyzer: keyword analysis, format scoring and targeted improvements.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Any (web browser)",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "InterviewHub",
+            "url": "https://interviewhub.eknathalabs.com/",
+            "description": "Deep guides with interview and flashcard modes across Kubernetes, Terraform, Linux, CI/CD and cloud.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Any (web browser)",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Linux Command Explainer",
+            "url": "https://linux-command-explainer.eknathalabs.com/",
+            "description": "About 200 commands in plain English, with a pipe-chain visualiser, regex decoder and pre-run danger checklist.",
+            "applicationCategory": "ReferenceApplication",
+            "operatingSystem": "Any (web browser)",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Database Encyclopedia",
+            "url": "https://db.eknathalabs.com/",
+            "description": "16 sections on SQL, NoSQL, indexing, transactions and scaling, with interactive tools and quizzes.",
+            "applicationCategory": "ReferenceApplication",
+            "operatingSystem": "Any (web browser)",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Patram",
+            "url": "https://patram.eknathalabs.com/",
+            "description": "Merge, split, compress, convert and reorder PDFs. Nothing is uploaded.",
+            "applicationCategory": "UtilitiesApplication",
+            "operatingSystem": "Any (web browser)",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Bimba",
+            "url": "https://bimba.eknathalabs.com/",
+            "description": "Resize, compress, convert, crop and edit images. No uploads.",
+            "applicationCategory": "UtilitiesApplication",
+            "operatingSystem": "Any (web browser)",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 <style>
-  :root {
-    --bg: #060a0e;
-    --bg2: #0b1017;
-    --bg3: #131920;
-    --bg4: #1c2330;
-    --border: rgba(255,255,255,0.06);
-    --border2: rgba(255,255,255,0.12);
-    --border3: rgba(255,255,255,0.2);
-    --text: #dde6f0;
-    --text2: #8b949e;
-    --text3: #55616e;
-    --green: #3fb950;
-    --green-bright: #5edb70;
-    --green-dim: #0f2a18;
-    --green-mid: #1a4126;
-    --cyan: #58a6ff;
-    --cyan-dim: #0a1f3a;
-    --amber: #d29922;
-    --amber-dim: #2e2000;
-    --red: #f85149;
-    --purple: #bc8cff;
-    --purple-dim: #211640;
-    --font-head: 'Syne', sans-serif;
-    --font-body: 'DM Sans', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-    --radius: 10px;
-    --radius-lg: 14px;
-    --radius-xl: 20px;
-    --glow-green: 0 0 60px rgba(63,185,80,0.1), 0 0 120px rgba(63,185,80,0.04);
-    --glow-cyan: 0 0 60px rgba(88,166,255,0.1);
-    --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* Grid overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
-    background-size: 48px 48px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Ambient glow blobs */
-  .ambient {
-    position: fixed;
-    pointer-events: none;
-    z-index: 0;
-    border-radius: 50%;
-    filter: blur(100px);
-    opacity: 0.35;
-  }
-  .ambient-1 {
-    width: 700px; height: 500px;
-    top: -100px; right: -200px;
-    background: radial-gradient(circle, rgba(63,185,80,0.12), transparent 70%);
-  }
-  .ambient-2 {
-    width: 500px; height: 400px;
-    bottom: 30%; left: -150px;
-    background: radial-gradient(circle, rgba(88,166,255,0.08), transparent 70%);
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 200;
-    padding: 0 2rem;
-    height: 62px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
-    border-bottom: 1px solid transparent;
-  }
-
-  nav.scrolled {
-    background: rgba(6,10,14,0.92);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-bottom-color: var(--border);
-    box-shadow: 0 4px 32px rgba(0,0,0,0.3);
-  }
-
-  .nav-logo {
-    font-family: var(--font-head);
-    font-weight: 800;
-    font-size: 1.05rem;
-    color: var(--text);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    letter-spacing: -0.01em;
-  }
-
-  .logo-badge {
-    background: var(--green);
-    color: #000;
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    font-weight: 700;
-    padding: 2px 7px;
-    border-radius: 4px;
-    letter-spacing: 0.08em;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--text2);
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 400;
-    transition: color var(--transition);
-    position: relative;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px; left: 0; right: 0;
-    height: 1px;
-    background: var(--green);
-    transform: scaleX(0);
-    transition: transform var(--transition);
-    transform-origin: left;
-  }
-  .nav-links a:hover { color: var(--text); }
-  .nav-links a:hover::after { transform: scaleX(1); }
-  .nav-links a.active { color: var(--green); }
-  .nav-links a.active::after { transform: scaleX(1); }
-
-  .nav-cta {
-    background: var(--green) !important;
-    color: #000 !important;
-    font-weight: 600 !important;
-    padding: 7px 18px !important;
-    border-radius: 7px;
-    font-size: 0.83rem !important;
-    transition: all var(--transition) !important;
-    letter-spacing: 0.01em;
-  }
-  .nav-cta::after { display: none !important; }
-  .nav-cta:hover { background: var(--green-bright) !important; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(63,185,80,0.35) !important; }
-
-  /* Mobile hamburger */
-  .hamburger {
-    display: none;
-    background: none;
-    border: 1px solid var(--border2);
-    border-radius: 8px;
-    padding: 8px;
-    cursor: pointer;
-    flex-direction: column;
-    gap: 4px;
-    transition: border-color var(--transition);
-  }
-  .hamburger:hover { border-color: var(--border3); }
-  .hamburger span {
-    display: block;
-    width: 18px; height: 2px;
-    background: var(--text2);
-    border-radius: 1px;
-    transition: all 0.3s;
-  }
-  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    top: 62px; left: 0; right: 0;
-    background: rgba(6,10,14,0.97);
-    backdrop-filter: blur(24px);
-    border-bottom: 1px solid var(--border);
-    padding: 1.5rem 2rem;
-    z-index: 199;
-    flex-direction: column;
-    gap: 0;
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    color: var(--text2);
-    text-decoration: none;
-    font-size: 1rem;
-    padding: 0.85rem 0;
-    border-bottom: 1px solid var(--border);
-    transition: color var(--transition);
-  }
-  .mobile-menu a:hover { color: var(--text); }
-  .mobile-menu a:last-child { border-bottom: none; color: var(--green); font-weight: 500; }
-
-  /* ── LAYOUT ── */
-  section { position: relative; z-index: 1; }
-
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
-  /* ── SCROLL ANIMATIONS ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1);
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-  .reveal-delay-4 { transition-delay: 0.4s; }
-  .reveal-delay-5 { transition-delay: 0.5s; }
-  .reveal-delay-6 { transition-delay: 0.6s; }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 110px 2rem 80px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-    width: 100%;
-  }
-
-  .hero-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--green);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 1.4rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    opacity: 0;
-    animation: heroIn 0.8s 0.2s cubic-bezier(0.4,0,0.2,1) forwards;
-  }
-  .hero-eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 28px; height: 1px;
-    background: var(--green);
-  }
-
-  h1 {
-    font-family: var(--font-head);
-    font-size: clamp(2.6rem, 5vw, 3.9rem);
-    font-weight: 800;
-    line-height: 1.06;
-    letter-spacing: -0.025em;
-    margin-bottom: 1.5rem;
-    color: #fff;
-    opacity: 0;
-    animation: heroIn 0.8s 0.35s cubic-bezier(0.4,0,0.2,1) forwards;
-  }
-  h1 em {
-    font-style: normal;
-    color: var(--green);
-  }
-
-  .hero-sub {
-    font-size: 1.02rem;
-    color: var(--text2);
-    max-width: 500px;
-    margin-bottom: 2.5rem;
-    line-height: 1.85;
-    opacity: 0;
-    animation: heroIn 0.8s 0.5s cubic-bezier(0.4,0,0.2,1) forwards;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: heroIn 0.8s 0.65s cubic-bezier(0.4,0,0.2,1) forwards;
-  }
-
-  @keyframes heroIn {
-    to { opacity: 1; transform: none; }
-    from { opacity: 0; transform: translateY(20px); }
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 2.5rem;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
-    opacity: 0;
-    animation: heroIn 0.8s 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
-  }
-
-  .stat-item { text-align: left; }
-  .stat-num {
-    font-family: var(--font-head);
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #fff;
-    display: block;
-    line-height: 1.1;
-  }
-  .stat-label {
-    font-size: 0.72rem;
-    color: var(--text3);
-    font-family: var(--font-mono);
-    letter-spacing: 0.06em;
-    margin-top: 2px;
-  }
-
-  /* Highlighted visitor-count stat */
-  .stat-item.stat-visitors {
-    position: relative;
-    padding: 0.5rem 1.1rem;
-    margin: -0.5rem 0 -0.5rem 0;
-    border: 1px solid rgba(63,185,80,0.4);
-    border-radius: var(--radius);
-    background: var(--green-dim);
-    box-shadow: var(--glow-green);
-  }
-  .stat-item.stat-visitors .stat-num {
-    color: var(--green-bright);
-    font-variant-numeric: tabular-nums;
-  }
-  .stat-item.stat-visitors .stat-label { color: var(--green); }
-  .stat-item.stat-visitors .stat-num.is-loading {
-    color: var(--text3);
-    font-size: 1.2rem;
-    letter-spacing: 0.1em;
-  }
-  @keyframes visitorPop {
-    0% { transform: scale(0.96); opacity: 0.4; }
-    60% { transform: scale(1.04); }
-    100% { transform: scale(1); opacity: 1; }
-  }
-  .stat-item.stat-visitors .stat-num.counted { animation: visitorPop 0.5s cubic-bezier(0.4,0,0.2,1); }
-
-  /* ── TERMINAL ── */
-  .terminal-wrap {
-    opacity: 0;
-    animation: heroIn 0.9s 0.45s cubic-bezier(0.4,0,0.2,1) forwards;
-  }
-
-  .terminal {
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    box-shadow: var(--glow-green), 0 32px 80px rgba(0,0,0,0.5);
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    position: relative;
-  }
-
-  .terminal::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(63,185,80,0.4), transparent);
-  }
-
-  .terminal-bar {
-    background: var(--bg3);
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .dot { width: 11px; height: 11px; border-radius: 50%; }
-  .dot-r { background: #ff5f57; }
-  .dot-y { background: #febc2e; }
-  .dot-g { background: #28c840; }
-
-  .terminal-title {
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 0.7rem;
-    color: var(--text3);
-    transform: translateX(-22px);
-    letter-spacing: 0.04em;
-  }
-
-  .terminal-body {
-    padding: 20px 22px;
-    min-height: 340px;
-  }
-
-  .t-line { line-height: 2; }
-  .t-prompt { color: var(--green); }
-  .t-comment { color: var(--text3); }
-  .t-label { color: var(--cyan); }
-  .t-ok { color: var(--green); font-weight: 500; }
-  .t-build { color: var(--amber); }
-  .t-plan { color: var(--text3); }
-  .t-blank { display: block; height: 6px; }
-
-  .t-cursor {
-    display: inline-block;
-    width: 7px; height: 15px;
-    background: var(--green);
-    animation: blink 1.1s step-end infinite;
-    vertical-align: middle;
-    margin-left: 2px;
-    border-radius: 1px;
-  }
-  @keyframes blink { 50% { opacity: 0; } }
-
-  /* Typing animation */
-  .t-typed {
-    overflow: hidden;
-    white-space: nowrap;
-    width: 0;
-    display: inline-block;
-    animation: type 1.2s steps(30) 1.2s forwards;
-  }
-  @keyframes type { to { width: 100%; } }
-
-  /* ── BUTTONS ── */
-  .btn-primary {
-    background: var(--green);
-    color: #000;
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 12px 26px;
-    border-radius: var(--radius);
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: all var(--transition);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    letter-spacing: 0.01em;
-  }
-  .btn-primary:hover {
-    background: var(--green-bright);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 28px rgba(63,185,80,0.35);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 0.9rem;
-    padding: 11px 26px;
-    border-radius: var(--radius);
-    border: 1px solid var(--border2);
-    text-decoration: none;
-    cursor: pointer;
-    transition: all var(--transition);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .btn-ghost:hover {
-    border-color: var(--border3);
-    background: var(--bg3);
-    transform: translateY(-2px);
-  }
-
-  /* ── SECTION HEADERS ── */
-  .section-head { margin-bottom: 3.5rem; }
-
-  .section-tag {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--green);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .section-tag::before {
-    content: '';
-    display: inline-block;
-    width: 18px; height: 1px;
-    background: var(--green);
-  }
-
-  h2 {
-    font-family: var(--font-head);
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.12;
-    letter-spacing: -0.015em;
-    margin-bottom: 0.75rem;
-  }
-
-  .section-sub {
-    color: var(--text2);
-    font-size: 1rem;
-    max-width: 560px;
-    line-height: 1.7;
-  }
-
-  /* ── TOOLS SECTION ── */
-  .tools-section {
-    padding: 90px 2rem;
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    position: relative;
-  }
-  .tools-section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 1px; height: 60px;
-    background: linear-gradient(to bottom, var(--green), transparent);
-  }
-
-  .tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-    gap: 1.2rem;
-  }
-
-  .tool-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    transition: all var(--transition);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .tool-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: var(--radius-lg);
-    opacity: 0;
-    transition: opacity var(--transition);
-  }
-
-  .tool-card:hover {
-    border-color: var(--border2);
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.35);
-  }
-  .tool-card:hover::before { opacity: 1; }
-
-  .tool-card.live::before {
-    background: radial-gradient(circle at top left, rgba(63,185,80,0.06), transparent 65%);
-  }
-  .tool-card.building::before {
-    background: radial-gradient(circle at top left, rgba(210,153,34,0.06), transparent 65%);
-  }
-
-  .tool-card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  .tool-icon {
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    flex-shrink: 0;
-  }
-  .tool-icon.green { background: var(--green-dim); border: 1px solid rgba(63,185,80,0.15); }
-  .tool-icon.amber { background: var(--amber-dim); border: 1px solid rgba(210,153,34,0.15); }
-  .tool-icon.cyan  { background: var(--cyan-dim); border: 1px solid rgba(88,166,255,0.15); }
-  .tool-icon.purple { background: var(--purple-dim); border: 1px solid rgba(188,140,255,0.15); }
-
-  .status-badge {
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-  .badge-live {
-    background: var(--green-dim);
-    color: var(--green);
-    border: 1px solid rgba(63,185,80,0.3);
-  }
-  .badge-live::before { content: '● '; font-size: 0.5rem; vertical-align: middle; }
-  .badge-build {
-    background: var(--amber-dim);
-    color: var(--amber);
-    border: 1px solid rgba(210,153,34,0.3);
-  }
-
-  .tool-name {
-    font-family: var(--font-head);
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-  }
-  .tool-desc {
-    font-size: 0.875rem;
-    color: var(--text2);
-    line-height: 1.65;
-    flex: 1;
-  }
-  .tool-tags {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-  .tag {
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    color: var(--text3);
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    padding: 2px 8px;
-    border-radius: 4px;
-    transition: color var(--transition), border-color var(--transition);
-  }
-  .tool-card:hover .tag {
-    color: var(--text2);
-    border-color: var(--border2);
-  }
-  .tool-link {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--cyan);
-    opacity: 0.7;
-    transition: opacity var(--transition);
-  }
-  .tool-card:hover .tool-link { opacity: 1; }
-
-  /* ── LABS SECTION ── */
-  .labs-section { padding: 90px 2rem; }
-
-  .labs-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
-  }
-
-  .lab-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.4rem 1.6rem;
-    display: flex;
-    gap: 1.1rem;
-    align-items: flex-start;
-    text-decoration: none;
-    color: inherit;
-    transition: all var(--transition);
-    position: relative;
-    overflow: hidden;
-  }
-  .lab-card::after {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 2px;
-    background: var(--amber);
-    transform: scaleY(0);
-    transform-origin: bottom;
-    transition: transform var(--transition);
-  }
-  .lab-card:hover {
-    border-color: var(--border2);
-    background: var(--bg3);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-  }
-  .lab-card:hover::after { transform: scaleY(1); }
-
-  .lab-num {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    color: var(--text3);
-    min-width: 22px;
-    padding-top: 4px;
-  }
-  .lab-info { flex: 1; }
-  .lab-name {
-    font-family: var(--font-head);
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 5px;
-  }
-  .lab-url {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    color: var(--cyan);
-    opacity: 0.6;
-    transition: opacity var(--transition);
-  }
-  .lab-card:hover .lab-url { opacity: 1; }
-  .lab-desc {
-    font-size: 0.83rem;
-    color: var(--text2);
-    margin-top: 7px;
-    line-height: 1.6;
-  }
-  .lab-status {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-top: 8px;
-    display: inline-block;
-    letter-spacing: 0.06em;
-  }
-
-  /* ── RESOURCES ── */
-  .resources-section { padding: 90px 2rem; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-  .resources-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-  }
-
-  .resource-card {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    padding: 2.2rem;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    transition: all var(--transition);
-    position: relative;
-    overflow: hidden;
-  }
-  .resource-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    border-radius: var(--radius-xl);
-    background: radial-gradient(ellipse at top left, rgba(63,185,80,0.06), transparent 60%);
-    transition: opacity var(--transition);
-  }
-  .resource-card:hover {
-    border-color: var(--border2);
-    transform: translateY(-4px);
-    box-shadow: 0 16px 56px rgba(0,0,0,0.35);
-  }
-  .resource-card:hover::before { opacity: 1; }
-
-  .resource-card .big-icon { font-size: 2.5rem; line-height: 1; }
-  .resource-card h3 {
-    font-family: var(--font-head);
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #fff;
-  }
-  .resource-card p {
-    font-size: 0.88rem;
-    color: var(--text2);
-    line-height: 1.75;
-    flex: 1;
-  }
-  .resource-card .go {
-    font-family: var(--font-mono);
-    font-size: 0.73rem;
-    color: var(--cyan);
-    margin-top: auto;
-    transition: gap var(--transition);
-  }
-
-  /* ── ABOUT ── */
-  .about-section {
-    padding: 90px 2rem;
-  }
-  .about-inner {
-    display: grid;
-    grid-template-columns: 1fr 1.65fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .cert-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 1.5rem;
-  }
-  .cert {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    padding: 5px 12px;
-    border-radius: 6px;
-    border: 1px solid var(--border2);
-    color: var(--text2);
-    transition: all var(--transition);
-  }
-  .cert:hover { border-color: var(--border3); color: var(--text); }
-  .cert.highlight {
-    border-color: rgba(63,185,80,0.4);
-    color: var(--green);
-    background: var(--green-dim);
-  }
-
-  .about-stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-  .about-stat {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1rem 1.2rem;
-    transition: border-color var(--transition);
-  }
-  .about-stat:hover { border-color: var(--border2); }
-  .about-stat .num {
-    font-family: var(--font-head);
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: #fff;
-    display: block;
-    line-height: 1.1;
-  }
-  .about-stat .lbl {
-    font-size: 0.74rem;
-    color: var(--text3);
-    font-family: var(--font-mono);
-    margin-top: 3px;
-  }
-
-  .about-text p {
-    color: var(--text2);
-    margin-bottom: 1.25rem;
-    font-size: 0.97rem;
-    line-height: 1.9;
-  }
-  .about-text strong { color: var(--text); font-weight: 500; }
-
-  /* ── COMING SOON ── */
-  .coming-section {
-    padding: 90px 2rem;
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .coming-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-    gap: 1rem;
-  }
-  .coming-card {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.6rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    opacity: 0.7;
-    transition: all var(--transition);
-  }
-  .coming-card:hover { opacity: 1; border-color: var(--border2); transform: translateY(-2px); }
-  .coming-card .c-icon { font-size: 1.6rem; line-height: 1; margin-bottom: 0.2rem; }
-  .coming-card h3 {
-    font-family: var(--font-head);
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #fff;
-  }
-  .coming-card p {
-    font-size: 0.83rem;
-    color: var(--text2);
-    line-height: 1.65;
-  }
-  .coming-status {
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    color: var(--text3);
-    border: 1px solid var(--border);
-    padding: 2px 8px;
-    border-radius: 4px;
-    display: inline-block;
-    margin-top: 0.4rem;
-    width: fit-content;
-    letter-spacing: 0.06em;
-  }
-  a.coming-card { text-decoration: none; color: inherit; opacity: 0.85; }
-  a.coming-card:hover { opacity: 1; }
-  .coming-card.linked { border-color: rgba(63,185,80,0.18); }
-  .coming-status.live {
-    color: var(--green);
-    border-color: rgba(63,185,80,0.3);
-    background: var(--green-dim);
-  }
-  .coming-status.live::before { content: '● '; font-size: 0.5rem; vertical-align: middle; }
-
-  /* ── CTA ── */
-  .cta-section {
-    padding: 90px 2rem;
-    text-align: center;
-    background: var(--bg);
-    position: relative;
-    overflow: hidden;
-  }
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 800px 400px at center, rgba(63,185,80,0.07), transparent 70%);
-    pointer-events: none;
-  }
-
-  .cta-glow {
-    position: relative;
-    display: inline-block;
-    background: linear-gradient(135deg, rgba(63,185,80,0.06), transparent 60%);
-    padding: 4.5rem 3.5rem;
-    border-radius: 28px;
-    border: 1px solid rgba(63,185,80,0.15);
-    max-width: 620px;
-    backdrop-filter: blur(8px);
-  }
-  .cta-glow::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: 20%; right: 20%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(63,185,80,0.5), transparent);
-  }
-
-  .cta-section h2 { margin-bottom: 1rem; }
-  .cta-section p {
-    color: var(--text2);
-    max-width: 440px;
-    margin: 0 auto 2rem;
-    font-size: 0.95rem;
-    line-height: 1.75;
-  }
-
-  .cta-note {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    color: var(--text3);
-    margin-top: 1.25rem;
-    letter-spacing: 0.02em;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-    padding: 4rem 2rem 2.5rem;
-    position: relative;
-    z-index: 1;
-  }
-  .footer-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 3rem;
-  }
-  .footer-brand {
-    font-family: var(--font-head);
-    font-weight: 800;
-    font-size: 1.1rem;
-    color: #fff;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.01em;
-  }
-  .footer-tagline {
-    font-size: 0.82rem;
-    color: var(--text3);
-    line-height: 1.75;
-    margin-bottom: 1.5rem;
-  }
-  .footer-social { display: flex; gap: 0.6rem; }
-  .social-btn {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text2);
-    border: 1px solid var(--border2);
-    padding: 5px 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: all var(--transition);
-  }
-  .social-btn:hover { color: #fff; border-color: var(--border3); background: var(--bg3); }
-
-  .footer-col h4 {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text3);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 1.1rem;
-  }
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
-  .footer-col a {
-    font-size: 0.84rem;
-    color: var(--text2);
-    text-decoration: none;
-    transition: color var(--transition);
-  }
-  .footer-col a:hover { color: var(--text); }
-
-  .footer-bottom {
-    max-width: 1100px;
-    margin: 2.5rem auto 0;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .footer-copy {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text3);
-  }
-  .footer-copy a { color: var(--green); text-decoration: none; }
-  .footer-copy a:hover { text-decoration: underline; }
-
-  /* Section divider */
-  .section-divider {
-    width: 100%; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border), transparent);
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    nav { padding: 0 1.25rem; }
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
-
-    .hero { padding: 90px 1.25rem 60px; min-height: auto; }
-    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
-    h1 { font-size: 2.2rem; }
-    .hero-stats { gap: 1.5rem; }
-
-    .tools-section, .labs-section, .resources-section,
-    .about-section, .coming-section, .cta-section { padding: 70px 1.25rem; }
-
-    .tools-grid, .labs-list, .coming-grid { grid-template-columns: 1fr; }
-    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .resources-grid { grid-template-columns: 1fr; }
-    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-    .cta-glow { padding: 2.5rem 1.5rem; }
-    .container { padding: 0 1.25rem; }
-  }
-
-  @media (max-width: 480px) {
-    .footer-inner { grid-template-columns: 1fr; }
-    .about-stats-grid { grid-template-columns: 1fr 1fr; }
-  }
+/* ───────── Fonts (self-hosted, no third-party requests) ───────── */
+@font-face{font-family:'Poppins';font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/poppins-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:500;font-style:normal;font-display:swap;src:url(assets/fonts/poppins-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:600;font-style:normal;font-display:swap;src:url(assets/fonts/poppins-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:700;font-style:normal;font-display:swap;src:url(assets/fonts/poppins-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:800;font-style:normal;font-display:swap;src:url(assets/fonts/poppins-latin-800-normal.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/jetbrains-mono-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:500;font-style:normal;font-display:swap;src:url(assets/fonts/jetbrains-mono-latin-500-normal.woff2) format('woff2')}
+/* Indic scripts: unicode-range means a visitor only downloads the script they actually read */
+@font-face{font-family:'Noto Sans Telugu';font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/noto-sans-telugu-telugu-400-normal.woff2) format('woff2');unicode-range:U+0C00-0C7F}
+@font-face{font-family:'Noto Sans Telugu';font-weight:700;font-style:normal;font-display:swap;src:url(assets/fonts/noto-sans-telugu-telugu-700-normal.woff2) format('woff2');unicode-range:U+0C00-0C7F}
+@font-face{font-family:'Noto Sans Devanagari';font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/noto-sans-devanagari-devanagari-400-normal.woff2) format('woff2');unicode-range:U+0900-097F,U+A8E0-A8FF}
+@font-face{font-family:'Noto Sans Devanagari';font-weight:700;font-style:normal;font-display:swap;src:url(assets/fonts/noto-sans-devanagari-devanagari-700-normal.woff2) format('woff2');unicode-range:U+0900-097F,U+A8E0-A8FF}
+@font-face{font-family:'Noto Sans Kannada';font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/noto-sans-kannada-kannada-400-normal.woff2) format('woff2');unicode-range:U+0C80-0CFF}
+@font-face{font-family:'Noto Sans Kannada';font-weight:700;font-style:normal;font-display:swap;src:url(assets/fonts/noto-sans-kannada-kannada-700-normal.woff2) format('woff2');unicode-range:U+0C80-0CFF}
+@font-face{font-family:'Noto Sans Tamil';font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/noto-sans-tamil-tamil-400-normal.woff2) format('woff2');unicode-range:U+0B80-0BFF}
+@font-face{font-family:'Noto Sans Tamil';font-weight:700;font-style:normal;font-display:swap;src:url(assets/fonts/noto-sans-tamil-tamil-700-normal.woff2) format('woff2');unicode-range:U+0B80-0BFF}
+@font-face{font-family:'Noto Sans Malayalam';font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/noto-sans-malayalam-malayalam-400-normal.woff2) format('woff2');unicode-range:U+0D00-0D7F,U+200C-200D}
+@font-face{font-family:'Noto Sans Malayalam';font-weight:700;font-style:normal;font-display:swap;src:url(assets/fonts/noto-sans-malayalam-malayalam-700-normal.woff2) format('woff2');unicode-range:U+0D00-0D7F,U+200C-200D}
+
+/* ───────── Tokens ───────── */
+:root{
+  --ink:#1c1b4b;
+  --ink-2:#14133a;
+  --cream:#fff9ee;
+  --paper:#fffdf7;
+  --sand:#eadfc8;
+  --gold:#ffb400;
+  --gold-soft:#ffd36b;
+  --vermilion:#e63e2d;
+  --red-text:#b4231a;
+  --muted:#4a4880;
+  --on-ink:#d8d7f5;
+  --charcoal:#2b2d31;
+  --charcoal-2:#3a3d44;
+  --indic:'Noto Sans Devanagari','Noto Sans Telugu','Noto Sans Kannada','Noto Sans Tamil','Noto Sans Malayalam';
+  --font:'Poppins',var(--indic),system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'JetBrains Mono',var(--indic),ui-monospace,SFMono-Regular,Menlo,monospace;
+  --te:'Noto Sans Telugu','Poppins',sans-serif;
+  --shadow:6px 6px 0 var(--ink);
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:6px}
+.on-dark :focus-visible{outline-color:var(--gold)}
+.skip{position:absolute;left:12px;top:-60px;z-index:300;background:var(--gold);color:var(--ink);font-weight:700;padding:10px 18px;border-radius:10px;border:2px solid var(--ink)}
+.skip:focus{top:12px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,32px)}
+.te{font-family:var(--te);font-weight:700}
+
+/* ───────── Buttons ───────── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 26px;border-radius:999px;border:2px solid var(--ink);font-weight:700;font-size:15px;line-height:1.2;cursor:pointer;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease)}
+.btn-gold{background:var(--gold);color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.btn-gold:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn-ink{background:var(--ink);color:var(--cream);box-shadow:4px 4px 0 rgba(28,27,75,.35)}
+.btn-ink:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgba(28,27,75,.35)}
+.on-dark .btn-gold{border-color:var(--cream);box-shadow:4px 4px 0 var(--cream)}
+.on-dark .btn-gold:hover{box-shadow:6px 6px 0 var(--cream)}
+.btn-line{background:transparent;color:var(--cream);border-color:var(--cream)}
+.btn-line:hover{background:rgba(255,249,238,.12)}
+
+/* ───────── Header ───────── */
+.site-top{background:var(--ink);color:var(--cream)}
+.nav{position:sticky;top:0;z-index:200;background:var(--ink);border-bottom:1px solid rgba(255,249,238,.14)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.01em;color:var(--cream)}
+.brand svg{flex:0 0 auto}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{padding:8px 14px;border-radius:999px;font-size:15px;font-weight:500;color:var(--on-ink);transition:background .2s var(--ease),color .2s var(--ease)}
+.nav-links a:hover{background:rgba(255,249,238,.1);color:#fff}
+.nav-links a[aria-current="true"]{color:var(--gold)}
+.nav-links .nav-cta{margin-left:8px;background:var(--gold);color:var(--ink);font-weight:700;padding:9px 20px}
+.nav-links .nav-cta:hover{background:var(--gold-soft);color:var(--ink)}
+.nav-tools{display:flex;align-items:center;gap:10px}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.lang{position:relative;display:none}
+.js .lang{display:block}
+.lang-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px 0 12px;border:2px solid rgba(255,249,238,.5);border-radius:999px;background:transparent;color:var(--cream);cursor:pointer;font-family:var(--mono);font-size:13px;font-weight:500;line-height:1}
+.lang-btn:hover,.lang-btn[aria-expanded="true"]{background:rgba(255,249,238,.12);border-color:var(--cream)}
+.lang-list{position:absolute;right:0;top:calc(100% + 10px);z-index:400;min-width:210px;padding:8px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);border-radius:16px;box-shadow:6px 6px 0 var(--gold)}
+.lang-list[hidden]{display:none}
+.lang-list button{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;min-height:44px;padding:8px 12px;border:0;border-radius:10px;background:transparent;color:var(--ink);font-family:var(--font);font-size:16px;font-weight:500;line-height:1.3;text-align:left;cursor:pointer}
+.lang-list button:hover{background:rgba(28,27,75,.08)}
+.lang-list button[aria-current="true"]{background:var(--ink);color:var(--cream)}
+.lang-list button[aria-current="true"]::after{content:'';width:9px;height:9px;border-radius:50%;background:var(--gold);flex:none}
+.lang-list .code{font-family:var(--mono);font-size:11px;letter-spacing:.06em;opacity:.7;margin-left:auto;order:2}
+.lang-list button[aria-current="true"] .code{opacity:.85}
+.burger{display:none;width:48px;height:48px;border:2px solid rgba(255,249,238,.5);border-radius:12px;background:transparent;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.burger span{display:block;width:20px;height:2px;background:var(--cream);border-radius:2px;transition:transform .25s var(--ease),opacity .2s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.menu{display:none;background:var(--ink);border-top:1px solid rgba(255,249,238,.14);padding:12px clamp(20px,4vw,32px) 24px}
+.menu a{display:block;padding:14px 4px;border-bottom:1px solid rgba(255,249,238,.12);font-weight:600;color:var(--cream)}
+.menu a:last-child{border:0;color:var(--gold)}
+.menu.open{display:block}
+.i18n-pending .hero,.i18n-pending main,.i18n-pending .site-foot{visibility:hidden}
+
+/* ───────── Hero ───────── */
+.hero{padding:clamp(40px,7vw,72px) 0 clamp(72px,9vw,112px)}
+.hero-grid{display:flex;flex-wrap:wrap;gap:48px;align-items:center;justify-content:space-between}
+.hero-copy{flex:1 1 500px;min-width:0}
+.eyebrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:22px}
+.eyebrow .te{font-size:26px;line-height:1.2;color:var(--gold)}
+.pill{display:inline-block;padding:5px 14px;border-radius:999px;background:#7be0ad;color:var(--ink);font-weight:700;font-size:13px;border:2px solid var(--cream)}
+h1{font-size:clamp(2.6rem,6.4vw,4.7rem);line-height:1.02;letter-spacing:-.035em;font-weight:800;color:#fff}
+h1 em{font-style:normal;color:var(--gold)}
+.lede{margin-top:22px;max-width:540px;font-size:clamp(1.05rem,2vw,1.2rem);color:var(--on-ink)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:34px}
+.stats{display:flex;flex-wrap:wrap;gap:12px 36px;margin-top:44px;padding-top:26px;border-top:1px solid rgba(255,249,238,.2)}
+.stat b{display:block;font-size:1.9rem;line-height:1.1;font-weight:800;color:#fff;font-variant-numeric:tabular-nums}
+.stat span{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--on-ink)}
+.hero-art{flex:1 1 380px;display:flex;justify-content:center;min-width:0}
+.hero-art svg{width:100%;max-width:470px;height:auto}
+.stripe{height:14px;background:repeating-linear-gradient(90deg,var(--gold) 0 28px,var(--vermilion) 28px 56px,var(--ink) 56px 84px)}
+
+/* ───────── Section basics ───────── */
+.section{padding:clamp(64px,8vw,96px) 0}
+.kicker{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--red-text);margin-bottom:12px}
+h2{font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.08;letter-spacing:-.03em;font-weight:800}
+.sub{margin-top:14px;max-width:600px;font-size:1.1rem;color:var(--muted)}
+
+/* ───────── Metro tool lines ───────── */
+.lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,500px),1fr));gap:30px;margin-top:44px}
+.line{background:var(--paper);border:2px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+.line-head{background:var(--lc);color:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.line-head h3{font-size:1.35rem;font-weight:800;letter-spacing:-.02em}
+.line-head span{font-size:13px;font-weight:600;opacity:.95}
+.line-blurb{padding:16px 24px 0;color:var(--muted);font-size:15px}
+.stops{padding:10px 22px 22px}
+.stops li{position:relative}
+.stops li:not(:last-child)::after{content:'';position:absolute;left:16px;top:25px;height:100%;width:6px;border-radius:3px;background:var(--lc);z-index:0}
+.stop{position:relative;z-index:1;display:grid;grid-template-columns:22px 1fr 20px;gap:16px;align-items:start;padding:12px 8px;border-radius:14px}
+.dot{width:22px;height:22px;margin-top:3px;border-radius:50%;border:4px solid var(--ink);background:var(--paper);transition:background .2s var(--ease),transform .2s var(--ease)}
+.stop:hover .dot,.stop:focus-visible .dot{background:var(--lc);transform:scale(1.18)}
+.stop-name{display:block;font-weight:700;font-size:1.08rem;line-height:1.3;letter-spacing:-.01em}
+.stop:hover .stop-name{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.stop-desc{display:block;margin-top:2px;font-size:14.5px;color:var(--muted);line-height:1.55}
+.stop-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px}
+.host{font-family:var(--mono);font-size:12px;color:#5b5a8f}
+.chip{font-family:var(--mono);font-size:11px;font-weight:500;line-height:1;padding:4px 9px;border-radius:999px;border:1.5px solid var(--ink);background:var(--gold);color:var(--ink)}
+.arrow{margin-top:3px;color:var(--ink);transition:transform .2s var(--ease)}
+.stop:hover .arrow{transform:translate(3px,-3px)}
+
+/* ───────── Featured stop (MARGA inside the Learn line) ───────── */
+.stops li.feat{margin-bottom:6px}
+.stops li.feat .stop{background:#fff1c9;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:14px 14px 14px 8px;margin-bottom:8px}
+.stops li.feat .dot{background:var(--gold);width:22px;height:22px}
+.stops li.feat:not(:last-child)::after{left:18px;top:34px}
+.feat-badge{display:inline-flex;align-items:center;gap:6px;margin-bottom:6px;padding:4px 10px;border-radius:999px;background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:11px;font-weight:500;line-height:1.3}
+.feat-badge::before{content:'★';font-size:11px}
+.stops li.feat .stop-name{font-size:1.3rem;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.stops li.feat .stop-name .te{font-size:1.05rem;color:var(--lc)}
+.stops li.feat .stop-desc{color:var(--ink);font-size:15px}
+.stops li.feat .host{color:#4a4880}
+
+/* ───────── Why free ───────── */
+.free{background:var(--ink);color:var(--cream);position:relative}
+.free .kicker{color:var(--gold)}
+.free h2{color:#fff}
+.mission{margin-top:18px;max-width:760px;font-size:clamp(1.25rem,2.6vw,1.7rem);line-height:1.4;font-weight:600;letter-spacing:-.015em}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:34px;margin-top:52px}
+.step b{display:block;font-size:3.4rem;font-weight:800;line-height:1;color:var(--gold)}
+.step h3{margin:12px 0 8px;font-size:1.3rem;font-weight:700}
+.step p{color:var(--on-ink)}
+
+/* ───────── Workshop drawers ───────── */
+.hazard{height:16px;background:repeating-linear-gradient(135deg,var(--charcoal) 0 18px,var(--gold) 18px 36px)}
+.drawers{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:22px;margin-top:44px}
+.drawer{background:var(--charcoal);color:#f1f0ea;border:2px solid var(--ink);border-radius:14px;box-shadow:5px 5px 0 var(--ink);overflow:hidden;display:flex;flex-direction:column}
+.handle{display:flex;justify-content:center;padding:10px;background:var(--charcoal-2);border-bottom:2px solid var(--ink)}
+.handle i{display:block;width:84px;height:10px;border-radius:5px;background:var(--gold)}
+.drawer.planned .handle i{background:#8d909a}
+.drawer-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
+.drawer-tag{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--gold);text-transform:uppercase}
+.drawer.planned .drawer-tag{color:#c3c5cc}
+.drawer h3{font-size:1.25rem;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+.drawer p{font-size:14.5px;color:#d3d4cd}
+
+/* ───────── Request band ───────── */
+.request{background:var(--gold);color:var(--ink);border:2px solid var(--ink);border-radius:28px;box-shadow:8px 8px 0 var(--ink);padding:clamp(28px,5vw,52px);display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between}
+.request h2{font-size:clamp(1.7rem,3.4vw,2.4rem);max-width:640px}
+.request p{margin-top:10px;font-size:1.05rem;font-weight:500;max-width:560px}
+
+/* ───────── Footer ───────── */
+.site-foot{background:var(--ink-2);color:var(--on-ink);padding:64px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px}
+.foot-brand .te{display:block;font-size:1.7rem;color:var(--gold);line-height:1.2;margin-top:14px}
+.foot-brand p{margin-top:8px;max-width:340px;font-size:14.5px}
+.site-foot h4{font-size:12px;font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#fff;margin-bottom:14px;font-weight:500}
+.site-foot li{margin-bottom:8px;font-size:14.5px}
+.site-foot li a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:48px;padding-top:20px;border-top:1px solid rgba(255,249,238,.16);font-size:13.5px}
+
+/* ───────── Indic typography: no negative tracking, taller line boxes ───────── */
+html:not([lang="en"]) *{letter-spacing:0!important}
+html:not([lang="en"]) body{line-height:1.7}
+html:not([lang="en"]) h1{line-height:1.25;font-size:clamp(2.3rem,5.6vw,4.2rem)}
+html:not([lang="en"]) h2{line-height:1.3}
+html:not([lang="en"]) h3,html:not([lang="en"]) .stop-name{line-height:1.45}
+html:not([lang="en"]) .stop-desc,html:not([lang="en"]) .line-blurb,html:not([lang="en"]) .drawer p{line-height:1.7}
+html:not([lang="en"]) .kicker,html:not([lang="en"]) .drawer-tag,html:not([lang="en"]) .stat span{text-transform:none}
+html:not([lang="en"]) .nav-links a{font-size:14px;padding:8px 10px}
+html:not([lang="en"]) .btn{line-height:1.5}
+html:not([lang="en"]) .eyebrow .te{line-height:1.5}
+html:not([lang="en"]) h1{font-size:clamp(1.8rem,7vw,3.3rem)}
+html:not([lang="en"]) h2{font-size:clamp(1.55rem,6vw,2.7rem)}
+html:not([lang="en"]) .request h2{font-size:clamp(1.4rem,5.4vw,2.2rem)}
+html:not([lang="en"]) h1,html:not([lang="en"]) h2,html:not([lang="en"]) h3,html:not([lang="en"]) p,html:not([lang="en"]) .stop-name{overflow-wrap:break-word}
+.request>div,.hero-copy,.stop>span{min-width:0}
+
+/* ───────── Motion ───────── */
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ───────── Responsive ───────── */
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .burger{display:flex}
+}
+@media (max-width:900px){
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:380px){
+  .wrap{padding:0 16px}
+  .nav-in{gap:8px}
+  .brand{font-size:18px;gap:8px}
+  .brand svg{width:26px;height:26px}
+  .nav-tools{gap:8px}
+  .lang-btn{padding:0 10px 0 9px;gap:6px}
+  .burger{width:44px;height:44px}
+  .menu{padding-left:16px;padding-right:16px}
+}
+@media (max-width:560px){
+  .foot-grid{grid-template-columns:1fr}
+  .lines{gap:24px}
+  .line{box-shadow:4px 4px 0 var(--ink)}
+  .request{box-shadow:5px 5px 0 var(--ink)}
+  .stops li.feat .stop{box-shadow:3px 3px 0 var(--ink)}
+  .btn{width:100%}
+  .hero-actions{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1!important;transform:none!important}
+}
 </style>
+<noscript><style>.lang{display:none}.burger{display:none}.nav-links{display:flex!important;flex-wrap:wrap}.nav-in{height:auto;padding:10px 0}</style></noscript>
+<script>
+document.documentElement.classList.add('js');
+(function () {
+  var h = document.documentElement, L = ['en', 'hi', 'te', 'kn', 'ta', 'ml'], c = null, i;
+  try { var q = /[?&]lang=([a-z]{2})/.exec(location.search); if (q && L.indexOf(q[1]) > -1) c = q[1]; } catch (e) {}
+  try { if (!c) { var s = localStorage.getItem('el-lang'); if (s && L.indexOf(s) > -1) c = s; } } catch (e) {}
+  if (!c) {
+    var n = navigator.languages || [navigator.language || ''];
+    for (i = 0; i < n.length; i++) { var p = String(n[i]).slice(0, 2).toLowerCase(); if (L.indexOf(p) > -1) { c = p; break; } }
+  }
+  c = c || 'en';
+  window.__boot = { code: c };
+  if (c !== 'en' && window.fetch) {
+    h.lang = c; h.classList.add('i18n-pending');
+    window.__boot.p = fetch('assets/i18n/' + c + '.json').then(function (r) { if (!r.ok) throw 0; return r.json(); });
+    setTimeout(function () { h.classList.remove('i18n-pending'); }, 2500);
+  }
+})();
+</script>
 </head>
 <body>
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+<div id="lang-status" class="sr" role="status" aria-live="polite"></div>
 
-<div class="ambient ambient-1"></div>
-<div class="ambient ambient-2"></div>
-
-<!-- NAV -->
-<nav id="nav">
-  <a href="/" class="nav-logo">
-    <span>EknathaLabs</span>
-    <span class="logo-badge">BETA</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#tools">Tools</a></li>
-    <li><a href="#labs">Labs</a></li>
-    <li><a href="#resources">Learn</a></li>
-    <li><a href="#access" class="nav-cta">Get Access</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- MOBILE MENU -->
-<nav class="mobile-menu" id="mobile-menu">
-  <a href="#tools" class="mm-link">Tools</a>
-  <a href="#labs" class="mm-link">Labs</a>
-  <a href="#resources" class="mm-link">Learn</a>
-  <a href="#access" class="mm-link">Follow the Build →</a>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-inner">
-    <div class="hero-left">
-      <div class="hero-eyebrow">Built in public</div>
-      <h1>Learn by <em>Actually Doing It</em></h1>
-      <p class="hero-sub">
-        Real terminal labs. Production-grade scenarios. Hands-on playgrounds for Linux, Cloud, Kubernetes, Terraform, CI/CD, Docker, Security and More — built by a practitioner, not a content farm.
-      </p>
-      <div class="hero-actions">
-        <a href="#tools" class="btn-primary">→ Explore Live Tools</a>
-        <a href="#access" class="btn-ghost">★ Follow the Build</a>
+<header class="site-top on-dark">
+  <nav class="nav" aria-label="Main">
+    <div class="wrap nav-in">
+      <a class="brand" href="/" aria-label="EknathaLabs home" data-i18n-attr="aria-label:brand.aria">
+        <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2l4 9 9 4-9 4-4 9-4-9-9-4 9-4z" fill="#ffb400"/></svg>
+        EknathaLabs
+      </a>
+      <div class="nav-links">
+        <a href="#tools" data-i18n="nav.tools">Tools</a>
+        <a href="#free" data-i18n="nav.free">Why it's free</a>
+        <a href="#workshop" data-i18n="nav.workshop">Workshop</a>
+        <a href="https://marga.eknathalabs.com">MARGA</a>
+        <a href="https://blog.eknathalabs.com" data-i18n="nav.blog">Blog</a>
+        <a class="nav-cta" href="#request" data-i18n="nav.request">Request a tool</a>
       </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-num">13+</span>
-          <span class="stat-label">live resources</span>
+      <div class="nav-tools">
+        <div class="lang" id="lang">
+          <button class="lang-btn" id="lang-btn" type="button" aria-expanded="false" aria-controls="lang-list" aria-haspopup="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.7 4 5.9 4 9.5s-1.4 6.8-4 9.5c-2.6-2.7-4-5.9-4-9.5s1.4-6.8 4-9.5z"/></svg>
+            <span class="sr" data-i18n="lang.aria">Choose language</span>
+            <span id="lang-code" aria-hidden="true">EN</span>
+          </button>
+          <ul class="lang-list" id="lang-list" hidden>
+            <li><button type="button" data-lang="en" lang="en" aria-current="true">English<span class="code">EN</span></button></li>
+            <li><button type="button" data-lang="hi" lang="hi">हिन्दी<span class="code">HI</span></button></li>
+            <li><button type="button" data-lang="te" lang="te">తెలుగు<span class="code">TE</span></button></li>
+            <li><button type="button" data-lang="kn" lang="kn">ಕನ್ನಡ<span class="code">KN</span></button></li>
+            <li><button type="button" data-lang="ta" lang="ta">தமிழ்<span class="code">TA</span></button></li>
+            <li><button type="button" data-lang="ml" lang="ml">മലയാളം<span class="code">ML</span></button></li>
+          </ul>
         </div>
-        <div class="stat-item">
-          <span class="stat-num">Free</span>
-          <span class="stat-label">core content</span>
-        </div>
-        <div class="stat-item stat-visitors">
-          <span class="stat-num is-loading" id="visitor-count">···</span>
-          <span class="stat-label">total visitors</span>
-        </div>
+        <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu" data-i18n-attr="aria-label:menu.open"><span></span><span></span><span></span></button>
       </div>
     </div>
+    <div class="menu" id="menu">
+      <a href="#tools" data-i18n="nav.tools">Tools</a>
+      <a href="#free" data-i18n="nav.free">Why it's free</a>
+      <a href="#workshop" data-i18n="nav.workshop">Workshop</a>
+      <a href="https://marga.eknathalabs.com">MARGA</a>
+      <a href="https://blog.eknathalabs.com" data-i18n="nav.blog">Blog</a>
+      <a href="#request" data-i18n="nav.request">Request a tool</a>
+    </div>
+  </nav>
 
-    <div class="terminal-wrap">
-      <div class="terminal" role="img" aria-label="EknathaLabs platform status terminal">
-        <div class="terminal-bar">
-          <div class="dot dot-r"></div>
-          <div class="dot dot-y"></div>
-          <div class="dot dot-g"></div>
-          <div class="terminal-title">eknathalabs.com — zsh</div>
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <span class="te" lang="te">ప్రయోగశాల</span>
+          <span class="pill" data-i18n="hero.pill">Free for everyone</span>
         </div>
-        <div class="terminal-body">
-          <div class="t-line"><span class="t-prompt">eknatha@labs</span><span class="t-comment">:~$</span> <span class="t-typed">./init-platform.sh</span></div>
-          <span class="t-blank"></span>
-          <div class="t-line"><span class="t-comment">Starting EknathaLabs platform...</span></div>
-          <span class="t-blank"></span>
-          <div class="t-line">▶ <span class="t-label">linux.eknathalabs.com      </span>  <span class="t-ok">LIVE ✓</span></div>
-          <div class="t-line">▶ <span class="t-label">resumelytics               </span>  <span class="t-ok">LIVE ✓</span></div>
-          <div class="t-line">▶ <span class="t-label">interview-prep             </span>  <span class="t-ok">LIVE ✓</span></div>
-          <div class="t-line">▶ <span class="t-label">linux-command-explainer    </span>  <span class="t-ok">LIVE ✓</span></div>
-          <div class="t-line">▶ <span class="t-label">docker.eknathalabs.com     </span>  <span class="t-ok">LIVE ✓</span></div>
-          <div class="t-line">▶ <span class="t-label">certs.eknathalabs.com      </span>  <span class="t-ok">LIVE ✓</span></div>
-          <div class="t-line">▶ <span class="t-label">db.eknathalabs.com         </span>  <span class="t-ok">LIVE ✓</span></div>
-          <div class="t-line">▶ <span class="t-label">patram.eknathalabs.com   </span>  <span class="t-ok">LIVE ✓</span></div>
-          <div class="t-line">▶ <span class="t-label">bimba.eknathalabs.com   </span>  <span class="t-ok">LIVE ✓</span></div>
-          <div class="t-line">▶ <span class="t-label">blog.eknathalabs.com       </span>  <span class="t-ok">BUILD ✓</span></div>
-          <div class="t-line">▶ <span class="t-label">learn.eknathalabs.com      </span>  <span class="t-build">BUILD ◆</span></div>
-          <div class="t-line">▶ <span class="t-label">arch.eknathalabs.com       </span>  <span class="t-ok">LIVE ✓</span></div>
-          <div class="t-line">▶ <span class="t-label">kubelab.eknathalabs.com    </span>  <span class="t-build">BUILD ◆</span></div>
-          <div class="t-line">▶ <span class="t-label">terraform.eknathalabs.com  </span>  <span class="t-build">BUILD ◆</span></div>
-          <div class="t-line">▶ <span class="t-label">cicd.eknathalabs.com       </span>  <span class="t-build">BUILD ◆</span></div>
-          <div class="t-line">▶ <span class="t-label">chaoslab.eknathalabs.com   </span>  <span class="t-plan">PLAN  ◇</span></div>
-          <div class="t-line">▶ <span class="t-label">labs.eknathalabs.com       </span>  <span class="t-plan">PLAN  ◇</span></div>
-          <span class="t-blank"></span>
-          <div class="t-line"><span class="t-comment">STATUS: Built in public.</span></div>
-          <span class="t-blank"></span>
-          <div class="t-line"><span class="t-prompt">eknatha@labs</span><span class="t-comment">:~$</span> <span class="t-cursor"></span></div>
+        <h1><span data-i18n="hero.h1a">Technology, </span><em data-i18n="hero.h1b">open to everyone.</em></h1>
+        <p class="lede" data-i18n="hero.lede">Free tools, labs and learning across every kind of technology, so anyone can learn, build and get things done.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#tools" data-i18n="hero.cta1">Explore the free tools</a>
+          <a class="btn btn-line" href="#free" data-i18n="nav.free">Why it's free</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>10</b><span data-i18n="stat.tools">free tools live</span></div>
+          <div class="stat"><b>0</b><span data-i18n="stat.accounts">accounts needed</span></div>
+          <div class="stat" id="visits" hidden><b id="visit-count">0</b><span data-i18n="stat.visits">visits so far</span></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 470 340" fill="none">
+          <g stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M34 62H128L206 140L235 170" stroke="#6b9bff"/>
+            <path d="M34 278H128L206 200L235 170" stroke="#ff6f61"/>
+            <path d="M436 62H342L264 140L235 170" stroke="#3ddc84"/>
+            <path d="M436 278H342L264 200L235 170" stroke="#a98bff"/>
+          </g>
+          <g fill="#14133a" stroke="#fff9ee" stroke-width="4">
+            <circle cx="34" cy="62" r="9"/><circle cx="128" cy="62" r="9"/>
+            <circle cx="34" cy="278" r="9"/><circle cx="128" cy="278" r="9"/>
+            <circle cx="436" cy="62" r="9"/><circle cx="342" cy="62" r="9"/>
+            <circle cx="436" cy="278" r="9"/><circle cx="342" cy="278" r="9"/>
+          </g>
+          <g font-family="JetBrains Mono, monospace" font-size="12" font-weight="500" fill="#d8d7f5">
+            <text x="34" y="40" data-i18n="map.learn">LEARN</text><text x="34" y="306" data-i18n="map.career">CAREER</text>
+            <text x="436" y="40" text-anchor="end" data-i18n="map.ref">REFERENCE</text><text x="436" y="306" text-anchor="end" data-i18n="map.files">FILES</text>
+          </g>
+          <g transform="translate(235 170)">
+            <circle r="62" fill="none" stroke="#ffb400" stroke-width="2" stroke-dasharray="3 7"/>
+            <g fill="#ffb400">
+              <ellipse rx="9" ry="26" cy="-30"/><ellipse rx="9" ry="26" cy="-30" transform="rotate(45)"/>
+              <ellipse rx="9" ry="26" cy="-30" transform="rotate(90)"/><ellipse rx="9" ry="26" cy="-30" transform="rotate(135)"/>
+              <ellipse rx="9" ry="26" cy="-30" transform="rotate(180)"/><ellipse rx="9" ry="26" cy="-30" transform="rotate(225)"/>
+              <ellipse rx="9" ry="26" cy="-30" transform="rotate(270)"/><ellipse rx="9" ry="26" cy="-30" transform="rotate(315)"/>
+            </g>
+            <circle r="18" fill="#e63e2d"/><circle r="8" fill="#fff9ee"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="stripe"></div>
+</header>
+
+<main id="main">
+
+<section class="section" id="tools">
+  <div class="wrap">
+    <div class="kicker" data-i18n="tools.kicker">The map</div>
+    <h2 data-i18n="tools.h2">Pick a line. Every stop is free.</h2>
+    <p class="sub" data-i18n="tools.sub" data-n="10">10 tools in four lines. No account, no payment. Open one and start.</p>
+
+    <div class="lines">
+      <article class="line reveal" style="--lc:#2456b8">
+        <div class="line-head"><h3 data-i18n="ln.learn">Learn line</h3><span data-i18n="stops.n" data-n="4">4 stops</span></div>
+        <p class="line-blurb" data-i18n="bl.learn">Hands-on labs and guides, at your own pace.</p>
+        <ul class="stops">
+          <li class="feat"><a class="stop" href="https://marga.eknathalabs.com">
+            <span class="dot" aria-hidden="true"></span>
+            <span><span class="feat-badge"><span data-i18n="feat">Featured · Start here</span></span><span class="stop-name">MARGA <span class="te" lang="te">మార్గ</span></span><span class="stop-desc" data-i18n="d.marga">Structured learning paths. Marga means &quot;path&quot;: curated roadmaps for cloud, DevOps and SRE, from first steps to job-ready skills.</span>
+            <span class="stop-meta"><span class="host">marga.eknathalabs.com</span></span></span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a></li>
+          <li><a class="stop" href="https://linux.eknathalabs.com">
+            <span class="dot" aria-hidden="true"></span>
+            <span><span class="stop-name">Linux for DevOps</span><span class="stop-desc" data-i18n="d.linux">25 hands-on practice labs plus LFCS-style quiz questions and inline tutorials.</span>
+            <span class="stop-meta"><span class="host">linux.eknathalabs.com</span></span></span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a></li>
+          <li><a class="stop" href="https://docker.eknathalabs.com">
+            <span class="dot" aria-hidden="true"></span>
+            <span><span class="stop-name">Docker Lab</span><span class="stop-desc" data-i18n="d.docker">Containers from first principles to production: Compose, networking, volumes, multi-stage builds and hardening.</span>
+            <span class="stop-meta"><span class="host">docker.eknathalabs.com</span></span></span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a></li>
+          <li><a class="stop" href="https://certs.eknathalabs.com">
+            <span class="dot" aria-hidden="true"></span>
+            <span><span class="stop-name">Certifications Hub</span><span class="stop-desc" data-i18n="d.certs">Roadmaps for CKA, CKS, AWS, Azure and Terraform with exam objectives and study plans.</span>
+            <span class="stop-meta"><span class="host">certs.eknathalabs.com</span></span></span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a></li>
+        </ul>
+      </article>
+      <article class="line reveal" style="--lc:#c62833">
+        <div class="line-head"><h3 data-i18n="ln.career">Career line</h3><span data-i18n="stops.n" data-n="2">2 stops</span></div>
+        <p class="line-blurb" data-i18n="bl.career">Get ready for the next role.</p>
+        <ul class="stops">
+          <li><a class="stop" href="https://resumelytics.eknathalabs.com">
+            <span class="dot" aria-hidden="true"></span>
+            <span><span class="stop-name">Resumelytics</span><span class="stop-desc" data-i18n="d.resumelytics">ATS resume analyzer: keyword analysis, format scoring and targeted improvements.</span>
+            <span class="stop-meta"><span class="host">resumelytics.eknathalabs.com</span></span></span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a></li>
+          <li><a class="stop" href="https://interviewhub.eknathalabs.com">
+            <span class="dot" aria-hidden="true"></span>
+            <span><span class="stop-name">InterviewHub</span><span class="stop-desc" data-i18n="d.interviewhub">Deep guides with interview and flashcard modes across Kubernetes, Terraform, Linux, CI/CD and cloud.</span>
+            <span class="stop-meta"><span class="host">interviewhub.eknathalabs.com</span></span></span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a></li>
+        </ul>
+      </article>
+      <article class="line reveal" style="--lc:#1a7a48">
+        <div class="line-head"><h3 data-i18n="ln.ref">Reference line</h3><span data-i18n="stops.n" data-n="2">2 stops</span></div>
+        <p class="line-blurb" data-i18n="bl.ref">Look things up in plain English.</p>
+        <ul class="stops">
+          <li><a class="stop" href="https://linux-command-explainer.eknathalabs.com">
+            <span class="dot" aria-hidden="true"></span>
+            <span><span class="stop-name">Linux Command Explainer</span><span class="stop-desc" data-i18n="d.linux-command-explainer">About 200 commands in plain English, with a pipe-chain visualiser, regex decoder and pre-run danger checklist.</span>
+            <span class="stop-meta"><span class="host">linux-command-explainer.eknathalabs.com</span></span></span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a></li>
+          <li><a class="stop" href="https://db.eknathalabs.com">
+            <span class="dot" aria-hidden="true"></span>
+            <span><span class="stop-name">Database Encyclopedia</span><span class="stop-desc" data-i18n="d.db">16 sections on SQL, NoSQL, indexing, transactions and scaling, with interactive tools and quizzes.</span>
+            <span class="stop-meta"><span class="host">db.eknathalabs.com</span></span></span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a></li>
+        </ul>
+      </article>
+      <article class="line reveal" style="--lc:#6a3fc0">
+        <div class="line-head"><h3 data-i18n="ln.files">Files line</h3><span data-i18n="stops.n" data-n="2">2 stops</span></div>
+        <p class="line-blurb" data-i18n="bl.files">Private by design. Everything runs in your browser.</p>
+        <ul class="stops">
+          <li><a class="stop" href="https://patram.eknathalabs.com">
+            <span class="dot" aria-hidden="true"></span>
+            <span><span class="stop-name">Patram</span><span class="stop-desc" data-i18n="d.patram">Merge, split, compress, convert and reorder PDFs. Nothing is uploaded.</span>
+            <span class="stop-meta"><span class="host">patram.eknathalabs.com</span><span class="chip" data-i18n="chip.offline">Works offline</span></span></span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a></li>
+          <li><a class="stop" href="https://bimba.eknathalabs.com">
+            <span class="dot" aria-hidden="true"></span>
+            <span><span class="stop-name">Bimba</span><span class="stop-desc" data-i18n="d.bimba">Resize, compress, convert, crop and edit images. No uploads.</span>
+            <span class="stop-meta"><span class="host">bimba.eknathalabs.com</span><span class="chip" data-i18n="chip.offline">Works offline</span></span></span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section free on-dark" id="free">
+  <div class="wrap">
+    <div class="kicker" data-i18n="nav.free">Why it's free</div>
+    <h2 data-i18n="free.h2">Great technology shouldn't have a price of entry.</h2>
+    <p class="mission" data-i18n="free.mission">Our goal is simple: make great technology free and accessible to everyone.</p>
+    <div class="steps">
+      <div class="step reveal"><b>01</b><h3 data-i18n="free.s1t">No account</h3><p data-i18n="free.s1d">Open a tool and use it. No sign-up, no card and no trial clock.</p></div>
+      <div class="step reveal"><b>02</b><h3 data-i18n="free.s2t">Your data stays yours</h3><p data-i18n="free.s2d">Patram and Bimba run entirely in your browser. Your files never leave your device.</p></div>
+      <div class="step reveal"><b>03</b><h3 data-i18n="free.s3t">Built in public</h3><p data-i18n="free.s3d">New tools ship as they are ready, and visitors help decide what comes next.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="hazard" aria-hidden="true"></div>
+<section class="section" id="workshop">
+  <div class="wrap">
+    <div class="kicker" data-i18n="ws.kicker">The workshop</div>
+    <h2 data-i18n="ws.h2">What we're building next.</h2>
+    <p class="sub" data-i18n="ws.sub">Open drawers show work in progress. Each one becomes a link the day it goes live.</p>
+    <div class="drawers">
+      <div class="drawer building reveal">
+        <div class="handle" aria-hidden="true"><i></i></div>
+        <div class="drawer-body">
+          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="01">Drawer 01</span><span data-i18n="dr.building">Building</span></div>
+          <h3 data-i18n="w.kubernetes.t">Kubernetes Lab</h3>
+          <p data-i18n="w.kubernetes.d">Real cluster scenarios, RBAC and network policies, mapped to CKA and CKS.</p>
+        </div>
+      </div>
+      <div class="drawer building reveal">
+        <div class="handle" aria-hidden="true"><i></i></div>
+        <div class="drawer-body">
+          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="02">Drawer 02</span><span data-i18n="dr.building">Building</span></div>
+          <h3 data-i18n="w.terraform.t">Terraform Lab</h3>
+          <p data-i18n="w.terraform.d">Multi-cloud IaC on AWS, Azure and GCP with reusable modules and state.</p>
+        </div>
+      </div>
+      <div class="drawer building reveal">
+        <div class="handle" aria-hidden="true"><i></i></div>
+        <div class="drawer-body">
+          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="03">Drawer 03</span><span data-i18n="dr.building">Building</span></div>
+          <h3 data-i18n="w.cicd.t">CI/CD Lab</h3>
+          <p data-i18n="w.cicd.d">Pipelines, ArgoCD and GitOps from zero to a production deployment.</p>
+        </div>
+      </div>
+      <div class="drawer building reveal">
+        <div class="handle" aria-hidden="true"><i></i></div>
+        <div class="drawer-body">
+          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="04">Drawer 04</span><span data-i18n="dr.building">Building</span></div>
+          <h3 data-i18n="w.archlab.t">ArchLab</h3>
+          <p data-i18n="w.archlab.d">Architecture diagrams for AWS, Azure, GCP and Kubernetes, AI-assisted or offline with 20+ templates.</p>
+        </div>
+      </div>
+      <div class="drawer planned reveal">
+        <div class="handle" aria-hidden="true"><i></i></div>
+        <div class="drawer-body">
+          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="05">Drawer 05</span><span data-i18n="dr.planned">Planned</span></div>
+          <h3 data-i18n="w.chaos.t">Chaos Lab</h3>
+          <p data-i18n="w.chaos.d">Inject failures into live clusters and learn resilience by breaking things.</p>
+        </div>
+      </div>
+      <div class="drawer planned reveal">
+        <div class="handle" aria-hidden="true"><i></i></div>
+        <div class="drawer-body">
+          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="06">Drawer 06</span><span data-i18n="dr.planned">Planned</span></div>
+          <h3 data-i18n="w.troubleshooting.t">Troubleshooting Labs</h3>
+          <p data-i18n="w.troubleshooting.d">Graded break-fix scenarios on ephemeral Linux and Kubernetes machines.</p>
+        </div>
+      </div>
+      <div class="drawer planned reveal">
+        <div class="handle" aria-hidden="true"><i></i></div>
+        <div class="drawer-body">
+          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="07">Drawer 07</span><span data-i18n="dr.planned">Planned</span></div>
+          <h3 data-i18n="w.cloudops.t">Cloud Operations Track</h3>
+          <p data-i18n="w.cloudops.d">AWS and Azure operations: incidents, cost, scaling and security.</p>
+        </div>
+      </div>
+      <div class="drawer planned reveal">
+        <div class="handle" aria-hidden="true"><i></i></div>
+        <div class="drawer-body">
+          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="08">Drawer 08</span><span data-i18n="dr.planned">Planned</span></div>
+          <h3 data-i18n="w.systemdesign.t">System Design Playground</h3>
+          <p data-i18n="w.systemdesign.d">An interactive canvas to design systems and model failure modes.</p>
+        </div>
+      </div>
+      <div class="drawer planned reveal">
+        <div class="handle" aria-hidden="true"><i></i></div>
+        <div class="drawer-body">
+          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="09">Drawer 09</span><span data-i18n="dr.planned">Planned</span></div>
+          <h3 data-i18n="w.security.t">Security Track</h3>
+          <p data-i18n="w.security.d">A dedicated platform for hands-on security learning.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- LIVE TOOLS -->
-<section class="tools-section" id="tools">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-tag">available now</div>
-      <h2>Live Tools & Resources</h2>
-      <p class="section-sub">Production-grade tools you can use right now — no sign-up, no paywalls.</p>
-    </div>
-    <div class="tools-grid">
-
-      <a href="https://resumelytics.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-2">
-        <div class="tool-card-top">
-          <div class="tool-icon cyan" aria-hidden="true">🎯</div>
-          <span class="status-badge badge-live">LIVE</span>
-        </div>
-        <div class="tool-name">ATS Resume Analyzer</div>
-        <div class="tool-desc">Beat applicant tracking systems. Keyword analysis, format scoring, and targeted improvement recommendations.</div>
-        <div class="tool-tags">
-          <span class="tag">resume</span><span class="tag">ATS</span><span class="tag">job-search</span>
-        </div>
-        <div class="tool-link">resumelytics.eknathalabs.com ↗</div>
-      </a>
-
-      <a href="https://linux-command-explainer.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-3">
-        <div class="tool-card-top">
-          <div class="tool-icon green" aria-hidden="true">🐧</div>
-          <span class="status-badge badge-live">LIVE</span>
-        </div>
-        <div class="tool-name">Linux Command Explainer</div>
-        <div class="tool-desc">Explain any of ~200 Linux commands in plain English — firewall tooling, container & Kubernetes utilities, eBPF, and advanced shell scripting. Pipe chain visualiser, regex decoder, ELI5 mode, and danger pre-run checklist.</div>
-        <div class="tool-tags">
-          <span class="tag">linux</span><span class="tag">cli</span><span class="tag">bash</span>
-        </div>
-        <div class="tool-link">linux-command-explainer.eknathalabs.com ↗</div>
-      </a>
-
-      <a href="https://interview-prep.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-4">
-        <div class="tool-card-top">
-          <div class="tool-icon purple" aria-hidden="true">📚</div>
-          <span class="status-badge badge-live">LIVE</span>
-        </div>
-        <div class="tool-name">DevOps Interview Prep</div>
-        <div class="tool-desc">Deep guides with dark mode, interview mode, and flashcard mode across Kubernetes, Terraform, Linux, CI/CD, and cloud — expanding toward 120 questions each, with an AI-powered prep agent in the works.</div>
-        <div class="tool-tags">
-          <span class="tag">interview</span><span class="tag">k8s</span><span class="tag">terraform</span>
-        </div>
-        <div class="tool-link">interview-prep.eknathalabs.com ↗</div>
-      </a>
-
-      <a href="https://linux.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-5">
-        <div class="tool-card-top">
-          <div class="tool-icon green" aria-hidden="true">⚡</div>
-          <span class="status-badge badge-live">LIVE</span>
-        </div>
-        <div class="tool-name">Linux for DevOps</div>
-        <div class="tool-desc">25 hands-on practice labs plus LFCS-style quiz questions and inline tutorials — file & process management, networking, disk, log analysis, user management, and system monitoring.</div>
-        <div class="tool-tags">
-          <span class="tag">linux</span><span class="tag">devops</span><span class="tag">25 labs</span>
-        </div>
-        <div class="tool-link">linux.eknathalabs.com ↗</div>
-      </a>
-
-      <a href="https://docker.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-6">
-        <div class="tool-card-top">
-          <div class="tool-icon cyan" aria-hidden="true">🐳</div>
-          <span class="status-badge badge-live">LIVE</span>
-        </div>
-        <div class="tool-name">Docker Lab</div>
-        <div class="tool-desc">Containers from first principles to production. Compose, networking, volumes, multi-stage builds, and security hardening.</div>
-        <div class="tool-tags">
-          <span class="tag">docker</span><span class="tag">containers</span><span class="tag">compose</span>
-        </div>
-        <div class="tool-link">docker.eknathalabs.com ↗</div>
-      </a>
-
-      <a href="https://arch.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-1">
-        <div class="tool-card-top">
-          <div class="tool-icon purple" aria-hidden="true">⬡</div>
-          <span class="status-badge badge-live">LIVE</span>
-        </div>
-        <div class="tool-name">ArchLab — AI Diagram Generator</div>
-        <div class="tool-desc">Generate production-grade architecture diagrams in seconds. AWS, Azure, GCP, Kubernetes, CI/CD, Terraform, and more — AI-powered or offline with 20+ quick templates.</div>
-        <div class="tool-tags">
-          <span class="tag">architecture</span><span class="tag">AI</span><span class="tag">diagrams</span><span class="tag">cloud</span>
-        </div>
-        <div class="tool-link">arch.eknathalabs.com ↗</div>
-      </a>
-
-      <a href="https://certs.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-2">
-        <div class="tool-card-top">
-          <div class="tool-icon amber" aria-hidden="true">🏅</div>
-          <span class="status-badge badge-live">LIVE</span>
-        </div>
-        <div class="tool-name">Certifications Hub</div>
-        <div class="tool-desc">Curated certification roadmaps for cloud and DevOps — CKA, CKS, AWS, Azure, Terraform. Exam objectives, study plans, and prep resources in one place.</div>
-        <div class="tool-tags">
-          <span class="tag">certs</span><span class="tag">cka</span><span class="tag">cks</span><span class="tag">cloud</span>
-        </div>
-        <div class="tool-link">certs.eknathalabs.com ↗</div>
-      </a>
-
-      <a href="https://db.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-3">
-        <div class="tool-card-top">
-          <div class="tool-icon cyan" aria-hidden="true">🗄️</div>
-          <span class="status-badge badge-live">LIVE</span>
-        </div>
-        <div class="tool-name">Database Encyclopedia</div>
-        <div class="tool-desc">Comprehensive database reference — 16 sections covering SQL, NoSQL, indexing, transactions, and scaling. Interactive tools, tutorials, and quizzes.</div>
-        <div class="tool-tags">
-          <span class="tag">databases</span><span class="tag">sql</span><span class="tag">nosql</span>
-        </div>
-        <div class="tool-link">db.eknathalabs.com ↗</div>
-      </a>
-
-      <a href="https://patram.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-4">
-        <div class="tool-card-top">
-          <div class="tool-icon amber" aria-hidden="true">📄</div>
-          <span class="status-badge badge-live">LIVE</span>
-        </div>
-        <div class="tool-name">Patram — PDF Toolkit</div>
-        <div class="tool-desc">Merge, split, compress, convert, and reorder PDFs — all in the browser, fully offline. Self-registering module architecture, zero uploads, your files never leave your device.</div>
-        <div class="tool-tags">
-          <span class="tag">pdf</span><span class="tag">offline</span><span class="tag">privacy</span>
-        </div>
-        <div class="tool-link">patram.eknathalabs.com ↗</div>
-      </a>
-
-      <a href="https://bimba.eknathalabs.com" target="_blank" class="tool-card live reveal reveal-delay-5">
-        <div class="tool-card-top">
-          <div class="tool-icon purple" aria-hidden="true">🖼️</div>
-          <span class="status-badge badge-live">LIVE</span>
-        </div>
-        <div class="tool-name">Bimba — Image Toolkit</div>
-        <div class="tool-desc">Resize, compress, convert, crop, and edit images entirely in-browser. Privacy-first and offline-capable — a fast, no-upload image workbench for everyday tasks.</div>
-        <div class="tool-tags">
-          <span class="tag">images</span><span class="tag">offline</span><span class="tag">convert</span>
-        </div>
-        <div class="tool-link">bimba.eknathalabs.com ↗</div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- LABS IN BUILD -->
-<section class="labs-section" id="labs">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-tag">active development</div>
-      <h2>Labs Under Construction</h2>
-      <p class="section-sub">Coming soon — deep-dive interactive labs and structured learning paths.</p>
-    </div>
-    <div class="labs-list">
-
-      <a href="https://kubelab.eknathalabs.com" target="_blank" class="lab-card reveal reveal-delay-1">
-        <div class="lab-num">01</div>
-        <div class="lab-info">
-          <div class="lab-name">☸️ Kubernetes Lab</div>
-          <div class="lab-url">kubelab.eknathalabs.com</div>
-          <div class="lab-desc">Real cluster scenarios, RBAC, network policies, pod security — mapped to CKA and CKS objectives.</div>
-          <span class="lab-status" style="background:var(--amber-dim);color:var(--amber);border:1px solid rgba(210,153,34,0.25);">building</span>
-        </div>
-      </a>
-
-      <a href="https://terraform.eknathalabs.com" target="_blank" class="lab-card reveal reveal-delay-2">
-        <div class="lab-num">02</div>
-        <div class="lab-info">
-          <div class="lab-name">🏗️ Terraform Lab</div>
-          <div class="lab-url">terraform.eknathalabs.com</div>
-          <div class="lab-desc">Multi-cloud IaC on AWS, Azure, and GCP. Reusable modules, state management, and CI/CD integration.</div>
-          <span class="lab-status" style="background:var(--amber-dim);color:var(--amber);border:1px solid rgba(210,153,34,0.25);">building</span>
-        </div>
-      </a>
-
-      <a href="https://cicd.eknathalabs.com" target="_blank" class="lab-card reveal reveal-delay-3">
-        <div class="lab-num">03</div>
-        <div class="lab-info">
-          <div class="lab-name">⚙️ CI/CD Lab</div>
-          <div class="lab-url">cicd.eknathalabs.com</div>
-          <div class="lab-desc">CI pipelines, ArgoCD, and GitOps workflows. From zero to production pipeline with real deployment scenarios.</div>
-          <span class="lab-status" style="background:var(--amber-dim);color:var(--amber);border:1px solid rgba(210,153,34,0.25);">building</span>
-        </div>
-      </a>
-
-      <a href="https://chaoslab.eknathalabs.com" target="_blank" class="lab-card reveal reveal-delay-4">
-        <div class="lab-num">04</div>
-        <div class="lab-info">
-          <div class="lab-name">💥 Chaos Lab</div>
-          <div class="lab-url">chaoslab.eknathalabs.com</div>
-          <div class="lab-desc">Inject real failures into live clusters — pod crashes, network partitions, node evictions. Resilience engineering by breaking things.</div>
-          <span class="lab-status" style="color:var(--text3);border:1px solid var(--border);">planned</span>
-        </div>
-      </a>
-
-      <a href="https://labs.eknathalabs.com" target="_blank" class="lab-card reveal reveal-delay-5">
-        <div class="lab-num">05</div>
-        <div class="lab-info">
-          <div class="lab-name">🛠️ Troubleshooting Labs</div>
-          <div class="lab-url">labs.eknathalabs.com</div>
-          <div class="lab-desc">SadServers-style hands-on scenarios. Break-fix challenges on ephemeral Linux and Kubernetes environments, graded automatically — diagnose and repair under real conditions.</div>
-          <span class="lab-status" style="color:var(--text3);border:1px solid var(--border);">planned</span>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- RESOURCES -->
-<section class="resources-section" id="resources">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-tag">knowledge base</div>
-      <h2>Blog & Learning Paths</h2>
-      <p class="section-sub">Deep articles and structured courses from 14+ years of hands-on production experience.</p>
-    </div>
-    <div class="resources-grid">
-      <a href="https://blog.eknathalabs.com" target="_blank" class="resource-card reveal reveal-delay-1">
-        <div class="big-icon" aria-hidden="true">✍️</div>
-        <h3>EknathaLabs Blog</h3>
-        <p>In-depth articles on Kubernetes internals, platform engineering patterns, incident retrospectives, and cloud architecture — written from real production experience.</p>
-        <div class="go">blog.eknathalabs.com ↗</div>
-      </a>
-      <a href="https://learn.eknathalabs.com" target="_blank" class="resource-card reveal reveal-delay-2">
-        <div class="big-icon" aria-hidden="true">🎓</div>
-        <h3>Structured Learning</h3>
-        <p>Curated learning paths for CKA, CKS, Terraform Associate, and Platform Engineering. Roadmaps, study guides, and hands-on exercises in one place.</p>
-        <div class="go">learn.eknathalabs.com ↗</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- COMING SOON -->
-<section class="coming-section">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-tag">roadmap</div>
-      <h2>Learning Tracks</h2>
-      <p class="section-sub">Broader skill tracks on the roadmap — some already explorable through existing portals, others in planning.</p>
-    </div>
-    <div class="coming-grid">
-      <div class="coming-card reveal reveal-delay-1">
-        <div class="c-icon" aria-hidden="true">☁️</div>
-        <h3>Cloud Operations Track</h3>
-        <p>AWS + Azure production operations: incident response, cost optimisation, scaling strategies, and security hardening.</p>
-        <span class="coming-status">planned</span>
+<section class="section" id="request" style="padding-top:0">
+  <div class="wrap">
+    <div class="request reveal">
+      <div>
+        <h2 data-i18n="req.h2">Know a great tool stuck behind a paywall?</h2>
+        <p data-i18n="req.p">Tell us what you need. We'll work on a free alternative and put it on the map.</p>
       </div>
-      <div class="coming-card reveal reveal-delay-2">
-        <div class="c-icon" aria-hidden="true">🧩</div>
-        <h3>System Design Playground</h3>
-        <p>Interactive canvas to design distributed systems. Drag-and-drop components, estimate throughput, model failure modes.</p>
-        <span class="coming-status">planned</span>
+      <a class="btn btn-ink" href="https://www.linkedin.com/in/eknathareddypuli" rel="noopener" data-i18n="req.btn">Request a free tool</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot on-dark">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/"><svg width="28" height="28" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2l4 9 9 4-9 4-4 9-4-9-9-4 9-4z" fill="#ffb400"/></svg>EknathaLabs</a>
+        <span class="te" lang="te">ప్రయోగశాల</span>
+        <p data-i18n="foot.about">Prayogashala, "the laboratory". Free tools, labs and learning for everyone.</p>
       </div>
-      <div class="coming-card reveal reveal-delay-4">
-        <div class="c-icon" aria-hidden="true">🔐</div>
-        <h3>Security </h3>
-        <p>Dedicated Security Platform .</p>
-        <span class="coming-status">planned</span>
+      <div>
+        <h4 data-i18n="nav.tools">Tools</h4>
+        <ul>
+          <li><a href="https://marga.eknathalabs.com">MARGA</a></li>
+          <li><a href="https://linux.eknathalabs.com">Linux for DevOps</a></li>
+          <li><a href="https://docker.eknathalabs.com">Docker Lab</a></li>
+          <li><a href="https://certs.eknathalabs.com">Certifications Hub</a></li>
+          <li><a href="https://resumelytics.eknathalabs.com">Resumelytics</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot.more">More tools</h4>
+        <ul>
+          <li><a href="https://interviewhub.eknathalabs.com">InterviewHub</a></li>
+          <li><a href="https://linux-command-explainer.eknathalabs.com">Linux Command Explainer</a></li>
+          <li><a href="https://db.eknathalabs.com">Database Encyclopedia</a></li>
+          <li><a href="https://patram.eknathalabs.com">Patram</a></li>
+          <li><a href="https://bimba.eknathalabs.com">Bimba</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot.know">Knowledge</h4>
+        <ul>
+          <li><a href="https://blog.eknathalabs.com" data-i18n="nav.blog">Blog</a></li>
+          <li><a href="#workshop" data-i18n="nav.workshop">Workshop</a></li>
+          <li><a href="https://www.linkedin.com/in/eknathareddypuli" rel="noopener">LinkedIn</a></li>
+        </ul>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section" id="access">
-  <div class="cta-glow reveal">
-    <div class="section-tag" style="justify-content:center; margin-bottom:1rem;">stay updated</div>
-    <h2>Follow the Build</h2>
-    <p>New Linux, Kubernetes, Terraform, and Platform Engineering labs ship in public. Follow along to know the moment they go live.</p>
-    <div class="hero-actions" style="justify-content:center; margin-top:1.5rem;">
-      <a href="https://www.linkedin.com/in/eknathareddyp" target="_blank" class="btn-ghost">Connect on LinkedIn ↗</a>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> EknathaLabs <span data-i18n="foot.built">· Built in public by Eknatha Reddy</span></span>
+      <span data-i18n="hero.pill">Free for everyone</span>
     </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand">EknathaLabs</div>
-      <div class="footer-tagline">Practical DevOps & Platform Engineering — built by a practitioner, for practitioners. Core content always free.</div>
-      <div class="footer-social">
-        <a href="https://eknathalabs.com" class="social-btn">eknathalabs.com</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Live Now</h4>
-      <ul>
-        <li><a href="https://linux.eknathalabs.com">Linux for DevOps</a></li>
-        <li><a href="https://resumelytics.eknathalabs.com">Resume Analyzer</a></li>
-        <li><a href="https://linux-command-explainer.eknathalabs.com">Linux Explainer</a></li>
-        <li><a href="https://interview-prep.eknathalabs.com">Interview Prep</a></li>
-        <li><a href="https://docker.eknathalabs.com">Docker Lab</a></li>
-        <li><a href="https://arch.eknathalabs.com">ArchLab</a></li>
-        <li><a href="https://certs.eknathalabs.com">Certifications Hub</a></li>
-        <li><a href="https://db.eknathalabs.com">DB Encyclopedia</a></li>
-        <li><a href="https://patram.eknathalabs.com">Patram — PDF Toolkit</a></li>
-        <li><a href="https://bimba.eknathalabs.com">Bimba — Image Toolkit</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Labs</h4>
-      <ul>
-        <li><a href="https://kubelab.eknathalabs.com">Kubernetes Lab</a></li>
-        <li><a href="https://terraform.eknathalabs.com">Terraform Lab</a></li>
-        <li><a href="https://cicd.eknathalabs.com">CI/CD Lab</a></li>
-        <li><a href="https://chaoslab.eknathalabs.com">Chaos Lab</a></li>
-        <li><a href="https://labs.eknathalabs.com">Troubleshooting Labs</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Knowledge</h4>
-      <ul>
-        <li><a href="https://blog.eknathalabs.com">Blog</a></li>
-        <li><a href="https://learn.eknathalabs.com">Learn</a></li>
-        <li><a href="#access">Early Access</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 EknathaLabs · Cloud · DevOps · Platform Engineering · Built in public 🚧</div>
-    <div class="footer-copy">Updated June 2026</div>
   </div>
 </footer>
 
 <script>
-  // ── NAV SCROLL EFFECT ──
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 20);
-  }, { passive: true });
+(function () {
+  'use strict';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ── ACTIVE NAV LINKS ──
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+  // Footer year
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 100) current = s.id;
-    });
-    navLinks.forEach(a => {
-      const href = a.getAttribute('href');
-      a.classList.toggle('active', href === `#${current}`);
-    });
-  }, { passive: true });
+  // ── Language (English is the markup; other languages are JSON loaded on demand)
+  var NAMES = { en: 'English', hi: 'हिन्दी', te: 'తెలుగు', kn: 'ಕನ್ನಡ', ta: 'தமிழ்', ml: 'മലയാളം' };
+  var cur = null;           // active dictionary (null = English)
+  var curCode = 'en';
+  var cache = {};
+  function t(key, fallback) { return (cur && cur[key]) || fallback; }
 
-  // ── MOBILE MENU ──
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
+  var META = [
+    ['meta[name="description"]', 'content', 'meta.desc'],
+    ['meta[property="og:description"]', 'content', 'meta.desc'],
+    ['meta[name="twitter:description"]', 'content', 'meta.desc'],
+    ['meta[property="og:title"]', 'content', 'meta.title'],
+    ['meta[name="twitter:title"]', 'content', 'meta.title']
+  ];
+  var metaEn = null;
 
-  hamburger.addEventListener('click', () => {
-    const open = hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
+  function fill(str, el) { return str.replace('{n}', el.getAttribute('data-n') || ''); }
 
-  document.querySelectorAll('.mm-link').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
-
-  // ── SCROLL REVEAL ──
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-  revealEls.forEach(el => observer.observe(el));
-
-  // ── TOTAL VISITOR COUNTER ──
-  (function () {
-    var el = document.getElementById('visitor-count');
-    if (!el) return;
-
-    // CountAPI uses a single flat key — no slashes, no dots, no namespaces.
-    var KEY = 'eknathalabs_com_total_visits';
-    var HIT = 'https://countapi.mileshilliard.com/api/v1/hit/' + KEY;
-
-    function format(n) { return Number(n).toLocaleString('en-US'); }
-
-    function animateTo(target) {
-      el.classList.remove('is-loading');
-      el.classList.add('counted');
-      var start = 0;
-      var dur = 900;
-      var t0 = performance.now();
-      // Start near the target for large numbers so it doesn't crawl from 0
-      if (target > 200) start = Math.floor(target * 0.85);
-      function step(now) {
-        var p = Math.min((now - t0) / dur, 1);
-        var eased = 1 - Math.pow(1 - p, 3);
-        var val = Math.floor(start + (target - start) * eased);
-        el.textContent = format(val);
-        if (p < 1) requestAnimationFrame(step);
-        else el.textContent = format(target);
-      }
-      requestAnimationFrame(step);
+  function apply(code, dict) {
+    var els = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i], k = el.getAttribute('data-i18n');
+      if (el.__en === undefined) el.__en = el.textContent;
+      el.textContent = dict && dict[k] ? fill(dict[k], el) : el.__en;
     }
-
-    fetch(HIT, { cache: 'no-store' })
-      .then(function (r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      })
-      .then(function (data) {
-        // API may return value/count as a number or numeric string
-        var raw = data && (data.value !== undefined ? data.value
-                         : data.count !== undefined ? data.count
-                         : data.val);
-        var n = Number(raw);
-        if (!isNaN(n)) animateTo(n);
-        else throw new Error('no numeric value in response');
-      })
-      .catch(function (err) {
-        console.warn('Visitor counter failed:', err);
-        // Fail gracefully — never show a frozen zero
-        el.classList.remove('is-loading');
-        el.textContent = '—';
+    var at = document.querySelectorAll('[data-i18n-attr]');
+    for (var j = 0; j < at.length; j++) {
+      var a = at[j];
+      a.getAttribute('data-i18n-attr').split(';').forEach(function (pair) {
+        var bits = pair.split(':'), attr = bits[0], key = bits[1];
+        a.__enA = a.__enA || {};
+        if (a.__enA[attr] === undefined) a.__enA[attr] = a.getAttribute(attr);
+        a.setAttribute(attr, dict && dict[key] ? dict[key] : a.__enA[attr]);
       });
-  })();
+    }
+    if (!metaEn) {
+      metaEn = { title: document.title };
+      META.forEach(function (m) { var n = document.querySelector(m[0]); if (n) metaEn[m[0]] = n.getAttribute(m[1]); });
+    }
+    document.title = dict && dict['meta.title'] ? dict['meta.title'] : metaEn.title;
+    META.forEach(function (m) {
+      var n = document.querySelector(m[0]); if (!n) return;
+      n.setAttribute(m[1], dict && dict[m[2]] ? dict[m[2]] : metaEn[m[0]]);
+    });
+    cur = dict; curCode = code;
+    document.documentElement.lang = code;
+    document.documentElement.classList.remove('i18n-pending');
+    var codeEl = document.getElementById('lang-code'); if (codeEl) codeEl.textContent = code.toUpperCase();
+    document.querySelectorAll('.lang-list button').forEach(function (b) {
+      if (b.getAttribute('data-lang') === code) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+    });
+    setMenu(false);
+  }
 
-  // Stagger terminal lines appearing
-  const tLines = document.querySelectorAll('.terminal-body .t-line');
-  tLines.forEach((line, i) => {
-    line.style.opacity = '0';
-    line.style.transition = `opacity 0.3s`;
-    setTimeout(() => { line.style.opacity = '1'; }, 1400 + i * 80);
-  });
+  function load(code) {
+    if (code === 'en') return Promise.resolve(null);
+    if (cache[code]) return Promise.resolve(cache[code]);
+    var p = (window.__boot && window.__boot.code === code && window.__boot.p) || fetch('assets/i18n/' + code + '.json').then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+    return p.then(function (d) { cache[code] = d; return d; });
+  }
+
+  function announce(msg) { var n = document.getElementById('lang-status'); if (n) n.textContent = msg; }
+
+  function setLang(code, user) {
+    return load(code).then(function (dict) {
+      apply(code, dict);
+      if (user) {
+        try { localStorage.setItem('el-lang', code); } catch (e) {}
+        try {
+          var u = new URL(location.href);
+          if (code === 'en') u.searchParams.delete('lang'); else u.searchParams.set('lang', code);
+          history.replaceState(null, '', u.pathname + u.search + u.hash);
+        } catch (e) {}
+        announce(t('lang.changed', 'Language changed to {name}').replace('{name}', NAMES[code]));
+      }
+    }).catch(function () {
+      document.documentElement.classList.remove('i18n-pending');
+      document.documentElement.lang = curCode;
+      announce('Could not load that language. Showing ' + NAMES[curCode] + '.');
+    });
+  }
+
+  // Mobile menu
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('menu');
+  function setMenu(open) {
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? t('menu.close', 'Close menu') : t('menu.open', 'Open menu'));
+    menu.classList.toggle('open', open);
+  }
+  burger.addEventListener('click', function () { setMenu(burger.getAttribute('aria-expanded') !== 'true'); });
+  menu.addEventListener('click', function (e) { if (e.target.tagName === 'A') setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 1040) setMenu(false); });
+
+  // Language switcher (disclosure list)
+  var lbtn = document.getElementById('lang-btn');
+  var llist = document.getElementById('lang-list');
+  function setList(open, focusBtn) {
+    lbtn.setAttribute('aria-expanded', String(open));
+    llist.hidden = !open;
+    if (open) { var c = llist.querySelector('[aria-current="true"]') || llist.querySelector('button'); c.focus(); }
+    else if (focusBtn) lbtn.focus();
+  }
+  if (lbtn && llist) {
+    lbtn.addEventListener('click', function () { setList(llist.hidden); });
+    llist.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-lang]'); if (!b) return;
+      setList(false, true);
+      setLang(b.getAttribute('data-lang'), true);
+    });
+    document.addEventListener('click', function (e) { if (!llist.hidden && !e.target.closest('#lang')) setList(false); });
+    document.addEventListener('keydown', function (e) {
+      if (llist.hidden) return;
+      var items = [].slice.call(llist.querySelectorAll('button')), i = items.indexOf(document.activeElement);
+      if (e.key === 'Escape') { setList(false, true); }
+      else if (e.key === 'ArrowDown') { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+      else if (e.key === 'Home') { e.preventDefault(); items[0].focus(); }
+      else if (e.key === 'End') { e.preventDefault(); items[items.length - 1].focus(); }
+      else if (e.key === 'Tab') { setList(false); }
+    });
+  }
+  if (window.__boot && window.__boot.code !== 'en') setLang(window.__boot.code, false);
+
+  // Scroll reveal (content stays visible when JS or IntersectionObserver is missing)
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // Current section in nav
+  var links = document.querySelectorAll('.nav-links a[href^="#"]:not(.nav-cta)');
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          links.forEach(function (a) {
+            if (a.getAttribute('href') === '#' + en.target.id) a.setAttribute('aria-current', 'true');
+            else a.removeAttribute('aria-current');
+          });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['tools', 'free', 'workshop'].forEach(function (id) {
+      var s = document.getElementById(id); if (s) spy.observe(s);
+    });
+  }
+
+  // Visit counter: shown only when the count loads, hidden otherwise
+  var box = document.getElementById('visits');
+  var out = document.getElementById('visit-count');
+  if (box && out && window.fetch) {
+    var URL_HIT = 'https://countapi.mileshilliard.com/api/v1/hit/eknathalabs_com_total_visits';
+    fetch(URL_HIT, { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (d) {
+        var raw = d && (d.value !== undefined ? d.value : d.count !== undefined ? d.count : d.val);
+        var n = Number(raw);
+        if (isNaN(n)) throw new Error('no count');
+        out.textContent = n.toLocaleString('en-US');
+        box.hidden = false;
+      })
+      .catch(function () { /* stay hidden */ });
+  }
+})();
 </script>
 </body>
 </html>
