@@ -43,7 +43,7 @@ T = {
  "d.linux-command-explainer": "About 200 commands in plain English, with a pipe-chain visualiser, regex decoder and pre-run danger checklist.",
  "d.db": "16 sections on SQL, NoSQL, indexing, transactions and scaling, with interactive tools and quizzes.",
  "d.ganaka": "119 free calculators for money, tax, health, study, math, dates, units, travel and DevOps. Works offline.",
- "d.bhasha": "Type English, hear it in 17 languages: Telugu, Hindi, Kannada, Tamil, Malayalam, Bengali, Marathi, Gujarati, Assamese, Korean, Spanish, German, French, Odia, Nepali, Japanese, English. Daily lessons, 50+ conversation drills, pronunciation practice, 460 phrases. Free and private. Learn from your own videos and texts. Works offline.",
+ "d.bhasha": "Type English, hear it in 17 languages: Telugu, Hindi, Kannada, Tamil, Malayalam, Bengali, Marathi, Gujarati, Assamese, Korean, Spanish, German, French, Odia, Nepali, Japanese, English. Daily lessons, 50+ conversation drills, pronunciation practice, 560 phrases. Free and private. Learn from your own videos and texts. Works offline.",
  "d.patram": "Merge, split, compress, convert and reorder PDFs. Nothing is uploaded.",
  "d.bimba": "Resize, compress, convert, crop and edit images. No uploads.",
  "free.h2": "Great technology shouldn't have a price of entry.",
