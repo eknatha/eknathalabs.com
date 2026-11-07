@@ -42,6 +42,7 @@ T = {
  "d.interviewhub": "Deep guides with interview and flashcard modes across Kubernetes, Terraform, Linux, CI/CD and cloud.",
  "d.linux-command-explainer": "About 200 commands in plain English, with a pipe-chain visualiser, regex decoder and pre-run danger checklist.",
  "d.db": "16 sections on SQL, NoSQL, indexing, transactions and scaling, with interactive tools and quizzes.",
+ "d.hopbyhop": "Follow one packet across the network: real bytes, real checksums, every NAT, tunnel and fault explained. Works offline.",
  "d.ganaka": "119 free calculators for money, tax, health, study, math, dates, units, travel and DevOps. Works offline.",
  "d.bhasha": "Type English, hear it in 17 languages: Telugu, Hindi, Kannada, Tamil, Malayalam, Bengali, Marathi, Gujarati, Assamese, Korean, Spanish, German, French, Odia, Nepali, Japanese, English. Daily lessons, 50+ conversation drills, pronunciation practice, 560 phrases. Free and private. Learn from your own videos and texts. Works offline.",
  "d.patram": "Merge, split, compress, convert and reorder PDFs. Nothing is uploaded.",

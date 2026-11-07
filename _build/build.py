@@ -39,6 +39,7 @@ LINES = [
      "stops": [
          ("Linux Command Explainer", "linux-command-explainer", "d.linux-command-explainer", None, False),
          ("Database Encyclopedia", "db", "d.db", None, False),
+         ("Hop by Hop", "hopbyhop", "d.hopbyhop", "chip.offline", False),
      ]},
     {"name": "Tools", "key": "files", "color": "#6a3fc0", "app": "UtilitiesApplication",
      "stops": [
