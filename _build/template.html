@@ -243,19 +243,6 @@ h2{font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.08;letter-spacing:-.03em;fon
 .step h3{margin:12px 0 8px;font-size:1.3rem;font-weight:700}
 .step p{color:var(--on-band)}
 
-/* ───────── Workshop drawers ───────── */
-.hazard{height:16px;background:repeating-linear-gradient(135deg,var(--charcoal) 0 18px,var(--gold) 18px 36px)}
-.drawers{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:22px;margin-top:44px}
-.drawer{background:var(--charcoal);color:#f1f0ea;border:2px solid var(--edge);border-radius:14px;box-shadow:5px 5px 0 var(--shadow-c);overflow:hidden;display:flex;flex-direction:column}
-.handle{display:flex;justify-content:center;padding:10px;background:var(--charcoal-2);border-bottom:2px solid var(--edge)}
-.handle i{display:block;width:84px;height:10px;border-radius:5px;background:var(--gold)}
-.drawer.planned .handle i{background:#8d909a}
-.drawer-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
-.drawer-tag{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--gold);text-transform:uppercase}
-.drawer.planned .drawer-tag{color:#c3c5cc}
-.drawer h3{font-size:1.25rem;font-weight:700;line-height:1.2;letter-spacing:-.01em}
-.drawer p{font-size:14.5px;color:#d3d4cd}
-
 /* ───────── Request band ───────── */
 .request{background:var(--gold);color:var(--ink);border:2px solid var(--ink);border-radius:28px;box-shadow:8px 8px 0 var(--shadow-c);padding:clamp(28px,5vw,52px);display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between}
 .request h2{font-size:clamp(1.7rem,3.4vw,2.4rem);max-width:640px}
@@ -277,8 +264,8 @@ html:not([lang="en"]) body{line-height:1.7}
 html:not([lang="en"]) h1{line-height:1.25;font-size:clamp(2.3rem,5.6vw,4.2rem)}
 html:not([lang="en"]) h2{line-height:1.3}
 html:not([lang="en"]) h3,html:not([lang="en"]) .stop-name{line-height:1.45}
-html:not([lang="en"]) .stop-desc,html:not([lang="en"]) .line-blurb,html:not([lang="en"]) .drawer p{line-height:1.7}
-html:not([lang="en"]) .kicker,html:not([lang="en"]) .drawer-tag,html:not([lang="en"]) .stat span{text-transform:none}
+html:not([lang="en"]) .stop-desc,html:not([lang="en"]) .line-blurb{line-height:1.7}
+html:not([lang="en"]) .kicker,html:not([lang="en"]) .stat span{text-transform:none}
 html:not([lang="en"]) .nav-links a{font-size:14px;padding:8px 8px}
 html:not([lang="en"]) .nav-links .nav-cta{padding:8px 14px;margin-left:4px}
 html:not([lang="en"]) .btn{line-height:1.5}
@@ -367,7 +354,6 @@ html:not([lang="en"]) h1,html:not([lang="en"]) h2,html:not([lang="en"]) h3,html:
       <div class="nav-links">
         <a href="#tools" data-i18n="nav.tools">Tools</a>
         <a href="#free" data-i18n="nav.free">Why it's free</a>
-        <a href="#workshop" data-i18n="nav.workshop">Workshop</a>
         <a href="https://marga.eknathalabs.com">MARGA</a>
         <a href="https://blog.eknathalabs.com" data-i18n="nav.blog">Blog</a>
         <a class="nav-cta" href="#request" data-i18n="nav.request">Request a tool</a>
@@ -400,7 +386,6 @@ html:not([lang="en"]) h1,html:not([lang="en"]) h2,html:not([lang="en"]) h3,html:
     <div class="menu" id="menu">
       <a href="#tools" data-i18n="nav.tools">Tools</a>
       <a href="#free" data-i18n="nav.free">Why it's free</a>
-      <a href="#workshop" data-i18n="nav.workshop">Workshop</a>
       <a href="https://marga.eknathalabs.com">MARGA</a>
       <a href="https://blog.eknathalabs.com" data-i18n="nav.blog">Blog</a>
       <a class="menu-cta" href="#request" data-i18n="nav.request">Request a tool</a>
@@ -494,17 +479,6 @@ html:not([lang="en"]) h1,html:not([lang="en"]) h2,html:not([lang="en"]) h3,html:
 </section>
 
 <div class="hazard" aria-hidden="true"></div>
-<section class="section" id="workshop">
-  <div class="wrap">
-    <div class="kicker" data-i18n="ws.kicker">The workshop</div>
-    <h2 data-i18n="ws.h2">What we're building next.</h2>
-    <p class="sub" data-i18n="ws.sub">Open drawers show work in progress. Each one becomes a link the day it goes live.</p>
-    <div class="drawers">
-%%DRAWERS%%
-    </div>
-  </div>
-</section>
-
 <section class="section" id="request" style="padding-top:0">
   <div class="wrap">
     <div class="request reveal">
@@ -543,7 +517,6 @@ html:not([lang="en"]) h1,html:not([lang="en"]) h2,html:not([lang="en"]) h3,html:
         <h4 data-i18n="foot.know">Knowledge</h4>
         <ul>
           <li><a href="https://blog.eknathalabs.com" data-i18n="nav.blog">Blog</a></li>
-          <li><a href="#workshop" data-i18n="nav.workshop">Workshop</a></li>
           <li><a href="https://www.linkedin.com/in/eknathareddypuli" rel="noopener">LinkedIn</a></li>
         </ul>
         <details class="foot-lang">
@@ -679,7 +652,7 @@ html:not([lang="en"]) h1,html:not([lang="en"]) h2,html:not([lang="en"]) h3,html:
         }
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['tools', 'free', 'workshop'].forEach(function (id) {
+    ['tools', 'free'].forEach(function (id) {
       var s = document.getElementById(id); if (s) spy.observe(s);
     });
   }

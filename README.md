@@ -16,8 +16,6 @@ Live at **https://eknathalabs.com**
 | Reference | Linux Command Explainer, Database Encyclopedia |
 | Tools | Ganaka (119 offline calculators), Patram (PDF toolkit), Bimba (image toolkit) |
 
-In the workshop (building): Kubernetes Lab, Docker Lab, Terraform Lab, CI/CD Lab, ArchLab.
-Planned: Chaos Lab, Troubleshooting Labs, Cloud Operations Track, System Design Playground, Security Track.
 
 ## Languages: real URLs
 

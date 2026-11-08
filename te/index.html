@@ -523,19 +523,6 @@ h2{font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.08;letter-spacing:-.03em;fon
 .step h3{margin:12px 0 8px;font-size:1.3rem;font-weight:700}
 .step p{color:var(--on-band)}
 
-/* ───────── Workshop drawers ───────── */
-.hazard{height:16px;background:repeating-linear-gradient(135deg,var(--charcoal) 0 18px,var(--gold) 18px 36px)}
-.drawers{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:22px;margin-top:44px}
-.drawer{background:var(--charcoal);color:#f1f0ea;border:2px solid var(--edge);border-radius:14px;box-shadow:5px 5px 0 var(--shadow-c);overflow:hidden;display:flex;flex-direction:column}
-.handle{display:flex;justify-content:center;padding:10px;background:var(--charcoal-2);border-bottom:2px solid var(--edge)}
-.handle i{display:block;width:84px;height:10px;border-radius:5px;background:var(--gold)}
-.drawer.planned .handle i{background:#8d909a}
-.drawer-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
-.drawer-tag{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--gold);text-transform:uppercase}
-.drawer.planned .drawer-tag{color:#c3c5cc}
-.drawer h3{font-size:1.25rem;font-weight:700;line-height:1.2;letter-spacing:-.01em}
-.drawer p{font-size:14.5px;color:#d3d4cd}
-
 /* ───────── Request band ───────── */
 .request{background:var(--gold);color:var(--ink);border:2px solid var(--ink);border-radius:28px;box-shadow:8px 8px 0 var(--shadow-c);padding:clamp(28px,5vw,52px);display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between}
 .request h2{font-size:clamp(1.7rem,3.4vw,2.4rem);max-width:640px}
@@ -557,8 +544,8 @@ html:not([lang="en"]) body{line-height:1.7}
 html:not([lang="en"]) h1{line-height:1.25;font-size:clamp(2.3rem,5.6vw,4.2rem)}
 html:not([lang="en"]) h2{line-height:1.3}
 html:not([lang="en"]) h3,html:not([lang="en"]) .stop-name{line-height:1.45}
-html:not([lang="en"]) .stop-desc,html:not([lang="en"]) .line-blurb,html:not([lang="en"]) .drawer p{line-height:1.7}
-html:not([lang="en"]) .kicker,html:not([lang="en"]) .drawer-tag,html:not([lang="en"]) .stat span{text-transform:none}
+html:not([lang="en"]) .stop-desc,html:not([lang="en"]) .line-blurb{line-height:1.7}
+html:not([lang="en"]) .kicker,html:not([lang="en"]) .stat span{text-transform:none}
 html:not([lang="en"]) .nav-links a{font-size:14px;padding:8px 8px}
 html:not([lang="en"]) .nav-links .nav-cta{padding:8px 14px;margin-left:4px}
 html:not([lang="en"]) .btn{line-height:1.5}
@@ -647,7 +634,6 @@ html:not([lang="en"]) h1,html:not([lang="en"]) h2,html:not([lang="en"]) h3,html:
       <div class="nav-links">
         <a href="#tools" data-i18n="nav.tools">టూల్స్</a>
         <a href="#free" data-i18n="nav.free">ఉచితం ఎందుకు</a>
-        <a href="#workshop" data-i18n="nav.workshop">వర్క్‌షాప్</a>
         <a href="https://marga.eknathalabs.com">MARGA</a>
         <a href="https://blog.eknathalabs.com" data-i18n="nav.blog">బ్లాగ్</a>
         <a class="nav-cta" href="#request" data-i18n="nav.request">టూల్ అభ్యర్థించండి</a>
@@ -685,7 +671,6 @@ html:not([lang="en"]) h1,html:not([lang="en"]) h2,html:not([lang="en"]) h3,html:
     <div class="menu" id="menu">
       <a href="#tools" data-i18n="nav.tools">టూల్స్</a>
       <a href="#free" data-i18n="nav.free">ఉచితం ఎందుకు</a>
-      <a href="#workshop" data-i18n="nav.workshop">వర్క్‌షాప్</a>
       <a href="https://marga.eknathalabs.com">MARGA</a>
       <a href="https://blog.eknathalabs.com" data-i18n="nav.blog">బ్లాగ్</a>
       <a class="menu-cta" href="#request" data-i18n="nav.request">టూల్ అభ్యర్థించండి</a>
@@ -874,96 +859,6 @@ html:not([lang="en"]) h1,html:not([lang="en"]) h2,html:not([lang="en"]) h3,html:
 </section>
 
 <div class="hazard" aria-hidden="true"></div>
-<section class="section" id="workshop">
-  <div class="wrap">
-    <div class="kicker" data-i18n="ws.kicker">వర్క్‌షాప్</div>
-    <h2 data-i18n="ws.h2">మేము తర్వాత నిర్మిస్తున్నవి.</h2>
-    <p class="sub" data-i18n="ws.sub">తెరిచిన సొరుగులు జరుగుతున్న పనిని చూపిస్తాయి. ప్రతి సొరుగు ప్రారంభమైన రోజే లింక్‌గా మారుతుంది.</p>
-    <div class="drawers">
-      <div class="drawer building reveal">
-        <div class="handle" aria-hidden="true"><i></i></div>
-        <div class="drawer-body">
-          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="01">సొరుగు 01</span><span data-i18n="dr.building">నిర్మాణంలో</span></div>
-          <h3 data-i18n="w.kubernetes.t">Kubernetes ల్యాబ్</h3>
-          <p data-i18n="w.kubernetes.d">నిజమైన క్లస్టర్ సన్నివేశాలు, RBAC, నెట్‌వర్క్ పాలసీలు, CKA, CKSకు అనుగుణంగా.</p>
-        </div>
-      </div>
-      <div class="drawer building reveal">
-        <div class="handle" aria-hidden="true"><i></i></div>
-        <div class="drawer-body">
-          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="02">సొరుగు 02</span><span data-i18n="dr.building">నిర్మాణంలో</span></div>
-          <h3 data-i18n="w.docker.t">Docker ల్యాబ్</h3>
-          <p data-i18n="w.docker.d">మొదటి సూత్రాల నుంచి ప్రొడక్షన్ వరకు కంటైనర్లు: Compose, నెట్‌వర్కింగ్, వాల్యూమ్‌లు, మల్టీ-స్టేజ్ బిల్డ్‌లు, హార్డనింగ్.</p>
-        </div>
-      </div>
-      <div class="drawer building reveal">
-        <div class="handle" aria-hidden="true"><i></i></div>
-        <div class="drawer-body">
-          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="03">సొరుగు 03</span><span data-i18n="dr.building">నిర్మాణంలో</span></div>
-          <h3 data-i18n="w.terraform.t">Terraform ల్యాబ్</h3>
-          <p data-i18n="w.terraform.d">AWS, Azure, GCPలలో మల్టీ-క్లౌడ్ IaC, పునర్వినియోగ మాడ్యూళ్లు, స్టేట్‌తో.</p>
-        </div>
-      </div>
-      <div class="drawer building reveal">
-        <div class="handle" aria-hidden="true"><i></i></div>
-        <div class="drawer-body">
-          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="04">సొరుగు 04</span><span data-i18n="dr.building">నిర్మాణంలో</span></div>
-          <h3 data-i18n="w.cicd.t">CI/CD ల్యాబ్</h3>
-          <p data-i18n="w.cicd.d">పైప్‌లైన్లు, ArgoCD, GitOps, సున్నా నుంచి ప్రొడక్షన్ డిప్లాయ్‌మెంట్ వరకు.</p>
-        </div>
-      </div>
-      <div class="drawer building reveal">
-        <div class="handle" aria-hidden="true"><i></i></div>
-        <div class="drawer-body">
-          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="05">సొరుగు 05</span><span data-i18n="dr.building">నిర్మాణంలో</span></div>
-          <h3 data-i18n="w.archlab.t">ArchLab</h3>
-          <p data-i18n="w.archlab.d">AWS, Azure, GCP, Kubernetes ఆర్కిటెక్చర్ డయాగ్రామ్‌లు, AI సహాయంతో లేదా ఆఫ్‌లైన్‌లో, 20+ టెంప్లేట్లతో.</p>
-        </div>
-      </div>
-      <div class="drawer planned reveal">
-        <div class="handle" aria-hidden="true"><i></i></div>
-        <div class="drawer-body">
-          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="06">సొరుగు 06</span><span data-i18n="dr.planned">ప్రణాళికలో</span></div>
-          <h3 data-i18n="w.chaos.t">కేయాస్ ల్యాబ్</h3>
-          <p data-i18n="w.chaos.d">నడుస్తున్న క్లస్టర్లలో వైఫల్యాలను ప్రవేశపెట్టి, వస్తువులను విరగ్గొట్టడం ద్వారా స్థితిస్థాపకత నేర్చుకోండి.</p>
-        </div>
-      </div>
-      <div class="drawer planned reveal">
-        <div class="handle" aria-hidden="true"><i></i></div>
-        <div class="drawer-body">
-          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="07">సొరుగు 07</span><span data-i18n="dr.planned">ప్రణాళికలో</span></div>
-          <h3 data-i18n="w.troubleshooting.t">ట్రబుల్‌షూటింగ్ ల్యాబ్‌లు</h3>
-          <p data-i18n="w.troubleshooting.d">తాత్కాలిక Linux, Kubernetes మెషీన్లపై గ్రేడెడ్ బ్రేక్-ఫిక్స్ సన్నివేశాలు.</p>
-        </div>
-      </div>
-      <div class="drawer planned reveal">
-        <div class="handle" aria-hidden="true"><i></i></div>
-        <div class="drawer-body">
-          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="08">సొరుగు 08</span><span data-i18n="dr.planned">ప్రణాళికలో</span></div>
-          <h3 data-i18n="w.cloudops.t">క్లౌడ్ ఆపరేషన్స్ ట్రాక్</h3>
-          <p data-i18n="w.cloudops.d">AWS, Azure ఆపరేషన్స్: ఇన్సిడెంట్లు, ఖర్చు, స్కేలింగ్, భద్రత.</p>
-        </div>
-      </div>
-      <div class="drawer planned reveal">
-        <div class="handle" aria-hidden="true"><i></i></div>
-        <div class="drawer-body">
-          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="09">సొరుగు 09</span><span data-i18n="dr.planned">ప్రణాళికలో</span></div>
-          <h3 data-i18n="w.systemdesign.t">సిస్టమ్ డిజైన్ ప్లేగ్రౌండ్</h3>
-          <p data-i18n="w.systemdesign.d">సిస్టమ్‌లను డిజైన్ చేసి వైఫల్య విధానాలను పరీక్షించే ఇంటరాక్టివ్ కాన్వాస్.</p>
-        </div>
-      </div>
-      <div class="drawer planned reveal">
-        <div class="handle" aria-hidden="true"><i></i></div>
-        <div class="drawer-body">
-          <div class="drawer-tag"><span data-i18n="dr.tag" data-n="10">సొరుగు 10</span><span data-i18n="dr.planned">ప్రణాళికలో</span></div>
-          <h3 data-i18n="w.security.t">సెక్యూరిటీ ట్రాక్</h3>
-          <p data-i18n="w.security.d">ప్రాక్టికల్ భద్రత నేర్చుకోవడానికి ప్రత్యేక ప్లాట్‌ఫామ్.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="section" id="request" style="padding-top:0">
   <div class="wrap">
     <div class="request reveal">
@@ -1012,7 +907,6 @@ html:not([lang="en"]) h1,html:not([lang="en"]) h2,html:not([lang="en"]) h3,html:
         <h4 data-i18n="foot.know">జ్ఞానం</h4>
         <ul>
           <li><a href="https://blog.eknathalabs.com" data-i18n="nav.blog">బ్లాగ్</a></li>
-          <li><a href="#workshop" data-i18n="nav.workshop">వర్క్‌షాప్</a></li>
           <li><a href="https://www.linkedin.com/in/eknathareddypuli" rel="noopener">LinkedIn</a></li>
         </ul>
         <details class="foot-lang">
@@ -1153,7 +1047,7 @@ html:not([lang="en"]) h1,html:not([lang="en"]) h2,html:not([lang="en"]) h3,html:
         }
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['tools', 'free', 'workshop'].forEach(function (id) {
+    ['tools', 'free'].forEach(function (id) {
       var s = document.getElementById(id); if (s) spy.observe(s);
     });
   }

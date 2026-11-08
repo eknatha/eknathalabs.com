@@ -50,12 +50,7 @@ LINES = [
 ]
 
 # (slug, state). Building first, then planned. Text lives in i18n under w.<slug>.t / .d
-DRAWERS = [
-    ("kubernetes", "building"), ("docker", "building"), ("terraform", "building"), ("cicd", "building"),
-    ("archlab", "building"),
-    ("chaos", "planned"), ("troubleshooting", "planned"), ("cloudops", "planned"),
-    ("systemdesign", "planned"), ("security", "planned"),
-]
+DRAWERS = []  # no work-in-progress section on the site
 
 e = html.escape
 all_stops = [s for l in LINES for s in l["stops"]]
