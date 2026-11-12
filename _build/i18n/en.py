@@ -35,7 +35,7 @@ T = {
  "feat": "Featured · Start here",
  "chip.offline": "Works offline",
  "d.marga": "Structured learning paths. Marga means \"path\": curated roadmaps for cloud, DevOps and SRE, from first steps to job-ready skills.",
- "d.kubelab": "Free Kubernetes practice lab: 40 hands-on labs, an in-browser kubectl simulator, CKA/CKAD/CKS exam mode and 300+ quiz questions.",
+ "d.kubedrill": "Free Kubernetes practice lab: 40 hands-on labs, an in-browser kubectl simulator, CKA/CKAD/CKS exam mode and 300+ quiz questions.",
  "d.linux": "25 hands-on practice labs plus LFCS-style quiz questions and inline tutorials.",
  "d.certs": "Roadmaps for CKA, CKS, AWS, Azure and Terraform with exam objectives and study plans.",
  "d.resumelytics": "ATS resume analyzer: keyword analysis, format scoring and targeted improvements.",

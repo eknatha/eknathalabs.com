@@ -26,7 +26,7 @@ LINES = [
     {"name": "Learn", "key": "learn", "color": "#2456b8", "app": "EducationalApplication",
      "stops": [
          ("MARGA", "marga", "d.marga", None, True),
-         ("KubeLab", "kubelab", "d.kubelab", "chip.offline", False),
+         ("KubeDrill", "kubedrill", "d.kubedrill", "chip.offline", False),
          ("Linux for DevOps", "linux", "d.linux", None, False),
          ("Certifications Hub", "certs", "d.certs", None, False),
          ("Bhasha", "bhasha", "d.bhasha", "chip.offline", False),
