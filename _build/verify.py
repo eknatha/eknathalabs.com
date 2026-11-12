@@ -65,7 +65,7 @@ for c in CODES:
     org = [g for g in ld["@graph"] if g["@type"] == "Organization"][0]
     items = [i["item"] for g in ld["@graph"] if g["@type"] == "ItemList" for i in g["itemListElement"]]
     check(org["alternateName"] == T["brand.lab"] and [g for g in ld["@graph"] if g["@type"] == "WebSite"][0]["inLanguage"] == c, f"{url(c)}: JSON-LD language and brand word")
-    check(len(items) == 11 and all(i["description"] == T[k] for i, k in zip(items, [s for s in re.findall(r'data-i18n="(d\.[^"]+)"', h)])), f"{url(c)}: JSON-LD lists 11 tools with localized descriptions")
+    check(len(items) == 13 and all(i["description"] == T[k] for i, k in zip(items, [s for s in re.findall(r'data-i18n="(d\.[^"]+)"', h)])), f"{url(c)}: JSON-LD lists 13 tools with localized descriptions")
     # Telugu script ONLY on the Telugu page; every page only its own script
     for c2, rx in SCRIPT.items():
         found = re.search(rx, re.sub(r'<ul class="lang-list" id="lang-list".*?</ul>|<details class="foot-lang">.*?</details>|<script type="application/ld\+json">.*?</script>', "", h, flags=re.S))
@@ -85,12 +85,12 @@ h = read("en")
 links = re.findall(r'href="([^"]+)"', h)
 check("https://interviewhub.eknathalabs.com" in links and "interview-prep" not in src, "InterviewHub linked; old URL gone")
 check(not any(("arch." in l or "docker." in l) for l in links if l.startswith("http")), "ArchLab and Docker Lab have no live links")
-check(len(re.findall(r'class="stop"', h)) == 11, "11 live tools")
-check(re.search(r'Learn line.*?(MARGA).*?Linux for DevOps.*?Certifications Hub', h, re.S) is not None and 'Docker' not in re.search(r'<article class="line.*?</article>', h, re.S).group(0), "Learn line = MARGA (featured), Linux for DevOps, Certifications Hub")
+check(len(re.findall(r'class="stop"', h)) == 13, "13 live tools")
+check(re.search(r'Learn line.*?(MARGA).*?KubeLab.*?Linux for DevOps.*?Certifications Hub', h, re.S) is not None and 'Docker' not in re.search(r'<article class="line.*?</article>', h, re.S).group(0), "Learn line = MARGA (featured), KubeLab, Linux for DevOps, Certifications Hub")
 foot = re.search(r'<footer.*?</footer>', h, re.S).group(0)
 check("docker" not in foot.lower().replace("docker lab", "") or "docker.eknathalabs" not in foot, "footer has no Docker Lab link")
 ft = re.findall(r'<a href="(https://[^"]+)"', foot)
-check(len([x for x in ft if "eknathalabs.com" in x and "blog" not in x]) == 11, "footer lists the 11 live tools")
+check(len([x for x in ft if "eknathalabs.com" in x and "blog" not in x]) == 13, "footer lists the 13 live tools")
 sm_alts = re.findall(r'hreflang="([^"]+)"', sm)
 check(len(sm_alts) == 7 * 6, "sitemap: every URL carries all 7 alternates")
 check(all(re.search(r"github|afford|rupee", read(c), re.I) is None for c in CODES), "no GitHub / afford wording on any page")
